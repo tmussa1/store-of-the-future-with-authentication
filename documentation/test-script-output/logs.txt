@@ -19,32 +19,20 @@ INFO: The commands in the queue have been processed
 INFO: The commands in the queue have been processed
 An event invoke-commands received!!!!!!!!!!!!!!!!!!!!!!!!!!!
 store_123
-
 Store KMart is located in Columbus
 Also contains 
-
-
 AISLE_A1_desc has been created 
 AISLE_A2_desc has been created 
 AISLE_A3_desc has been created 
 AISLE_B1_desc has been created 
 AISLE_B2_desc has been created 
 AISLE_B3_desc has been created 
-
 Aisle AISLE_A1_desc is located in STORE_ROOM
 Also contains 
-
-
-
 Aisle AISLE_A2_desc is located in FLOOR
 Also contains 
-
-
-
 Aisle AISLE_B2_desc is located in FLOOR
 Also contains 
-
-
 Shelf_Q1 has been created 
 Shelf_Q2 has been created 
 Shelf_Q3 has been created 
@@ -75,48 +63,30 @@ Shelf_Q2 has been created
 Shelf_Q3 has been created 
 Shelf_Q4 has been created 
 Shelf_Q5 has been created 
-
 Shelf Shelf_Q1 is located in aisle_A2
 Also contains 
-
-
-
 Shelf Shelf_Q5 is located in aisle_B1
 Also contains 
-
-
 bournvita has been created 
 tea has been created 
 coffee has been created 
 goggles has been created 
 sun_glass has been created 
-
 Product bournvita is located in Food
 Also contains 
-
 Product{productId=prod10, productName='bournvita', productDescription='bournvita', category='Food', price=2, volume=15625.0, temperature=AMBIENT}
-
-
 inv_u21 has been created 
 inv_u22 has been created 
 inv_u23 has been created 
 inv_u24 has been created 
 inv_u25 has been created 
 inv_u26 has been created 
-
 Inventory inv_u24 is located in aisle_B2
 Also contains 
-
 Product{productId=prod10, productName='bournvita', productDescription='bournvita', category='Food', price=2, volume=15625.0, temperature=AMBIENT}
-
-
-
 Inventory inv_u21 is located in aisle_A1
 Also contains 
-
 Product{productId=prod10, productName='bournvita', productDescription='bournvita', category='Food', price=2, volume=15625.0, temperature=AMBIENT}
-
-
 inv_u24 has been updated. Change is  inventory count updated to 4
 inv_u21 has been updated. Change is  inventory count updated to 7
 JSON has been created 
@@ -208,75 +178,42 @@ cust_AB has been updated. Change is  location of customer updated to aisle_B2
 cust_E2 has been updated. Change is  location of customer updated to aisle_B3
 cust_23 has been updated. Change is  location of customer updated to aisle_B1
 cust_24 has been updated. Change is  location of customer updated to aisle_A1
-
 Customer BILL is located in aisle_A2
 Also contains 
-
 registered
-
-
-
 Customer SALINA is located in aisle_B2
 Also contains 
-
 registered
-
-
 b1 has been created 
 b2 has been created 
 b3 has been created 
-
 Basket b1 is located in cust_21
 Also contains 
-
-
-
 Basket b2 is located in cust_S2
 Also contains 
-
-
-
 Basket b3 is located in cust_22
 Also contains 
-
-
 b1 has been updated. Change is  product count in basket updated to 4
 b3 has been updated. Change is  product count in basket updated to 2
 b3 has been updated. Change is  product count in basket updated to 7
 b1 has been updated. Change is  item with prod10 removed from basket
 b3 has been updated. Change is  item with prod12 removed from basket
-
 Basket b1 is located in  contains items 
 Also contains 
-
 Product{productId=prod10, productName='bournvita', productDescription='bournvita', category='Food', price=2, volume=15625.0, temperature=AMBIENT}
-
-
 MicrophoneA1 has been created 
 CameraA1 has been created 
 CameraA2 has been created 
 CameraB1 has been created 
-
 Sensor CameraA1 is located in  contains items 
 Also contains 
-
 Camera{sensorId='cam_A1', sensorName='CameraA1', type='com.cscie97.store.model.Camera'}
-
-
-
 Sensor MicrophoneA1 is located in  contains items 
 Also contains 
-
 Microphone{sensorId='mic_A1', sensorName='MicrophoneA1', location=InventoryLocation{storeId='store_123', aisleNumber='aisle_A2', shelfId=''}, type='com.cscie97.store.model.Microphone'}
-
-
-
 Sensor CameraA2 is located in  contains items 
 Also contains 
-
 Camera{sensorId='cam_A2', sensorName='CameraA2', type='com.cscie97.store.model.Camera'}
-
-
 CameraA1 detected message  create-sensor-event cam_A1 location store_123:aisle_A2 event watch_store_room has been created 
 MicrophoneA1 detected message create-sensor-event mic_A1 location store_123:aisle_A2 event tell_robot_to_bring_items_from_store_123:aisle_A1 has been created 
 ROBOT_1 has been created 
@@ -286,20 +223,12 @@ SPEAKER_2 has been created
 TURNSTILE_A1 has been created 
 TURNSTILE_A2 has been created 
 TURNSTILE_A3 has been created 
-
 Applaince TURNSTILE_A1 is located in  contains items 
 Also contains 
-
 Turnstile{applianceId='turn_a1', applianceName='TURNSTILE_A1', applianceLocation=InventoryLocation{storeId='store_123', aisleNumber='aisle_A2', shelfId=''}, applianceType='com.cscie97.store.model.Turnstile', isOpen=false}
-
-
-
 Applaince ROBOT_2 is located in  contains items 
 Also contains 
-
 Robot{sensorId='rob_2', sensorName='ROBOT_2', sensorLocation=InventoryLocation{storeId='store_123', aisleNumber='aisle_A2', shelfId=''}, sensorType='robot'}
-
-
 ROBOT_2 detected message CLEAN_FLOOR has been created 
 ROBOT_1 detected message STOCK_SHELL has been created 
 TURNSTILE_A1 detected message COUNT_INVENTORY has been created 
