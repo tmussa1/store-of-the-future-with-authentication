@@ -19,7 +19,6 @@ public class StoreModelService implements IStoreModelService, ISubject {
     private Map<String, Product> productMap;
     private List<IObserver> observers;
     private static StoreModelService instance;
-    private String authKey;
 
     Logger logger = Logger.getLogger(StoreModelService.class.getName());
 
@@ -47,8 +46,8 @@ public class StoreModelService implements IStoreModelService, ISubject {
      * @throws StoreException
      */
     @Override
-    public Store createAStore(String storeId, String storeName, Address storeAddress) throws StoreException {
-        checkValidityOfStoreId(storeId);
+    public Store createAStore(String storeId, String storeName, Address storeAddress, String authToken) throws StoreException {
+        checkValidityOfStoreId(storeId, authToken);
         Store store = new Store(storeId, storeName, storeAddress);
         this.stores.add(store);
         return store;
@@ -59,7 +58,7 @@ public class StoreModelService implements IStoreModelService, ISubject {
      * @param storeId
      * @throws StoreException
      */
-    private void checkValidityOfStoreId(String storeId) throws StoreException {
+    private void checkValidityOfStoreId(String storeId, String authToken) throws StoreException {
         Optional<Store> duplicateStore = this.stores.stream().filter(store -> store.getStoreId().equalsIgnoreCase(storeId))
                 .findAny();
         if(!duplicateStore.isEmpty()){
@@ -74,7 +73,7 @@ public class StoreModelService implements IStoreModelService, ISubject {
      * @throws StoreException
      */
     @Override
-    public Store getStoreById(String storeId) throws StoreException {
+    public Store getStoreById(String storeId, String authToken) throws StoreException {
 
         Store store = stores.stream().filter(astore -> astore.getStoreId().equalsIgnoreCase(storeId))
                 .collect(Collectors.toList()).get(0);
@@ -94,8 +93,8 @@ public class StoreModelService implements IStoreModelService, ISubject {
      * @throws StoreException
      */
     @Override
-    public Aisle createAisle(String storeId, String aisleNumber, String aisleDescription, String location) throws StoreException {
-        Store store = getStoreById(storeId);
+    public Aisle createAisle(String storeId, String aisleNumber, String aisleDescription, String location, String authToken) throws StoreException {
+        Store store = getStoreById(storeId, authToken);
         LocationType locationEnum = StoreUtil.convertLocationToEnum(location);
         Aisle aisle = new Aisle(aisleNumber, aisleDescription,locationEnum);
         store.addAisleToAStore(aisle);
@@ -110,8 +109,8 @@ public class StoreModelService implements IStoreModelService, ISubject {
      * @throws StoreException
      */
     @Override
-    public Aisle getAisleByStoreIdAndAisleNumber(String storeId, String aisleNumber) throws StoreException {
-        Store store = getStoreById(storeId);
+    public Aisle getAisleByStoreIdAndAisleNumber(String storeId, String aisleNumber, String authToken) throws StoreException {
+        Store store = getStoreById(storeId, authToken);
         Optional<Aisle> aisle = store.getAisles().stream().filter(anAisle -> anAisle.getAisleNumber().equals(aisleNumber)).findAny();
         if(aisle.isEmpty()){
             throw new StoreException("An aisle with the requested id doesn't exist");
@@ -132,8 +131,8 @@ public class StoreModelService implements IStoreModelService, ISubject {
      * @throws StoreException
      */
     @Override
-    public Shelf createAShelf(String storeId, String aisleNumber, String shelfId, String shelfName, String level, String shelfDescription, String temperature) throws StoreException {
-        Aisle aisle = getAisleByStoreIdAndAisleNumber(storeId, aisleNumber);
+    public Shelf createAShelf(String storeId, String aisleNumber, String shelfId, String shelfName, String level, String shelfDescription, String temperature, String authToken) throws StoreException {
+        Aisle aisle = getAisleByStoreIdAndAisleNumber(storeId, aisleNumber, authToken);
         Level levelEnum = StoreUtil.convertLevelToEnum(level);
         Temperature temperatureEnum = StoreUtil.convertTemperatureToEnum(temperature);
         Shelf shelf = new Shelf(shelfId, shelfName,levelEnum,shelfDescription,temperatureEnum);
@@ -150,8 +149,8 @@ public class StoreModelService implements IStoreModelService, ISubject {
      * @throws StoreException
      */
     @Override
-    public Shelf getShelfByStoreIdAisleNumShelfId(String storeId, String aisleNumber, String shelfId) throws StoreException {
-        Aisle aisle = getAisleByStoreIdAndAisleNumber(storeId, aisleNumber);
+    public Shelf getShelfByStoreIdAisleNumShelfId(String storeId, String aisleNumber, String shelfId, String authToken) throws StoreException {
+        Aisle aisle = getAisleByStoreIdAndAisleNumber(storeId, aisleNumber, authToken);
         Shelf shelf = aisle.getShelves().stream().filter(aShelf -> aShelf.getShelfId().equals(shelfId)).findAny().get();
         if(shelf == null){
             throw new StoreException("A shelf with the requested id doesn't exist");
@@ -172,13 +171,13 @@ public class StoreModelService implements IStoreModelService, ISubject {
      * @throws StoreException
      */
     @Override
-    public Inventory createInventory(String inventoryId, String storeId, String aisleNumber, String shelfId, int capacity, int count, String productId) throws StoreException {
+    public Inventory createInventory(String inventoryId, String storeId, String aisleNumber, String shelfId, int capacity, int count, String productId, String authToken) throws StoreException {
         Product product = productMap.get(productId);
         if(product == null){
             throw new StoreException("Inventory can not be created for a product that is not defined");
         }
         InventoryLocation inventoryLocation = new InventoryLocation(storeId, aisleNumber, shelfId);
-        Shelf shelf = getShelfByStoreIdAisleNumShelfId(storeId, aisleNumber, shelfId);
+        Shelf shelf = getShelfByStoreIdAisleNumShelfId(storeId, aisleNumber, shelfId, authToken);
         Inventory inventory = new Inventory(inventoryId, product, count, capacity, inventoryLocation);
         inventoryMap.put(inventoryId, inventory);
         shelf.addInventoryToShelf(inventory);
@@ -192,7 +191,7 @@ public class StoreModelService implements IStoreModelService, ISubject {
      * @throws StoreException
      */
     @Override
-    public Inventory getInventoryById(String inventoryId) throws StoreException {
+    public Inventory getInventoryById(String inventoryId, String authToken) throws StoreException {
         Inventory inventory = inventoryMap.get(inventoryId);
         if(inventory == null){
             throw new StoreException("Requested inventory not found in all of the stores");
@@ -202,7 +201,7 @@ public class StoreModelService implements IStoreModelService, ISubject {
 
     /**
      * This makes sure the overall inventory map for all stores as well as the inventory in a particular shelf is updated.
-     * The same inventory(same inventory id) can be split between stores so the count for a particular shelf maybe different
+     * The same inventory(same inventory id, String authToken) can be split between stores so the count for a particular shelf maybe different
      * from the overall inventory count
      * @param inventoryId
      * @param difference
@@ -210,14 +209,14 @@ public class StoreModelService implements IStoreModelService, ISubject {
      * @throws StoreException
      */
     @Override
-    public int updateInventoryCount(String inventoryId, int difference) throws StoreException {
+    public int updateInventoryCount(String inventoryId, int difference, String authToken) throws StoreException {
         Inventory inventoryFromAnyStore = inventoryMap.get(inventoryId);
         if(inventoryFromAnyStore == null){
             throw new StoreException("The inventory that you are trying to update the count of doesn't exist in the stores");
         }
         Shelf shelf = getShelfByStoreIdAisleNumShelfId(inventoryFromAnyStore.getInventoryLocation().getStoreId(),
                 inventoryFromAnyStore.getInventoryLocation().getAisleNumber(),
-                inventoryFromAnyStore.getInventoryLocation().getShelfId());
+                inventoryFromAnyStore.getInventoryLocation().getShelfId(), authToken);
         Inventory inventoryInTheShelf = shelf.getInventoryList().stream()
                 .filter(inventory -> inventory.getInventoryId().equals(inventoryId)).findAny().get();
         if(inventoryInTheShelf == null){
@@ -240,7 +239,7 @@ public class StoreModelService implements IStoreModelService, ISubject {
      * @return a product object
      */
     @Override
-    public Product createAProduct(String productId, String productName, String productDescription, int size, String category, int price, String temperature) {
+    public Product createAProduct(String productId, String productName, String productDescription, int size, String category, int price, String temperature, String authToken) {
         double volume = Math.pow(size, 3);
         Product product = new Product(productId, productName, productDescription, category, price, volume,
                 StoreUtil.convertTemperatureToEnum(temperature));
@@ -255,7 +254,7 @@ public class StoreModelService implements IStoreModelService, ISubject {
      * @throws StoreException
      */
     @Override
-    public Product getProductById(String productId) throws StoreException {
+    public Product getProductById(String productId, String authToken) throws StoreException {
         Product product = this.productMap.get(productId);
         if(product == null){
             throw new StoreException("A product with the requested id doesn't exist");
@@ -269,7 +268,7 @@ public class StoreModelService implements IStoreModelService, ISubject {
      * @param accountAddress
      * @throws StoreException
      */
-    private void duplicateCustomerValidation(String customerId, String accountAddress) throws StoreException {
+    private void duplicateCustomerValidation(String customerId, String accountAddress, String authToken) throws StoreException {
         Optional<Customer> duplicateCustomer = this.customers.stream()
                 .filter(aCustomer -> aCustomer.getCustomerId().equals(customerId)
                         && aCustomer.getAccountAddress().equals(accountAddress))
@@ -291,10 +290,10 @@ public class StoreModelService implements IStoreModelService, ISubject {
      * @throws StoreException
      */
     @Override
-    public Customer createCustomer(String customerId, String firstName, String lastName, String type, String emailAddress, String accountAddress) throws StoreException {
+    public Customer createCustomer(String customerId, String firstName, String lastName, String type, String emailAddress, String accountAddress, String authToken) throws StoreException {
         Customer customer = new Customer(customerId, firstName, lastName,
                 StoreUtil.convertCustomerTypeToEnum(type), emailAddress, accountAddress);
-        duplicateCustomerValidation(customerId, accountAddress);
+        duplicateCustomerValidation(customerId, accountAddress, authToken);
         this.customers.add(customer);
         return customer;
     }
@@ -306,7 +305,7 @@ public class StoreModelService implements IStoreModelService, ISubject {
      * @throws StoreException
      */
     @Override
-    public Customer getCustomerById(String customerId) throws StoreException {
+    public Customer getCustomerById(String customerId, String authToken) throws StoreException {
         Optional<Customer> customer = this.customers.stream().filter(aCustomer ->
                 aCustomer.getCustomerId().equals(customerId)).findAny();
         if(customer.isEmpty()){
@@ -324,9 +323,9 @@ public class StoreModelService implements IStoreModelService, ISubject {
      * @throws StoreException
      */
     @Override
-    public InventoryLocation updateCustomerLocation(String customerId, String storeId, String aisleNumber) throws StoreException {
+    public InventoryLocation updateCustomerLocation(String customerId, String storeId, String aisleNumber, String authToken) throws StoreException {
         InventoryLocation customerLocation = new InventoryLocation(storeId, aisleNumber, "");
-        Customer customer = getCustomerById(customerId);
+        Customer customer = getCustomerById(customerId, authToken);
         customer.setCustomerLocation(customerLocation);
         return customer.getCustomerLocation();
     }
@@ -338,11 +337,11 @@ public class StoreModelService implements IStoreModelService, ISubject {
      * @throws StoreException
      */
     @Override
-    public Basket getBasketOfACustomer(String customerId) throws StoreException {
-        Customer customer = getCustomerById(customerId);
+    public Basket getBasketOfACustomer(String customerId, String authToken) throws StoreException {
+        Customer customer = getCustomerById(customerId, authToken);
         Basket basket = customer.getBasket();
         if(basket == null){
-            customer.setBasket(createBasketForACustomer(customerId, UUID.randomUUID().toString()));
+            customer.setBasket(createBasketForACustomer(customerId, UUID.randomUUID().toString(), authToken));
         }
         this.customers.add(customer);
         return customer.getBasket();
@@ -356,8 +355,8 @@ public class StoreModelService implements IStoreModelService, ISubject {
      * @throws StoreException
      */
     @Override
-    public Basket createBasketForACustomer(String customerId, String basketId) throws StoreException {
-        Customer customer = getCustomerById(customerId);
+    public Basket createBasketForACustomer(String customerId, String basketId, String authToken) throws StoreException {
+        Customer customer = getCustomerById(customerId, authToken);
         Basket basket = new Basket(basketId);
         customer.setBasket(basket);
         this.customers.add(customer);
@@ -370,9 +369,9 @@ public class StoreModelService implements IStoreModelService, ISubject {
      * @return customer object
      * @throws StoreException
      */
-    private Customer getCustomerAssociatedWithABasket(String basketId) throws StoreException {
+    private Customer getCustomerAssociatedWithABasket(String basketId, String authToken) throws StoreException {
 
-        Customer customer = findCustomerWithBasketId(basketId);
+        Customer customer = findCustomerWithBasketId(basketId, authToken);
         if(customer == null){
             throw new StoreException("There is no customer associated with this basket id");
         }
@@ -385,7 +384,7 @@ public class StoreModelService implements IStoreModelService, ISubject {
      * @return a customer
      */
     @Override
-    public Customer getCustomerByCustomerName(String customerName) throws StoreException {
+    public Customer getCustomerByCustomerName(String customerName, String authToken) throws StoreException {
         Customer customer = this.customers.stream()
                 .filter(aCustomer -> aCustomer.getFirstName().equals(customerName))
                 .findAny().get();
@@ -400,7 +399,7 @@ public class StoreModelService implements IStoreModelService, ISubject {
      * @param basketId
      * @return customer object
      */
-    private Customer findCustomerWithBasketId(String basketId) {
+    private Customer findCustomerWithBasketId(String basketId, String authToken) {
         for(int i = 0; i < customers.size(); i++){
             if(customers.get(i).getBasket() != null &&
                     customers.get(i).getBasket().getBasketId().equalsIgnoreCase(basketId)){
@@ -417,7 +416,7 @@ public class StoreModelService implements IStoreModelService, ISubject {
      * @throws StoreException
      */
     @Override
-    public Inventory getInventoryByProductId(String productId) throws StoreException {
+    public Inventory getInventoryByProductId(String productId, String authToken) throws StoreException {
          Inventory inventory = inventoryMap.values().stream()
                 .filter(anInventory -> anInventory.getProduct().getProductId().equals(productId))
                 .findAny().get();
@@ -437,8 +436,8 @@ public class StoreModelService implements IStoreModelService, ISubject {
      * @throws StoreException
      */
     @Override
-    public Basket addItemToBasket(String basketId, String productId, int count) throws StoreException {
-        Customer customer = getCustomerAssociatedWithABasket(basketId);
+    public Basket addItemToBasket(String basketId, String productId, int count, String authToken) throws StoreException {
+        Customer customer = getCustomerAssociatedWithABasket(basketId, authToken);
         Product product = this.productMap.get(productId);
         if(product == null){
             throw new StoreException("The product you are trying to pick doesn't exist");
@@ -446,11 +445,11 @@ public class StoreModelService implements IStoreModelService, ISubject {
         Basket basket = customer.getBasket();
         basket.addProductToBasket(product, count);
         customer.setBasket(basket);
-        Inventory inventoryOverAll = getInventoryByProductId(productId);
+        Inventory inventoryOverAll = getInventoryByProductId(productId, authToken);
         inventoryOverAll.setCount(inventoryOverAll.getCount() - count);
         Shelf shelf = getShelfByStoreIdAisleNumShelfId(inventoryOverAll.getInventoryLocation().getStoreId(),
                 inventoryOverAll.getInventoryLocation().getAisleNumber(),
-                inventoryOverAll.getInventoryLocation().getShelfId());
+                inventoryOverAll.getInventoryLocation().getShelfId(), authToken);
         Inventory inventoryInTheShelf = shelf.getInventoryInTheShelfByInventoryId(inventoryOverAll.getInventoryId());
         inventoryInTheShelf.setCount(inventoryInTheShelf.getCount() - count);
         shelf.addInventoryToShelf(inventoryInTheShelf);
@@ -469,8 +468,8 @@ public class StoreModelService implements IStoreModelService, ISubject {
      * @throws StoreException
      */
     @Override
-    public Basket removeItemFromBasket(String basketId, String productId, int countReturned) throws StoreException {
-        Customer customer = getCustomerAssociatedWithABasket(basketId);
+    public Basket removeItemFromBasket(String basketId, String productId, int countReturned, String authToken) throws StoreException {
+        Customer customer = getCustomerAssociatedWithABasket(basketId, authToken);
         Product product = this.productMap.get(productId);
         if(product == null){
             throw new StoreException("The product you are trying to put back is not from this store");
@@ -478,11 +477,11 @@ public class StoreModelService implements IStoreModelService, ISubject {
         Basket basket = customer.getBasket();
         basket.removeProductFromBasket(product, countReturned);
         customer.setBasket(basket);
-        Inventory inventoryOverAll = getInventoryByProductId(productId);
+        Inventory inventoryOverAll = getInventoryByProductId(productId, authToken);
         inventoryOverAll.setCount(inventoryOverAll.getCount() + countReturned);
         Shelf shelf = getShelfByStoreIdAisleNumShelfId(inventoryOverAll.getInventoryLocation().getStoreId(),
                 inventoryOverAll.getInventoryLocation().getAisleNumber(),
-                inventoryOverAll.getInventoryLocation().getShelfId());
+                inventoryOverAll.getInventoryLocation().getShelfId(), authToken);
         Inventory inventoryInTheShelf = shelf.getInventoryInTheShelfByInventoryId(inventoryOverAll.getInventoryId());
         inventoryInTheShelf.setCount(inventoryInTheShelf.getCount() + countReturned);
         shelf.addInventoryToShelf(inventoryInTheShelf);
@@ -497,9 +496,9 @@ public class StoreModelService implements IStoreModelService, ISubject {
      * @throws StoreException
      */
     @Override
-    public Customer clearBasketAndRemoveAssociationWithACustomer(String basketId) throws StoreException {
-        Customer customer = getCustomerAssociatedWithABasket(basketId);
-        Basket basket = getBasketOfACustomer(customer.getCustomerId());
+    public Customer clearBasketAndRemoveAssociationWithACustomer(String basketId, String authToken) throws StoreException {
+        Customer customer = getCustomerAssociatedWithABasket(basketId, authToken);
+        Basket basket = getBasketOfACustomer(customer.getCustomerId(), authToken);
         basket.setProductsMap(null);
         customer.setBasket(null);
         return customer;
@@ -512,9 +511,9 @@ public class StoreModelService implements IStoreModelService, ISubject {
      * @throws StoreException
      */
     @Override
-    public Map<Product, Integer> getBasketItems(String basketId) throws StoreException {
-        Customer customer = getCustomerAssociatedWithABasket(basketId);
-        Basket basket = getBasketOfACustomer(customer.getCustomerId());
+    public Map<Product, Integer> getBasketItems(String basketId, String authToken) throws StoreException {
+        Customer customer = getCustomerAssociatedWithABasket(basketId, authToken);
+        Basket basket = getBasketOfACustomer(customer.getCustomerId(), authToken);
         return basket.getProductsMap();
     }
 
@@ -530,10 +529,10 @@ public class StoreModelService implements IStoreModelService, ISubject {
      */
     @Override
     public ISensor createASensor(String sensorId, String sensorName, String sensorType, String storeId,
-                                 String aisleNumber) throws StoreException {
+                                 String aisleNumber, String authToken) throws StoreException {
         InventoryLocation location = new InventoryLocation(storeId, aisleNumber, "");
         ISensor sensor = SensorApplianceFactory.createSensor(sensorType, sensorId, sensorName, location);
-        Aisle aisle = getAisleByStoreIdAndAisleNumber(storeId, aisleNumber);
+        Aisle aisle = getAisleByStoreIdAndAisleNumber(storeId, aisleNumber, authToken);
         aisle.addSensorToAisle(sensor);
         return sensor;
     }
@@ -547,9 +546,9 @@ public class StoreModelService implements IStoreModelService, ISubject {
      * @throws StoreException
      */
     @Override
-    public ISensor getSensorByLocationAndSensorId(String storeId, String aisleNumber, String sensorId)
+    public ISensor getSensorByLocationAndSensorId(String storeId, String aisleNumber, String sensorId, String authToken)
             throws StoreException {
-        Aisle aisle = getAisleByStoreIdAndAisleNumber(storeId, aisleNumber);
+        Aisle aisle = getAisleByStoreIdAndAisleNumber(storeId, aisleNumber, authToken);
         ISensor sensor = aisle.getSensorById(sensorId);
         return sensor;
     }
@@ -563,9 +562,9 @@ public class StoreModelService implements IStoreModelService, ISubject {
      * @throws StoreException
      */
     @Override
-    public IAppliance getApplianceByLocationAndSensorId(String storeId, String aisleNumber, String applianceId)
+    public IAppliance getApplianceByLocationAndSensorId(String storeId, String aisleNumber, String applianceId, String authToken)
             throws StoreException {
-        Aisle aisle = getAisleByStoreIdAndAisleNumber(storeId, aisleNumber);
+        Aisle aisle = getAisleByStoreIdAndAisleNumber(storeId, aisleNumber, authToken);
         IAppliance appliance = aisle.getApplianceById(applianceId);
         return appliance;
     }
@@ -580,9 +579,9 @@ public class StoreModelService implements IStoreModelService, ISubject {
      * @return sensor event
      */
     @Override
-    public String createSensorEvent(String storeId, String aisleNumber, String sensorId, Event event)
+    public String createSensorEvent(String storeId, String aisleNumber, String sensorId, Event event, String authToken)
             throws StoreException {
-        ISensor sensor = getSensorByLocationAndSensorId(storeId, aisleNumber, sensorId);
+        ISensor sensor = getSensorByLocationAndSensorId(storeId, aisleNumber, sensorId, authToken);
         return sensor.generateSensorEvent(event);
     }
 
@@ -598,11 +597,11 @@ public class StoreModelService implements IStoreModelService, ISubject {
      */
     @Override
     public IAppliance createAnAppliance(String applianceId, String applianceName, String applianceType,
-                                        String storeId, String aisleNumber) throws StoreException {
+                                        String storeId, String aisleNumber, String authToken) throws StoreException {
         InventoryLocation location = new InventoryLocation(storeId, aisleNumber, "");
         IAppliance appliance = SensorApplianceFactory.createAppliance(applianceType, applianceId,
                 applianceName, location);
-        Aisle aisle = getAisleByStoreIdAndAisleNumber(storeId, aisleNumber);
+        Aisle aisle = getAisleByStoreIdAndAisleNumber(storeId, aisleNumber, authToken);
         aisle.addApplianceToAisle(appliance);
         return appliance;
     }
@@ -617,8 +616,8 @@ public class StoreModelService implements IStoreModelService, ISubject {
      * @throws StoreException
      */
     @Override
-    public String createApplianceEvent(String storeId, String aisleNumber, String applianceId, Event event) throws StoreException {
-        Aisle aisle = getAisleByStoreIdAndAisleNumber(storeId, aisleNumber);
+    public String createApplianceEvent(String storeId, String aisleNumber, String applianceId, Event event, String authToken) throws StoreException {
+        Aisle aisle = getAisleByStoreIdAndAisleNumber(storeId, aisleNumber, authToken);
         IAppliance appliance = aisle.getApplianceById(applianceId);
         return appliance.generateApplianceEvent(event);
     }
@@ -633,8 +632,8 @@ public class StoreModelService implements IStoreModelService, ISubject {
      * @throws StoreException
      */
     @Override
-    public String createApplianceCommand(String storeId, String aisleNumber, String applianceId, Command command) throws StoreException {
-        Aisle aisle = getAisleByStoreIdAndAisleNumber(storeId, aisleNumber);
+    public String createApplianceCommand(String storeId, String aisleNumber, String applianceId, Command command, String authToken) throws StoreException {
+        Aisle aisle = getAisleByStoreIdAndAisleNumber(storeId, aisleNumber, authToken);
         IAppliance appliance = aisle.getApplianceById(applianceId);
         return appliance.listenToCommand(command);
     }
@@ -649,16 +648,17 @@ public class StoreModelService implements IStoreModelService, ISubject {
      * @throws StoreException
      */
     @Override
-    public IAppliance moveRobot(String storeId, String aisleNumber, String applianceRobotId, String newAisleNumber) throws StoreException {
-        Robot robot = (Robot) getApplianceByLocationAndSensorId(storeId,aisleNumber, applianceRobotId);
+    public IAppliance moveRobot(String storeId, String aisleNumber, String applianceRobotId, String newAisleNumber, String authToken) throws StoreException {
+        Robot robot = (Robot) getApplianceByLocationAndSensorId(storeId,aisleNumber,
+                applianceRobotId, authToken);
         InventoryLocation newRobotLocation = new InventoryLocation(storeId, newAisleNumber, "");
         robot.setApplianceLocation(newRobotLocation);
         return robot;
     }
 
     @Override
-    public List<Turnstile> getAllTurnstilesWithinAnAisle(String storeId, String aisleNumber) throws StoreException {
-        Aisle aisle = getAisleByStoreIdAndAisleNumber(storeId, aisleNumber);
+    public List<Turnstile> getAllTurnstilesWithinAnAisle(String storeId, String aisleNumber, String authToken) throws StoreException {
+        Aisle aisle = getAisleByStoreIdAndAisleNumber(storeId, aisleNumber, authToken);
         List<Turnstile> turnstiles = aisle.getAppliances().stream()
                 .filter(anAppliance -> anAppliance instanceof Turnstile)
                 .map(anAppliance -> (Turnstile) anAppliance)
@@ -667,22 +667,22 @@ public class StoreModelService implements IStoreModelService, ISubject {
     }
 
     @Override
-    public List<Turnstile> openTurnstiles(List<Turnstile> turnstiles) {
+    public List<Turnstile> openTurnstiles(List<Turnstile> turnstiles, String authToken) {
          return turnstiles.stream()
                  .map(aTurnstile -> aTurnstile.openTurnstile())
                  .collect(Collectors.toList());
     }
 
     @Override
-    public List<Turnstile> closeTurnstiles(List<Turnstile> turnstiles) {
+    public List<Turnstile> closeTurnstiles(List<Turnstile> turnstiles, String authToken) {
         return turnstiles.stream()
                 .map(aTurnstile -> aTurnstile.closeTurnstile())
                 .collect(Collectors.toList());
     }
 
     @Override
-    public List<Speaker> getAllSpeakersWithinAnAisle(String storeId, String aisleNumber) throws StoreException {
-        Aisle aisle = getAisleByStoreIdAndAisleNumber(storeId, aisleNumber);
+    public List<Speaker> getAllSpeakersWithinAnAisle(String storeId, String aisleNumber, String authToken) throws StoreException {
+        Aisle aisle = getAisleByStoreIdAndAisleNumber(storeId, aisleNumber, authToken);
         List<Speaker> speakers = aisle.getAppliances().stream()
                 .filter(anAppliance -> anAppliance instanceof Speaker)
                 .map(anAppliance -> (Speaker) anAppliance)
@@ -691,8 +691,8 @@ public class StoreModelService implements IStoreModelService, ISubject {
     }
 
     @Override
-    public List<Robot> getAllRobotsWithinAnAisle(String storeId, String aisleNumber) throws StoreException {
-        Aisle aisle = getAisleByStoreIdAndAisleNumber(storeId, aisleNumber);
+    public List<Robot> getAllRobotsWithinAnAisle(String storeId, String aisleNumber, String authToken) throws StoreException {
+        Aisle aisle = getAisleByStoreIdAndAisleNumber(storeId, aisleNumber, authToken);
         List<Robot> robots = aisle.getAppliances().stream()
                 .filter(anAppliance -> anAppliance instanceof Robot)
                 .map(anAppliance -> (Robot) anAppliance)
@@ -706,7 +706,7 @@ public class StoreModelService implements IStoreModelService, ISubject {
      * @return -an Event SCS is interested in
      */
     @Override
-    public Event createAnEvent(Event event) {
+    public Event createAnEvent(Event event, String authToken) {
         notify(event);
         return event;
     }
@@ -760,12 +760,4 @@ public class StoreModelService implements IStoreModelService, ISubject {
         }
     }
 
-    /**
-     * To be used later
-     * @param authKey
-     */
-    @Override
-    public void setAuthKey(String authKey) {
-        this.authKey = authKey;
-    }
 }
