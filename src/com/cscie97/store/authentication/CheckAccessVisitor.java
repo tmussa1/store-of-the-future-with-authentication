@@ -1,17 +1,21 @@
 package com.cscie97.store.authentication;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CheckAccessVisitor implements Ivisitor {
 
     private AuthenticationToken token;
     private Resource resource;
     private Permission permission;
-    private boolean hasPermission = true;
+    private List<Boolean> hasPermission;
 
     public CheckAccessVisitor(AuthenticationToken token, Resource resource, Permission permission) {
         this.token = token;
         this.resource = resource;
         this.permission = permission;
+        this.hasPermission = new ArrayList<>();
     }
 
     @Override
@@ -29,17 +33,17 @@ public class CheckAccessVisitor implements Ivisitor {
 
     @Override
     public void visit(Role role) {
-        hasPermission = role.hasPermission(token, resource, permission);
+        hasPermission.add(role.hasPermission(token, resource, permission));
     }
 
     @Override
     public void visit(Permission permission) {
-        hasPermission = permission.hasPermission(token, resource, permission);
+        hasPermission.add(permission.hasPermission(token, resource, permission));
     }
 
     @Override
     public void visit(ResourceRole resourceRole) {
-        hasPermission = resourceRole.hasPermission(token, resource, permission);
+        hasPermission.add(resourceRole.hasPermission(token, resource, permission));
     }
 
     @Override
@@ -53,6 +57,6 @@ public class CheckAccessVisitor implements Ivisitor {
     }
 
     public boolean hasPermission() {
-        return hasPermission;
+        return hasPermission.contains(true);
     }
 }

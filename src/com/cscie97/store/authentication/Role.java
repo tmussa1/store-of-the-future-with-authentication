@@ -37,6 +37,9 @@ public class Role extends Entitlement implements Visitable {
         boolean hasPermission = false;
         for(Entitlement entitlement : entitlements){
             hasPermission = entitlement.hasPermission(authToken, resource, permission);
+            if(hasPermission == true){
+                break;
+            }
         }
         return hasPermission;
     }
