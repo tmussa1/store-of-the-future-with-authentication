@@ -2,4 +2,4 @@ com.cscie97.ledger
 com.cscie97.ledger.test
 com.cscie97.store.controller
 com.cscie97.store.model
-com.cscie97.store.model.test
+com.cscie97.store.test

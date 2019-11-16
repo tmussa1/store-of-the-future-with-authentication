@@ -1,4 +1,4 @@
-package com.cscie97.store.model.test;
+package com.cscie97.store.test;
 
 import com.cscie97.store.model.*;
 

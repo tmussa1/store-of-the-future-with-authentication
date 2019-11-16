@@ -2,9 +2,48 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b037074f-4b82-4a0b-ac22-08ae94f9e0c0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/documentation/results-document/results-document.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/model/IStoreModelService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/store/model/IStoreModelService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/model/StoreModelService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/store/model/StoreModelService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/java-doc/allclasses-index.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/allclasses-index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/java-doc/allpackages-index.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/allpackages-index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/java-doc/com/cscie97/store/model/test/CommandProcessor.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/com/cscie97/store/model/test/CommandProcessor.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/java-doc/com/cscie97/store/model/test/CommandProcessorException.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/com/cscie97/store/model/test/CommandProcessorException.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/java-doc/com/cscie97/store/model/test/CreateUtil.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/com/cscie97/store/model/test/CreateUtil.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/java-doc/com/cscie97/store/model/test/DetailsUtil.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/com/cscie97/store/model/test/DetailsUtil.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/java-doc/com/cscie97/store/model/test/ExceptionUtil.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/com/cscie97/store/model/test/ExceptionUtil.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/java-doc/com/cscie97/store/model/test/ShowUtil.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/com/cscie97/store/model/test/ShowUtil.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/java-doc/com/cscie97/store/model/test/TestDriver.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/com/cscie97/store/model/test/TestDriver.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/java-doc/com/cscie97/store/model/test/UpdateUtil.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/com/cscie97/store/model/test/UpdateUtil.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/java-doc/com/cscie97/store/model/test/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/com/cscie97/store/model/test/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/java-doc/com/cscie97/store/model/test/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/com/cscie97/store/model/test/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/java-doc/element-list" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/element-list" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/java-doc/index-files/index-1.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/index-files/index-1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/java-doc/index-files/index-10.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/index-files/index-10.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/java-doc/index-files/index-11.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/index-files/index-11.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/java-doc/index-files/index-13.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/index-files/index-13.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/java-doc/index-files/index-14.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/index-files/index-14.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/java-doc/index-files/index-15.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/index-files/index-15.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/java-doc/index-files/index-16.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/index-files/index-16.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/java-doc/index-files/index-17.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/index-files/index-17.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/java-doc/index-files/index-18.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/index-files/index-18.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/java-doc/index-files/index-2.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/index-files/index-2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/java-doc/index-files/index-3.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/index-files/index-3.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/java-doc/index-files/index-4.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/index-files/index-4.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/java-doc/index-files/index-5.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/index-files/index-5.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/java-doc/index-files/index-7.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/index-files/index-7.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/java-doc/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/java-doc/member-search-index.js" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/member-search-index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/java-doc/overview-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/overview-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/java-doc/package-search-index.js" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/package-search-index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/java-doc/serialized-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/serialized-form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/java-doc/type-search-index.js" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/type-search-index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/model/test/CommandProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/test/CommandProcessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/model/test/CommandProcessorException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/test/CommandProcessorException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/model/test/CreateUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/test/CreateUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/model/test/DetailsUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/test/DetailsUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/model/test/ExceptionUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/test/ExceptionUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/model/test/ShowUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/test/ShowUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/model/test/TestDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/test/TestDriver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/model/test/UpdateUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/test/UpdateUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store-of-the-future-with-authentication.iws" beforeDir="false" afterPath="$PROJECT_DIR$/store-of-the-future-with-authentication.iws" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,6 +58,12 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -42,7 +87,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1573504647654</updated>
-      <workItem from="1573504648992" duration="1280000" />
+      <workItem from="1573504648992" duration="3485000" />
+      <workItem from="1573875265828" duration="1215000" />
     </task>
     <servers />
   </component>
@@ -54,7 +100,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
