@@ -1,10 +1,9 @@
 package com.cscie97.store.authentication;
 
-import javax.xml.crypto.Data;
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.UUID;
 
-public class AuthenticationToken {
+public class AuthenticationToken implements Visitable{
 
     private String tokenId;
     private long timeToLive;
@@ -13,16 +12,13 @@ public class AuthenticationToken {
     private User user;
 
     /**
-     * One auth token is associated with just one user
-     * @param tokenId
-     * @param timeToLive
-     * @param expirationState
+     *
      * @param user
      */
-    public AuthenticationToken(String tokenId, long timeToLive, State expirationState, User user) {
-        this.tokenId = tokenId;
-        this.timeToLive = timeToLive;
-        this.expirationTime = LocalDateTime.now().getNano() + timeToLive;
+    public AuthenticationToken(User user) {
+        this.tokenId = UUID.randomUUID().toString();
+        this.timeToLive = 15L;
+        this.expirationTime = (LocalDateTime.now().getHour() * LocalDateTime.now().getMinute()) + timeToLive;
         this.expirationState = State.ACTIVE;
         this.user = user;
     }
@@ -32,9 +28,14 @@ public class AuthenticationToken {
      * @return state of token
      */
     public State expireToken(){
-        if( LocalDateTime.now().getNano() > expirationTime){
+        if( (LocalDateTime.now().getHour() * LocalDateTime.now().getMinute()) > expirationTime){
             this.expirationState = State.EXPIRED;
         }
+        return expirationState;
+    }
+
+    public State logOut(){
+        this.expirationState = State.EXPIRED;
         return expirationState;
     }
 
@@ -56,5 +57,10 @@ public class AuthenticationToken {
 
     public User getUser() {
         return user;
+    }
+
+    @Override
+    public void accept(Ivisitor ivisitor) {
+        ivisitor.visit(this);
     }
 }

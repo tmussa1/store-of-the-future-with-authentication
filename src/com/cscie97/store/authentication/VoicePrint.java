@@ -12,4 +12,8 @@ public class VoicePrint implements Credential {
     public Credential getCredential() {
         return this;
     }
+
+    public String getVoicePrint() {
+        return voicePrint;
+    }
 }

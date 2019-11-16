@@ -1,20 +1,26 @@
 package com.cscie97.store.authentication;
 
-import org.jetbrains.annotations.Nullable;
 
-public class Resource extends Entitlement implements Visitable {
+public class Resource implements Visitable {
 
-    public Resource(String entitlementId, String entitlementName, String entitlementDescription) {
-        super(entitlementId, entitlementName, entitlementDescription);
+    private String resourceId;
+    private String resourceName;
+
+    public Resource(String resourceId, String resourceName) {
+        this.resourceId = resourceId;
+        this.resourceName = resourceName;
     }
 
     @Override
     public void accept(Ivisitor ivisitor) {
-
+        ivisitor.visit(this);
     }
 
-    @Override
-    boolean hasPermission(AuthenticationToken authToken, @Nullable Resource resource, Permission permission) {
-        return false;
+    public String getResourceId() {
+        return resourceId;
+    }
+
+    public String getResourceName() {
+        return resourceName;
     }
 }

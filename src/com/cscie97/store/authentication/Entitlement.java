@@ -23,4 +23,8 @@ public abstract class Entitlement implements Visitable{
      * @return permission exists or not
      */
     abstract boolean hasPermission(AuthenticationToken authToken, @Nullable Resource resource, Permission permission);
+
+    public String getEntitlementId() {
+        return entitlementId;
+    }
 }

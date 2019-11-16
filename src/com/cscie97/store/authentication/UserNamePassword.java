@@ -31,4 +31,12 @@ public class UserNamePassword implements Credential {
         byte[] hashVal = messageDigest.digest(password.getBytes(StandardCharsets.UTF_8));
         this.passwordHash = Base64.getEncoder().encodeToString(hashVal);
     }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public String getPasswordHash() {
+        return passwordHash;
+    }
 }

@@ -8,4 +8,12 @@ public class AuthenticationServiceException extends Exception {
         super(message);
         this.reason = reason;
     }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public String getFix() {
+        return fix;
+    }
 }

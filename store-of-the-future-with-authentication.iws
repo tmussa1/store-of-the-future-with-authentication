@@ -2,27 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b037074f-4b82-4a0b-ac22-08ae94f9e0c0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/AccessDeniedException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/AuthenticationService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/AuthenticationServiceException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/AuthenticationToken.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/CheckAccessVisitor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/Credential.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/Entitlement.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/FacePrint.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/IAuthenticationService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/InventoryVisitor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/Ivisitor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/Permission.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/Resource.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/ResourceRole.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/Role.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/State.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/UserNamePassword.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/Visitable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/VoicePrint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store-of-the-future-with-authentication.iml" beforeDir="false" afterPath="$PROJECT_DIR$/store-of-the-future-with-authentication.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/authentication/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/AuthenticationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/authentication/AuthenticationServiceException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/AuthenticationServiceException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/authentication/AuthenticationToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/AuthenticationToken.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/authentication/CheckAccessVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/CheckAccessVisitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/authentication/Entitlement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/Entitlement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/authentication/FacePrint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/FacePrint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/authentication/IAuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/IAuthenticationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/authentication/InventoryVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/InventoryVisitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/authentication/Permission.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/Permission.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/authentication/Resource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/Resource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/authentication/ResourceRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/ResourceRole.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/authentication/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/authentication/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/authentication/UserNamePassword.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/UserNamePassword.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/authentication/VoicePrint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/VoicePrint.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/store-of-the-future-with-authentication.iws" beforeDir="false" afterPath="$PROJECT_DIR$/store-of-the-future-with-authentication.iws" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -84,7 +78,7 @@
       <option name="presentableId" value="Default" />
       <updated>1573504647654</updated>
       <workItem from="1573504648992" duration="3485000" />
-      <workItem from="1573875265828" duration="5234000" />
+      <workItem from="1573875265828" duration="21052000" />
     </task>
     <servers />
   </component>

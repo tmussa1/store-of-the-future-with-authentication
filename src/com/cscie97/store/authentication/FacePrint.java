@@ -12,4 +12,8 @@ public class FacePrint implements Credential{
     public Credential getCredential() {
         return this;
     }
+
+    public String getFacePrint() {
+        return facePrint;
+    }
 }
