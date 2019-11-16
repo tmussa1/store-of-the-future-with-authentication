@@ -2,47 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b037074f-4b82-4a0b-ac22-08ae94f9e0c0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/documentation/java-doc/allclasses-index.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/allclasses-index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/java-doc/allpackages-index.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/allpackages-index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/java-doc/com/cscie97/store/model/test/CommandProcessor.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/com/cscie97/store/model/test/CommandProcessor.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/java-doc/com/cscie97/store/model/test/CommandProcessorException.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/com/cscie97/store/model/test/CommandProcessorException.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/java-doc/com/cscie97/store/model/test/CreateUtil.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/com/cscie97/store/model/test/CreateUtil.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/java-doc/com/cscie97/store/model/test/DetailsUtil.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/com/cscie97/store/model/test/DetailsUtil.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/java-doc/com/cscie97/store/model/test/ExceptionUtil.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/com/cscie97/store/model/test/ExceptionUtil.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/java-doc/com/cscie97/store/model/test/ShowUtil.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/com/cscie97/store/model/test/ShowUtil.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/java-doc/com/cscie97/store/model/test/TestDriver.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/com/cscie97/store/model/test/TestDriver.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/java-doc/com/cscie97/store/model/test/UpdateUtil.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/com/cscie97/store/model/test/UpdateUtil.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/java-doc/com/cscie97/store/model/test/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/com/cscie97/store/model/test/package-summary.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/java-doc/com/cscie97/store/model/test/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/com/cscie97/store/model/test/package-tree.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/java-doc/element-list" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/element-list" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/java-doc/index-files/index-1.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/index-files/index-1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/java-doc/index-files/index-10.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/index-files/index-10.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/java-doc/index-files/index-11.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/index-files/index-11.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/java-doc/index-files/index-13.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/index-files/index-13.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/java-doc/index-files/index-14.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/index-files/index-14.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/java-doc/index-files/index-15.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/index-files/index-15.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/java-doc/index-files/index-16.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/index-files/index-16.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/java-doc/index-files/index-17.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/index-files/index-17.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/java-doc/index-files/index-18.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/index-files/index-18.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/java-doc/index-files/index-2.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/index-files/index-2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/java-doc/index-files/index-3.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/index-files/index-3.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/java-doc/index-files/index-4.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/index-files/index-4.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/java-doc/index-files/index-5.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/index-files/index-5.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/java-doc/index-files/index-7.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/index-files/index-7.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/java-doc/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/java-doc/member-search-index.js" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/member-search-index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/java-doc/overview-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/overview-tree.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/java-doc/package-search-index.js" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/package-search-index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/java-doc/serialized-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/serialized-form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/java-doc/type-search-index.js" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/java-doc/type-search-index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/model/test/CommandProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/test/CommandProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/model/test/CommandProcessorException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/test/CommandProcessorException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/model/test/CreateUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/test/CreateUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/model/test/DetailsUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/test/DetailsUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/model/test/ExceptionUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/test/ExceptionUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/model/test/ShowUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/test/ShowUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/model/test/TestDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/test/TestDriver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/model/test/UpdateUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/test/UpdateUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/AccessDeniedException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/AuthenticationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/AuthenticationServiceException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/AuthenticationToken.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/CheckAccessVisitor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/Credential.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/Entitlement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/FacePrint.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/IAuthenticationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/InventoryVisitor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/Ivisitor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/Permission.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/Resource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/ResourceRole.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/Role.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/State.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/UserNamePassword.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/Visitable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/VoicePrint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store-of-the-future-with-authentication.iml" beforeDir="false" afterPath="$PROJECT_DIR$/store-of-the-future-with-authentication.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/store-of-the-future-with-authentication.iws" beforeDir="false" afterPath="$PROJECT_DIR$/store-of-the-future-with-authentication.iws" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -51,11 +31,27 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1TUBADanZlnb3e6oht5LTSkVoEX" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -88,7 +84,7 @@
       <option name="presentableId" value="Default" />
       <updated>1573504647654</updated>
       <workItem from="1573504648992" duration="3485000" />
-      <workItem from="1573875265828" duration="1215000" />
+      <workItem from="1573875265828" duration="5234000" />
     </task>
     <servers />
   </component>
