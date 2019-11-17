@@ -79,7 +79,7 @@ public interface IStoreModelService {
 
     Customer getCustomerByCustomerName(String customerName, String authToken) throws StoreException;
 
-    Event createAnEvent(Event event, String authToken);
+    Event createAnEvent(Event event);
 
     List<IObserver> getObservers();
 }

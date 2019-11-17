@@ -1,8 +1,6 @@
 package com.cscie97.store.test;
 
-import com.cscie97.store.authentication.IAuthenticationService;
-import com.cscie97.store.authentication.User;
-import com.cscie97.store.authentication.UserNamePassword;
+import com.cscie97.store.authentication.*;
 import com.cscie97.store.model.*;
 
 import java.security.NoSuchAlgorithmException;
@@ -13,11 +11,25 @@ import java.security.NoSuchAlgorithmException;
  */
 public class UpdateUtil {
 
+    public static String addVoicePrintToUser(IAuthenticationService authenticationService, String userId,
+                                              String voicePrintStr) {
+        VoicePrint voicePrint = new VoicePrint(voicePrintStr);
+        User user = authenticationService.addCredentialsToUser(userId, voicePrint);
+        return DetailsUtil.outputUpdateConfirmation(user.getUserId(), "  Voiceprint added");
+    }
+
+    public static String addFacePrintToUser(IAuthenticationService authenticationService, String userId,
+                                             String facePrintStr) {
+        FacePrint facePrint = new FacePrint(facePrintStr);
+        User user = authenticationService.addCredentialsToUser(userId, facePrint);
+        return DetailsUtil.outputUpdateConfirmation(user.getUserId(), "  Faceprint added");
+    }
+
     public static String addCredentialsToUser(IAuthenticationService authenticationService, String userId,
                                               String userName, String password) throws NoSuchAlgorithmException {
         UserNamePassword userNamePassword = new UserNamePassword(userName, password);
         User user = authenticationService.addCredentialsToUser(userId, userNamePassword);
-        return DetailsUtil.outputUpdateConfirmation(user.getUserId(), " credentials added");
+        return DetailsUtil.outputUpdateConfirmation(user.getUserId(), " Credentials added");
     }
     /**
      * Updates inventory count
@@ -28,9 +40,9 @@ public class UpdateUtil {
      * @throws StoreException
      */
     public static String updateInventoryCount(IStoreModelService storeModelService, String inventoryId,
-                                              String count) throws StoreException {
+                                              String count, String authToken) throws StoreException {
         int countInt = parseNumber(count);
-        storeModelService.updateInventoryCount(inventoryId, countInt);
+        storeModelService.updateInventoryCount(inventoryId, countInt, authToken);
         return DetailsUtil.outputUpdateConfirmation(inventoryId, " inventory count updated to " + countInt );
     }
 
@@ -44,8 +56,9 @@ public class UpdateUtil {
      * @throws StoreException
      */
     public static String updateCustomerLocation(IStoreModelService storeModelService, String customerId, String storeId,
-                                                String aisleNumber) throws StoreException {
-        InventoryLocation inventoryLocation = storeModelService.updateCustomerLocation(customerId, storeId, aisleNumber);
+                                                String aisleNumber, String authToken) throws StoreException {
+        InventoryLocation inventoryLocation = storeModelService.
+                updateCustomerLocation(customerId, storeId, aisleNumber, authToken);
         return DetailsUtil.outputUpdateConfirmation(customerId,
                 " location of customer updated to " + inventoryLocation.getAisleNumber());
     }
@@ -60,9 +73,9 @@ public class UpdateUtil {
      * @throws StoreException
      */
     public static String addBasketItem(IStoreModelService storeModelService, String basketId, String productId,
-                                          String count) throws StoreException {
+                                          String count, String authToken) throws StoreException {
         int countInt = parseNumber(count);
-        Basket basket = storeModelService.addItemToBasket(basketId, productId, countInt);
+        Basket basket = storeModelService.addItemToBasket(basketId, productId, countInt, authToken);
         return DetailsUtil.outputUpdateConfirmation(basket.getBasketId(),
                 " product count in basket updated to " + countInt);
     }
@@ -77,9 +90,9 @@ public class UpdateUtil {
      * @throws StoreException
      */
     public static String removeItemFromBasket(IStoreModelService storeModelService, String basketId, String productId,
-                                              String countReturned) throws StoreException {
+                                              String countReturned, String authToken) throws StoreException {
         int countReturnedInt = parseNumber(countReturned);
-        Basket basket = storeModelService.removeItemFromBasket(basketId, productId, countReturnedInt);
+        Basket basket = storeModelService.removeItemFromBasket(basketId, productId, countReturnedInt, authToken);
         return DetailsUtil.outputUpdateConfirmation(basket.getBasketId(), " item with " + productId +
                 " removed from basket");
     }
@@ -91,9 +104,10 @@ public class UpdateUtil {
      * @return confirmation of customer/basket association removed
      * @throws StoreException
      */
-    public static String clearBasketAndRemoveCustomerAssociation(IStoreModelService storeModelService, String basketId)
+    public static String clearBasketAndRemoveCustomerAssociation(IStoreModelService storeModelService,
+                                                                 String basketId, String authToken)
             throws StoreException {
-        Customer customer = storeModelService.clearBasketAndRemoveAssociationWithACustomer(basketId);
+        Customer customer = storeModelService.clearBasketAndRemoveAssociationWithACustomer(basketId, authToken);
         return DetailsUtil.outputUpdateConfirmation(customer.getFirstName(), " the customer's association " +
                 "to the basket has been cleared");
     }

@@ -51,8 +51,8 @@ public class ShowUtil {
      * @throws StoreException
      */
     public static String showShelfDetails(IStoreModelService storeModelService, String storeId, String aisleNumber,
-                                          String shelfId) throws StoreException {
-        Shelf shelf = storeModelService.getShelfByStoreIdAisleNumShelfId(storeId, aisleNumber, shelfId );
+                                          String shelfId, String authToken) throws StoreException {
+        Shelf shelf = storeModelService.getShelfByStoreIdAisleNumShelfId(storeId, aisleNumber, shelfId, authToken);
         return DetailsUtil.outputDetails("Shelf ", shelf.getShelfName(), aisleNumber, shelf.getInventoryList());
     }
 
@@ -63,9 +63,10 @@ public class ShowUtil {
      * @return details of a product
      * @throws StoreException
      */
-    public static String showProductDetails(IStoreModelService storeModelService, String productId)
+    public static String showProductDetails(IStoreModelService storeModelService,
+                                            String productId, String authToken)
             throws StoreException {
-        Product product = storeModelService.getProductById(productId);
+        Product product = storeModelService.getProductById(productId, authToken);
         return DetailsUtil.outputDetails("Product " , product.getProductName(),
                 product.getCategory(), List.of(product));
     }
@@ -77,9 +78,9 @@ public class ShowUtil {
      * @return inventory details
      * @throws StoreException
      */
-    public static String showInventoryDetails(IStoreModelService storeModelService, String inventoryId)
-            throws StoreException {
-        Inventory inventory = storeModelService.getInventoryById(inventoryId);
+    public static String showInventoryDetails(IStoreModelService storeModelService,
+                                              String inventoryId, String authToken) throws StoreException {
+        Inventory inventory = storeModelService.getInventoryById(inventoryId, authToken);
 
         return DetailsUtil.outputDetails("Inventory ", String.valueOf(inventory.getInventoryId()),
                 inventory.getInventoryLocation().getAisleNumber(), List.of(inventory.getProduct()));
@@ -92,10 +93,11 @@ public class ShowUtil {
      * @return customer details
      * @throws StoreException
      */
-    public static String showCustomerDetails(IStoreModelService storeModelService, String customerId)
-            throws StoreException {
-        Customer customer = storeModelService.getCustomerById(customerId);
-        return DetailsUtil.outputDetails("Customer ", customer.getFirstName(), customer.getCustomerLocation().getAisleNumber(),
+    public static String showCustomerDetails(IStoreModelService storeModelService,
+                                             String customerId, String authToken) throws StoreException {
+        Customer customer = storeModelService.getCustomerById(customerId, authToken);
+        return DetailsUtil.outputDetails("Customer ", customer.getFirstName(),
+                customer.getCustomerLocation().getAisleNumber(),
                 List.of(customer.getEmailAddress()));
     }
 
@@ -106,9 +108,9 @@ public class ShowUtil {
      * @return basket details
      * @throws StoreException
      */
-    public static String showBasketOfACustomer(IStoreModelService storeModelService, String customerId)
-            throws StoreException {
-        Basket basketOfACustomer = storeModelService.getBasketOfACustomer(customerId);
+    public static String showBasketOfACustomer(IStoreModelService storeModelService,
+                                               String customerId, String authToken) throws StoreException {
+        Basket basketOfACustomer = storeModelService.getBasketOfACustomer(customerId, authToken);
         return DetailsUtil.outputDetails("Basket ", basketOfACustomer.getBasketId(), customerId,
                 List.copyOf(basketOfACustomer.getProductsMap().keySet()));
     }
@@ -120,9 +122,9 @@ public class ShowUtil {
      * @return details of items in a basket
      * @throws StoreException
      */
-    public static String showBasketItems(IStoreModelService storeModelService, String basketId)
+    public static String showBasketItems(IStoreModelService storeModelService, String basketId, String authToken)
             throws StoreException {
-        Map<Product, Integer> basketItems = storeModelService.getBasketItems(basketId);
+        Map<Product, Integer> basketItems = storeModelService.getBasketItems(basketId, authToken);
 
         if(basketItems.size() == 0){
             return DetailsUtil.outputDetails("Basket is empty ", basketId,
@@ -142,8 +144,9 @@ public class ShowUtil {
      * @throws StoreException
      */
     public static String showSensor(IStoreModelService storeModelService, String storeId, String aisleNumber,
-                             String sensorId) throws StoreException {
-        ISensor sensor = storeModelService.getSensorByLocationAndSensorId(storeId, aisleNumber, sensorId);
+                             String sensorId, String authToken) throws StoreException {
+        ISensor sensor = storeModelService.getSensorByLocationAndSensorId(storeId, aisleNumber,
+                sensorId, authToken);
         return DetailsUtil.outputDetails("Sensor ", sensor.getSensorName(), " contains items ",
                 List.of(sensor));
     }
@@ -158,8 +161,9 @@ public class ShowUtil {
      * @throws StoreException
      */
     public static String showAppliance(IStoreModelService storeModelService, String applianceId, String storeId,
-                                       String aisleNumber) throws StoreException {
-        IAppliance appliance = storeModelService.getApplianceByLocationAndSensorId(storeId, aisleNumber, applianceId);
+                                       String aisleNumber, String authToken) throws StoreException {
+        IAppliance appliance = storeModelService.
+                getApplianceByLocationAndSensorId(storeId, aisleNumber, applianceId, authToken);
         return DetailsUtil.outputDetails("Applaince ", appliance.getApplianceName(),
                 " contains items ", List.of(appliance));
     }

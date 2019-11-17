@@ -1,8 +1,12 @@
 ﻿//////////////////////////////////////////////////////
+register-cmd userid cmd
+add-credentials userid cmd username cmd-processor password cmd123
+log-in userid cmd username cmd-processor password cmd123
 define-store store_123 name KMart address EMain Columbus Ohio
 create-controller cont register-controller
 create-ledger iceland description 'iceland ledger' seed 'vik'
 create-account store_123
+register-user userid cont
 invoke-commands
 show-store store_123
 define-aisle store_123:aisle_A1 description AISLE_A1_desc location STOREROOM
@@ -62,13 +66,41 @@ show-inventory inv_u24
 show-inventory inv_u21
 update-inventory inv_u24 update_count 4
 update-inventory inv_u21 update_count 7
-define-customer cust_AB first_name JSON last_name WALLACE type guest email_address json.wallace@ymail.com account json
-define-customer cust_21 first_name BILL last_name ROSE type registered email_address bill.rose@gmail.com account bill
-define-customer cust_22 first_name MARY last_name KELVIN type registered email_address mary.kevin@yahoomail.com account mary
-define-customer cust_E2 first_name SILVER last_name HAWK type guest email_address silver.hawk@rocketmail.com account silver
-define-customer cust_23 first_name MEGON last_name FOX type guest email_address megonfox@testmail.com account megon
-define-customer cust_24 first_name MARIA last_name WILIAMSON type registered email_address maria4567@ymail.com account maria
-define-customer cust_S2 first_name SALINA last_name GOMEZ type registered email_address salina@gmail.com account salina
+define-customer cust_AB first_name JSON last_name WALLACE type guest email_address json.wallace@ymail.com account json userid cust_AB
+define-customer cust_21 first_name BILL last_name ROSE type registered email_address bill.rose@gmail.com account bill userid cust_21
+define-customer cust_22 first_name MARY last_name KELVIN type registered email_address mary.kevin@yahoomail.com account mary userid cust_22
+define-customer cust_E2 first_name SILVER last_name HAWK type guest email_address silver.hawk@rocketmail.com account silver userid cust_E2
+define-customer cust_23 first_name MEGON last_name FOX type guest email_address megonfox@testmail.com account megon userid cust_23
+define-customer cust_24 first_name MARIA last_name WILIAMSON type registered email_address maria4567@ymail.com account maria userid cust_24
+define-customer cust_S2 first_name SALINA last_name GOMEZ type registered email_address salina@gmail.com account salina userid cust_S2
+add-credentials userid cust_AB username cust_AB password 123cust_AB
+add-credentials userid cust_21 username cust_21 password 456cust_21
+add-credentials userid cust_22 username cust_22 password 765cust_22
+add-credentials userid cust_E2 username cust_E2 password 407cust_E2
+add-credentials userid cust_23 username cust_23 password 345cust_23
+add-credentials userid cust_24 username cust_24 password 365cust_24
+add-credentials userid cust_S2 username cust_S2 password CERcust_S2
+add-voiceprint userid cust_AB --voice:cust_AB--
+add-faceprint userid cust_AB --face:cust_AB--
+add-voiceprint userid cust_21 --voice:cust_21--
+add-faceprint userid cust_21 --face:cust_21--
+add-voiceprint userid cust_22 --voice:cust_22--
+add-faceprint userid cust_22 --face:cust_22--
+add-voiceprint userid cust_E2 --voice:cust_E2--
+add-faceprint userid cust_E2 --face:cust_E2--
+add-voiceprint userid cust_23 --voice:cust_23--
+add-faceprint userid cust_23 --face:cust_23--
+add-voiceprint userid cust_24 --voice:cust_24--
+add-faceprint userid cust_24 --face:cust_24--
+add-voiceprint userid cust_S2 --voice:cust_S2--
+add-faceprint userid cust_S2 --face:cust_S2--
+log-in userid cust_AB username cust_AB password cmd123
+log-in userid cmd username cmd-processor password cmd123
+log-in userid cmd username cmd-processor password cmd123
+log-in userid cmd username cmd-processor password cmd123
+log-in userid cmd username cmd-processor password cmd123
+log-in userid cmd username cmd-processor password cmd123
+log-in userid cmd username cmd-processor password cmd123
 create-account json
 create-account bill
 create-account mary

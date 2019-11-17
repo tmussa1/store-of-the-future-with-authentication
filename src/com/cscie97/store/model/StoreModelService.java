@@ -914,11 +914,13 @@ public class StoreModelService implements IStoreModelService, ISubject {
 
     /**
      * This are the events that the store controller service is interested in
+     * No need for authentication that SCS listens to. SCS is going to log in, get auth token
+     * and perform actions on SMS
      * @param event
      * @return -an Event SCS is interested in
      */
     @Override
-    public Event createAnEvent(Event event, String authToken) {
+    public Event createAnEvent(Event event) {
         notify(event);
         return event;
     }

@@ -14,6 +14,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * This class reads script from file and processes them
@@ -21,7 +23,9 @@ import java.security.NoSuchAlgorithmException;
  */
 public class CommandProcessor {
 
-    private String authToken;
+
+    private Map<String, AuthenticationToken> userIdToAuthTokenMap = new HashMap<>();
+    private static String cmdProcessorUserId;
 
     /**
      * Interprets commands from the scripts
@@ -35,6 +39,9 @@ public class CommandProcessor {
         String [] commandWords = command.split(" ");
 
         switch(commandWords[0].toLowerCase()){
+            case "register-cmd":
+                cmdProcessorUserId = commandWords[2];
+                return cmdProcessorUserId;
             case "register-user":
                  return CreateUtil.createUser(authenticationService, commandWords[2]);
             case "add-credentials":
@@ -44,21 +51,27 @@ public class CommandProcessor {
                 } catch (NoSuchAlgorithmException e) {
                     return ExceptionUtil.outputException(lineNumber, "Error adding credentials to user", e);
                 }
+            case "add-voiceprint":
+                return UpdateUtil.addVoicePrintToUser(authenticationService, commandWords[2], commandWords[3]);
+            case "add-faceprint":
+                return UpdateUtil.addFacePrintToUser(authenticationService, commandWords[2], commandWords[3]);
             case "log-in":
                     AuthenticationToken authenticationToken = authenticationService
                             .generateToken(commandWords[2], commandWords[4], commandWords[6]);
-                    setAuthToken(authenticationToken.getTokenId());
+                    userIdToAuthTokenMap.put(commandWords[2], authenticationToken);
                     return authenticationToken.getTokenId();
             case "define-store":
                    try {
                        return CreateUtil.createStore(storeModelService, commandWords[1], commandWords[3],
-                               commandWords[5], commandWords[6], commandWords[7], authToken);
+                               commandWords[5], commandWords[6], commandWords[7],
+                               userIdToAuthTokenMap.get(cmdProcessorUserId).getTokenId());
                    } catch (StoreException e) {
                        return ExceptionUtil.outputException(lineNumber, "Store created failed" , e);
                    }
             case "show-store":
                 try {
-                    return ShowUtil.showStoreDetails(storeModelService ,commandWords[1], authToken);
+                    return ShowUtil.showStoreDetails(storeModelService ,commandWords[1],
+                            userIdToAuthTokenMap.get(cmdProcessorUserId).getTokenId());
                 } catch (StoreException e) {
                     return ExceptionUtil.outputException(lineNumber, "Store not found", e);
                 }
@@ -66,14 +79,16 @@ public class CommandProcessor {
                 try{
                     String [] storeAisle = commandWords[1].split(":");
                     return CreateUtil.createAisle(storeModelService, storeAisle[0], storeAisle[1],
-                            commandWords[3], commandWords[5], authToken);
+                            commandWords[3], commandWords[5],
+                            userIdToAuthTokenMap.get(cmdProcessorUserId).getTokenId());
                 } catch (StoreException e) {
                     return ExceptionUtil.outputException(lineNumber, "Aisle creation failed", e);
                 }
             case "show-aisle":
                 try {
                     String [] storeAisle = commandWords[1].split(":");
-                    return ShowUtil.showAisleDetails(storeModelService, storeAisle[0], storeAisle[1], authToken);
+                    return ShowUtil.showAisleDetails(storeModelService, storeAisle[0], storeAisle[1],
+                            userIdToAuthTokenMap.get(cmdProcessorUserId).getTokenId());
                 } catch (StoreException e) {
                     return ExceptionUtil.outputException(lineNumber, "Aisle not found", e);
                 }
@@ -82,7 +97,7 @@ public class CommandProcessor {
                     String [] storeAisleShelf = commandWords[1].split(":");
                     return CreateUtil.createShelf(storeModelService, storeAisleShelf[0], storeAisleShelf[1],
                             storeAisleShelf[2], commandWords[3], commandWords[5], commandWords[7],
-                            commandWords[9], authToken);
+                            commandWords[9], userIdToAuthTokenMap.get(cmdProcessorUserId).getTokenId());
                 } catch (StoreException e) {
                     return ExceptionUtil.outputException(lineNumber, "Shelf not created", e);
                 }
@@ -90,43 +105,50 @@ public class CommandProcessor {
                 try {
                     String [] storeAisleShelf = commandWords[1].split(":");
                     return ShowUtil.showShelfDetails(storeModelService, storeAisleShelf[0], storeAisleShelf[1],
-                            storeAisleShelf[2]);
+                            storeAisleShelf[2], userIdToAuthTokenMap.get(cmdProcessorUserId).getTokenId());
                 } catch (StoreException e) {
                     return ExceptionUtil.outputException(lineNumber, "Shelf not found", e);
                 }
             case "define-product":
                     return CreateUtil.createProduct(storeModelService, commandWords[1], commandWords[3],
-                            commandWords[5],commandWords[7],commandWords[9], commandWords[11], commandWords[13]);
+                            commandWords[5],commandWords[7],commandWords[9], commandWords[11],
+                            commandWords[13], userIdToAuthTokenMap.get(cmdProcessorUserId).getTokenId());
             case "show-product":
                 try {
-                    return ShowUtil.showProductDetails(storeModelService, commandWords[1]);
+                    return ShowUtil.showProductDetails(storeModelService, commandWords[1],
+                            userIdToAuthTokenMap.get(cmdProcessorUserId).getTokenId());
                 } catch (StoreException e) {
                     return ExceptionUtil.outputException(lineNumber, "Product not found", e);
                 }
             case "define-inventory":
                 try {
                     String [] storeAisleShelf = commandWords[3].split(":");
-                    return CreateUtil.createInventory(storeModelService, commandWords[1], storeAisleShelf[0], storeAisleShelf[1],
-                            storeAisleShelf[2],  commandWords[5], commandWords[7], commandWords[9]);
+                    return CreateUtil.createInventory(storeModelService, commandWords[1], storeAisleShelf[0],
+                            storeAisleShelf[1], storeAisleShelf[2],  commandWords[5], commandWords[7], commandWords[9],
+                            userIdToAuthTokenMap.get(cmdProcessorUserId).getTokenId());
                 } catch (StoreException e) {
                     return ExceptionUtil.outputException(lineNumber, "Inventory creation failed", e);
                 }
             case "show-inventory":
                 try {
-                    return ShowUtil.showInventoryDetails(storeModelService, commandWords[1]);
+                    return ShowUtil.showInventoryDetails(storeModelService, commandWords[1],
+                            userIdToAuthTokenMap.get(cmdProcessorUserId).getTokenId());
                 } catch (StoreException e) {
                     return ExceptionUtil.outputException(lineNumber, "Inventory with the id not found", e);
                 }
             case "update-inventory":
                 try{
-                    return UpdateUtil.updateInventoryCount(storeModelService, commandWords[1], commandWords[3]);
+                    return UpdateUtil.updateInventoryCount(storeModelService, commandWords[1],
+                            commandWords[3], userIdToAuthTokenMap.get(cmdProcessorUserId).getTokenId());
                 } catch (StoreException e) {
                     return ExceptionUtil.outputException(lineNumber, "Inventory count not updated", e);
                 }
             case "define-customer":
                 try{
+                    authenticationService.createUser(commandWords[13]);
                     return CreateUtil.createCustomer(storeModelService, commandWords[1], commandWords[3],
-                            commandWords[3], commandWords[5], commandWords[7], commandWords[9]);
+                            commandWords[3], commandWords[5], commandWords[7],
+                            commandWords[9], userIdToAuthTokenMap.get(cmdProcessorUserId).getTokenId());
                 } catch (StoreException e) {
                     return ExceptionUtil.outputException(lineNumber, "Customer not created", e);
                 }
@@ -134,51 +156,58 @@ public class CommandProcessor {
                 try {
                     String [] storeAisle = commandWords[3].split(":");
                     return UpdateUtil.updateCustomerLocation(storeModelService, commandWords[1], storeAisle[0],
-                            storeAisle[1]);
+                            storeAisle[1], userIdToAuthTokenMap.get(cmdProcessorUserId).getTokenId());
                 } catch (StoreException e) {
                     return ExceptionUtil.outputException(lineNumber, "Customer location not updated", e);
                 }
             case "show-customer":
                 try {
-                    return ShowUtil.showCustomerDetails(storeModelService, commandWords[1]);
+                    return ShowUtil.showCustomerDetails(storeModelService, commandWords[1],
+                            userIdToAuthTokenMap.get(cmdProcessorUserId).getTokenId());
                 } catch (StoreException e) {
                     return ExceptionUtil.outputException(lineNumber, "Customer not found", e);
                 }
             case "define-basket":
                 try {
-                    return CreateUtil.createBasketForACustomer(storeModelService, commandWords[3], commandWords[1]);
+                    return CreateUtil.createBasketForACustomer(storeModelService, commandWords[3],
+                            commandWords[1], userIdToAuthTokenMap.get(cmdProcessorUserId).getTokenId());
                 } catch (StoreException e) {
                     return ExceptionUtil.outputException(lineNumber, "Basket not created for a customer", e);
                 }
             case "get-customer-basket":
                 try {
-                    return ShowUtil.showBasketOfACustomer(storeModelService, commandWords[1]);
+                    return ShowUtil.showBasketOfACustomer(storeModelService, commandWords[1],
+                            userIdToAuthTokenMap.get(cmdProcessorUserId).getTokenId());
                 } catch (StoreException e) {
                     return ExceptionUtil.outputException(lineNumber, "Basket of a customer not found", e);
                 }
             case "add-basket-item":
                 try {
                     return UpdateUtil.addBasketItem(storeModelService, commandWords[1],
-                            commandWords[3], commandWords[5]);
+                            commandWords[3], commandWords[5],
+                            userIdToAuthTokenMap.get(cmdProcessorUserId).getTokenId());
                 } catch (StoreException e) {
                     return ExceptionUtil.outputException(lineNumber, "Item not added to basket", e);
                 }
             case "remove-basket-item":
                 try {
                     return UpdateUtil.removeItemFromBasket(storeModelService, commandWords[1],
-                            commandWords[3], commandWords[5]);
+                            commandWords[3], commandWords[5],
+                            userIdToAuthTokenMap.get(cmdProcessorUserId).getTokenId());
                 } catch (StoreException e) {
                     return ExceptionUtil.outputException(lineNumber, "Item not removed from basket", e);
                 }
             case "clear-basket":
                 try {
-                    return UpdateUtil.clearBasketAndRemoveCustomerAssociation(storeModelService, commandWords[1]);
+                    return UpdateUtil.clearBasketAndRemoveCustomerAssociation(storeModelService, commandWords[1],
+                            userIdToAuthTokenMap.get(cmdProcessorUserId).getTokenId());
                 } catch (StoreException e) {
                     return ExceptionUtil.outputException(lineNumber, "Customer's association to basket not removed", e);
                 }
             case "show-basket-items":
                 try{
-                    return ShowUtil.showBasketItems(storeModelService, commandWords[1]);
+                    return ShowUtil.showBasketItems(storeModelService, commandWords[1],
+                            userIdToAuthTokenMap.get(cmdProcessorUserId).getTokenId());
                 } catch (StoreException e) {
                     return ExceptionUtil.outputException(lineNumber, "Basket not found", e);
                 }
@@ -186,14 +215,16 @@ public class CommandProcessor {
                 try {
                     String [] storeAisle = commandWords[7].split(":");
                     return CreateUtil.createSensor(storeModelService, commandWords[1], commandWords[3],
-                            commandWords[5], storeAisle[0], storeAisle[1]);
+                            commandWords[5], storeAisle[0], storeAisle[1],
+                            userIdToAuthTokenMap.get(cmdProcessorUserId).getTokenId());
                 } catch (StoreException e) {
                     return ExceptionUtil.outputException(lineNumber, "Sensor creation failed", e);
                 }
             case "show-sensor":
                 try{
                     String [] storeAisle = commandWords[3].split(":");
-                    return ShowUtil.showSensor(storeModelService, storeAisle[0], storeAisle[1], commandWords[1]);
+                    return ShowUtil.showSensor(storeModelService, storeAisle[0], storeAisle[1],
+                            commandWords[1], userIdToAuthTokenMap.get(cmdProcessorUserId).getTokenId());
                 }catch(StoreException e){
                     return ExceptionUtil.outputException(lineNumber, "Sensor not found", e);
                 }
@@ -201,22 +232,24 @@ public class CommandProcessor {
                 try{
                     String [] storeAisle = commandWords[3].split(":");
                     return CreateUtil.createSensorEvent(storeModelService,storeAisle[0], storeAisle[1], commandWords[1],
-                            command);
+                            command, userIdToAuthTokenMap.get(cmdProcessorUserId).getTokenId());
                 } catch (StoreException e) {
                     return ExceptionUtil.outputException(lineNumber, "Sensor event not created", e);
                 }
             case "define-appliance":
                 try{
                     String [] storeAisle = commandWords[7].split(":");
-                    return CreateUtil.createAnAppliance(storeModelService, commandWords[1],
-                            commandWords[3], commandWords[5], storeAisle[0], storeAisle[1]);
+                    return CreateUtil.createAnAppliance(storeModelService, commandWords[1], commandWords[3],
+                            commandWords[5], storeAisle[0], storeAisle[1],
+                            userIdToAuthTokenMap.get(cmdProcessorUserId).getTokenId());
                 } catch (StoreException e) {
                     return ExceptionUtil.outputException(lineNumber, "Appliance not created", e);
                 }
             case "show-appliance":
                 try{
                     String [] storeAisle = commandWords[3].split(":");
-                    return ShowUtil.showAppliance(storeModelService, commandWords[1], storeAisle[0], storeAisle[1]);
+                    return ShowUtil.showAppliance(storeModelService, commandWords[1], storeAisle[0],
+                            storeAisle[1], userIdToAuthTokenMap.get(cmdProcessorUserId).getTokenId());
                 } catch (StoreException e) {
                     return ExceptionUtil.outputException(lineNumber, "Appliance not found", e);
                 }
@@ -224,7 +257,8 @@ public class CommandProcessor {
                 try{
                     String [] storeAisle = commandWords[5].split(":");
                     return CreateUtil.createApplianceEvent(storeModelService, commandWords[1],
-                            commandWords[3], storeAisle[0], storeAisle[1]);
+                            commandWords[3], storeAisle[0], storeAisle[1],
+                            userIdToAuthTokenMap.get(cmdProcessorUserId).getTokenId());
                 } catch (StoreException e) {
                     return ExceptionUtil.outputException(lineNumber, "Appliance event not created", e);
                 }
@@ -232,7 +266,8 @@ public class CommandProcessor {
                 try{
                     String [] storeAisle = commandWords[5].split(":");
                     return CreateUtil.createApplianceCommand(storeModelService, storeAisle[0], storeAisle[1],
-                            commandWords[1], commandWords[3]);
+                            commandWords[1], commandWords[3],
+                            userIdToAuthTokenMap.get(cmdProcessorUserId).getTokenId());
                 } catch (StoreException e) {
                     return ExceptionUtil.outputException(lineNumber, "Appliance command not sent", e);
                 }
@@ -287,7 +322,4 @@ public class CommandProcessor {
         }
     }
 
-    public void setAuthToken(String authToken) {
-        this.authToken = authToken;
-    }
 }

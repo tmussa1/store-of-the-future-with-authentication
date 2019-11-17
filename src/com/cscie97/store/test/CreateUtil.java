@@ -85,9 +85,10 @@ public class CreateUtil {
      */
     public static String createProduct(IStoreModelService storeModelService, String productId, String productName,
                                        String productDescription, String size, String category, String price,
-                                       String temperature){
+                                       String temperature, String authToken){
         Product product = storeModelService.createAProduct(productId, productName, productDescription,
-                convertToInteger(size), category, convertToInteger(price), temperature);
+                convertToInteger(size), category, convertToInteger(price),
+                temperature, authToken);
         return DetailsUtil.outputConfirmation(product.getProductName());
     }
 
@@ -106,9 +107,9 @@ public class CreateUtil {
      */
     public static String createInventory(IStoreModelService storeModelService, String inventoryId, String storeId,
                                          String aisleNumber, String shelfId, String capacity,
-                                         String count, String productId) throws StoreException {
+                                         String count, String productId, String authToken) throws StoreException {
         Inventory inventory = storeModelService.createInventory(inventoryId, storeId, aisleNumber,
-                shelfId, convertToInteger(capacity), convertToInteger(count), productId);
+                shelfId, convertToInteger(capacity), convertToInteger(count), productId, authToken);
         return DetailsUtil.outputConfirmation(String.valueOf(inventory.getInventoryId()));
     }
 
@@ -125,10 +126,11 @@ public class CreateUtil {
      * @throws StoreException
      */
     public static String createCustomer(IStoreModelService storeModelService, String customerId, String firstName,
-                                        String lastName, String type, String emailAddress, String accountAddress)
+                                        String lastName, String type, String emailAddress,
+                                        String accountAddress, String authToken)
             throws StoreException {
         Customer customer = storeModelService.createCustomer(customerId, firstName, lastName, type,
-                emailAddress, accountAddress);
+                emailAddress, accountAddress, authToken);
         return DetailsUtil.outputConfirmation(customer.getFirstName());
     }
 
@@ -141,8 +143,8 @@ public class CreateUtil {
      * @throws StoreException
      */
     public static String createBasketForACustomer(IStoreModelService storeModelService, String customerId,
-                                                  String basketId) throws StoreException {
-        Basket basketForACustomer = storeModelService.createBasketForACustomer(customerId, basketId);
+                                                  String basketId, String authToken) throws StoreException {
+        Basket basketForACustomer = storeModelService.createBasketForACustomer(customerId, basketId, authToken);
         return DetailsUtil.outputConfirmation(basketForACustomer.getBasketId());
     }
 
@@ -158,8 +160,10 @@ public class CreateUtil {
      * @throws StoreException
      */
     public static String createSensor(IStoreModelService storeModelService, String sensorId, String sensorName,
-                                      String sensorType, String storeId, String aisleNumber) throws StoreException {
-        ISensor sensor = storeModelService.createASensor(sensorId, sensorName, sensorType, storeId, aisleNumber);
+                                      String sensorType, String storeId,
+                                      String aisleNumber, String authToken) throws StoreException {
+        ISensor sensor = storeModelService.createASensor(sensorId, sensorName, sensorType, storeId,
+                aisleNumber, authToken);
         return DetailsUtil.outputConfirmation(sensor.getSensorName());
     }
 
@@ -174,9 +178,10 @@ public class CreateUtil {
      * @throws StoreException
      */
     public static String createSensorEvent(IStoreModelService storeModelService, String storeId, String aisleNumber,
-                                           String sensorId, String command) throws StoreException {
+                                           String sensorId, String command, String authToken) throws StoreException {
         Event event = new Event(command);
-        String eventReturned = storeModelService.createSensorEvent(storeId, aisleNumber, sensorId, event);
+        String eventReturned = storeModelService.createSensorEvent(storeId, aisleNumber,
+                sensorId, event, authToken);
         return DetailsUtil.outputConfirmation(eventReturned);
     }
 
@@ -193,9 +198,9 @@ public class CreateUtil {
      */
     public static String createAnAppliance(IStoreModelService storeModelService, String applianceId,
                                            String applianceName, String applianceType, String storeId,
-                                           String aisleNumber) throws StoreException {
+                                           String aisleNumber, String authToken) throws StoreException {
         IAppliance appliance = storeModelService.createAnAppliance(applianceId, applianceName,
-                applianceType, storeId, aisleNumber);
+                applianceType, storeId, aisleNumber, authToken);
         return DetailsUtil.outputConfirmation(appliance.getApplianceName());
     }
 
@@ -211,9 +216,10 @@ public class CreateUtil {
      */
     public static String createApplianceEvent(IStoreModelService storeModelService,
                                               String applianceId, String message, String storeId,
-                                              String aisleNumber) throws StoreException {
+                                              String aisleNumber, String authToken) throws StoreException {
         Event event = new Event(message);
-        String applianceEvent = storeModelService.createApplianceEvent(storeId, aisleNumber, applianceId, event);
+        String applianceEvent = storeModelService.createApplianceEvent(storeId, aisleNumber,
+                applianceId, event, authToken);
         return DetailsUtil.outputConfirmation(applianceEvent);
     }
 
@@ -228,9 +234,10 @@ public class CreateUtil {
      * @throws StoreException
      */
     public static String createApplianceCommand(IStoreModelService storeModelService, String storeId, String aisleNumber,
-                                         String applianceId, String message) throws StoreException {
+                                         String applianceId, String message, String authToken) throws StoreException {
         Command command = new Command(message);
-        String applianceCommand = storeModelService.createApplianceCommand(storeId, aisleNumber, applianceId, command);
+        String applianceCommand = storeModelService.createApplianceCommand(storeId, aisleNumber, applianceId,
+                command, authToken);
         return DetailsUtil.outputConfirmation(applianceCommand);
     }
 
