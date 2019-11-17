@@ -1,6 +1,11 @@
 package com.cscie97.store.test;
 
+import com.cscie97.store.authentication.IAuthenticationService;
+import com.cscie97.store.authentication.User;
+import com.cscie97.store.authentication.UserNamePassword;
 import com.cscie97.store.model.*;
+
+import java.security.NoSuchAlgorithmException;
 
 /**
  * Utility class for update functionality
@@ -8,6 +13,12 @@ import com.cscie97.store.model.*;
  */
 public class UpdateUtil {
 
+    public static String addCredentialsToUser(IAuthenticationService authenticationService, String userId,
+                                              String userName, String password) throws NoSuchAlgorithmException {
+        UserNamePassword userNamePassword = new UserNamePassword(userName, password);
+        User user = authenticationService.addCredentialsToUser(userId, userNamePassword);
+        return DetailsUtil.outputUpdateConfirmation(user.getUserId(), " credentials added");
+    }
     /**
      * Updates inventory count
      * @param storeModelService

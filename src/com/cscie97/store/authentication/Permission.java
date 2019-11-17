@@ -15,6 +15,10 @@ public class Permission extends Entitlement implements Visitable {
         this.permissionDescription = entitlementDescription;
     }
 
+    public Permission(String permissionId) {
+        this.permissionId = permissionId;
+    }
+
     @Override
     public void accept(Ivisitor ivisitor) {
         ivisitor.visit(this);

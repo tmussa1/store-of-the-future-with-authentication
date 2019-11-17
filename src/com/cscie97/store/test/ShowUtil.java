@@ -19,8 +19,9 @@ public class ShowUtil {
      * @return details of a store
      * @throws StoreException
      */
-    public static String showStoreDetails(IStoreModelService storeModelService, String storeId) throws StoreException {
-        Store store = storeModelService.getStoreById(storeId);
+    public static String showStoreDetails(IStoreModelService storeModelService, String storeId, String authToken)
+            throws StoreException {
+        Store store = storeModelService.getStoreById(storeId, authToken);
         return DetailsUtil.outputDetails("Store " , store.getStoreName(), store.getAddress().getCity(),
                 store.getAisles());
     }
@@ -34,8 +35,8 @@ public class ShowUtil {
      * @throws StoreException
      */
     public static String showAisleDetails(IStoreModelService storeModelService, String storeId,
-                                          String aisleNumber) throws StoreException {
-        Aisle aisle = storeModelService.getAisleByStoreIdAndAisleNumber(storeId, aisleNumber);
+                                          String aisleNumber, String authToken) throws StoreException {
+        Aisle aisle = storeModelService.getAisleByStoreIdAndAisleNumber(storeId, aisleNumber, authToken);
         return DetailsUtil.outputDetails("Aisle ", aisle.getAisleDescription(),
                 aisle.getLocation().name(),aisle.getShelves());
     }

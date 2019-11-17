@@ -4,6 +4,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+
 public interface IAuthenticationService {
     Permission createPermission(String permissionId, String permissionName, String permissionDescription);
     Role createRole(String roleId, String roleName, String roleDescription);
@@ -31,7 +32,6 @@ public interface IAuthenticationService {
     boolean sessionTimedOut(String tokenId);
     State logOut(String tokenId);
     String getInventoryPrint();
-    void checkAccess(String tokenId, @Nullable Resource resource, Permission permission) throws AccessDeniedException;
     List<User> getUsers();
-    List<AuthenticationToken> getTokens();
+    void checkAccess(String tokenId, @Nullable Resource resource, Permission permission) throws AccessDeniedException;
 }

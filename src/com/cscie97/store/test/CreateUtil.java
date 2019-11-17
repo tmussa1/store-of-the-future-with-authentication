@@ -1,5 +1,7 @@
 package com.cscie97.store.test;
 
+import com.cscie97.store.authentication.IAuthenticationService;
+import com.cscie97.store.authentication.User;
 import com.cscie97.store.model.*;
 
 /**
@@ -7,6 +9,12 @@ import com.cscie97.store.model.*;
  * @author Tofik Mussa
  */
 public class CreateUtil {
+
+
+    public static String createUser(IAuthenticationService authenticationService, String userId){
+        User user = authenticationService.createUser(userId);
+        return DetailsUtil.outputConfirmation(user.getUserId());
+    }
 
     /**
      * Creates a new store
@@ -20,9 +28,9 @@ public class CreateUtil {
      * @throws StoreException
      */
     public static String createStore(IStoreModelService storeModelService, String storeId, String storeName,
-                                     String street, String city, String state) throws StoreException {
+                                     String street, String city, String state, String authToken) throws StoreException {
         Address address = new Address(street, city, state);
-        Store store = storeModelService.createAStore(storeId, storeName, address);
+        Store store = storeModelService.createAStore(storeId, storeName, address, authToken);
         return DetailsUtil.outputConfirmation(store.getStoreName());
     }
 
@@ -37,8 +45,8 @@ public class CreateUtil {
      * @throws StoreException
      */
     public static String createAisle(IStoreModelService storeModelService, String storeId, String aisleNumber,
-                                     String aisleDescription, String location) throws StoreException {
-        Aisle aisle = storeModelService.createAisle(storeId,aisleNumber, aisleDescription, location);
+                                     String aisleDescription, String location, String authToken) throws StoreException {
+        Aisle aisle = storeModelService.createAisle(storeId,aisleNumber, aisleDescription, location, authToken);
         return DetailsUtil.outputConfirmation(aisle.getAisleDescription());
     }
 
@@ -57,9 +65,9 @@ public class CreateUtil {
      */
     public static String createShelf(IStoreModelService storeModelService,String storeId, String aisleNumber,
                                      String shelfId, String shelfName, String level, String shelfDescription,
-                                     String temperature) throws StoreException {
+                                     String temperature, String authToken) throws StoreException {
         Shelf shelf = storeModelService.createAShelf(storeId, aisleNumber, shelfId,
-                shelfName, level, shelfDescription, temperature);
+                shelfName, level, shelfDescription, temperature, authToken);
         return DetailsUtil.outputConfirmation(shelf.getShelfName());
     }
 

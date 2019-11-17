@@ -1,6 +1,5 @@
 package com.cscie97.store.authentication;
 
-
 import java.util.ArrayList;
 import java.util.List;
 

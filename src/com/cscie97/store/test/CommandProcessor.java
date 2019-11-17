@@ -1,5 +1,8 @@
 package com.cscie97.store.test;
 
+import com.cscie97.store.authentication.AuthenticationService;
+import com.cscie97.store.authentication.AuthenticationToken;
+import com.cscie97.store.authentication.IAuthenticationService;
 import com.cscie97.store.controller.StoreControllerService;
 import com.cscie97.store.model.Event;
 import com.cscie97.store.model.IStoreModelService;
@@ -10,12 +13,15 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * This class reads script from file and processes them
  * @author Tofik Mussa
  */
 public class CommandProcessor {
+
+    private String authToken;
 
     /**
      * Interprets commands from the scripts
@@ -24,21 +30,35 @@ public class CommandProcessor {
      * @param lineNumber
      * @return
      */
-    private String processCommand(IStoreModelService storeModelService, String command, int lineNumber)  {
+    private String processCommand(IStoreModelService storeModelService, String command, int lineNumber,
+                                  IAuthenticationService authenticationService)  {
         String [] commandWords = command.split(" ");
 
         switch(commandWords[0].toLowerCase()){
+            case "register-user":
+                 return CreateUtil.createUser(authenticationService, commandWords[2]);
+            case "add-credentials":
+                try {
+                    return UpdateUtil.addCredentialsToUser(authenticationService,
+                            commandWords[2], commandWords[4], commandWords[6]);
+                } catch (NoSuchAlgorithmException e) {
+                    return ExceptionUtil.outputException(lineNumber, "Error adding credentials to user", e);
+                }
+            case "log-in":
+                    AuthenticationToken authenticationToken = authenticationService
+                            .generateToken(commandWords[2], commandWords[4], commandWords[6]);
+                    setAuthToken(authenticationToken.getTokenId());
+                    return authenticationToken.getTokenId();
             case "define-store":
                    try {
                        return CreateUtil.createStore(storeModelService, commandWords[1], commandWords[3],
-                               commandWords[5], commandWords[6], commandWords[7]);
+                               commandWords[5], commandWords[6], commandWords[7], authToken);
                    } catch (StoreException e) {
                        return ExceptionUtil.outputException(lineNumber, "Store created failed" , e);
                    }
             case "show-store":
                 try {
-                    System.out.println(commandWords[1]);
-                    return ShowUtil.showStoreDetails(storeModelService ,commandWords[1]);
+                    return ShowUtil.showStoreDetails(storeModelService ,commandWords[1], authToken);
                 } catch (StoreException e) {
                     return ExceptionUtil.outputException(lineNumber, "Store not found", e);
                 }
@@ -46,14 +66,14 @@ public class CommandProcessor {
                 try{
                     String [] storeAisle = commandWords[1].split(":");
                     return CreateUtil.createAisle(storeModelService, storeAisle[0], storeAisle[1],
-                            commandWords[3], commandWords[5]);
+                            commandWords[3], commandWords[5], authToken);
                 } catch (StoreException e) {
                     return ExceptionUtil.outputException(lineNumber, "Aisle creation failed", e);
                 }
             case "show-aisle":
                 try {
                     String [] storeAisle = commandWords[1].split(":");
-                    return ShowUtil.showAisleDetails(storeModelService, storeAisle[0], storeAisle[1]);
+                    return ShowUtil.showAisleDetails(storeModelService, storeAisle[0], storeAisle[1], authToken);
                 } catch (StoreException e) {
                     return ExceptionUtil.outputException(lineNumber, "Aisle not found", e);
                 }
@@ -61,8 +81,8 @@ public class CommandProcessor {
                 try {
                     String [] storeAisleShelf = commandWords[1].split(":");
                     return CreateUtil.createShelf(storeModelService, storeAisleShelf[0], storeAisleShelf[1],
-                            storeAisleShelf[2],
-                            commandWords[3], commandWords[5], commandWords[7], commandWords[9]);
+                            storeAisleShelf[2], commandWords[3], commandWords[5], commandWords[7],
+                            commandWords[9], authToken);
                 } catch (StoreException e) {
                     return ExceptionUtil.outputException(lineNumber, "Shelf not created", e);
                 }
@@ -256,15 +276,18 @@ public class CommandProcessor {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(storeFile));
             int lineNumber = 0;
             IStoreModelService storeModelService = StoreModelService.getInstance();
+            IAuthenticationService authenticationService = AuthenticationService.getInstance();
             String command;
             while((command = bufferedReader.readLine()) != null){
                 lineNumber++;
-                System.out.println(processCommand(storeModelService, command, lineNumber));
+                System.out.println(processCommand(storeModelService, command, lineNumber, authenticationService));
             }
         }  catch (IOException e) {
             throw new CommandProcessorException("Error reading", "Command can not be processed ", 1);
         }
     }
 
-
+    public void setAuthToken(String authToken) {
+        this.authToken = authToken;
+    }
 }

@@ -1,5 +1,6 @@
 package com.cscie97.store.model;
 
+import com.cscie97.store.authentication.*;
 import com.cscie97.store.controller.StoreControllerServiceException;
 
 import java.util.*;
@@ -19,6 +20,7 @@ public class StoreModelService implements IStoreModelService, ISubject {
     private Map<String, Product> productMap;
     private List<IObserver> observers;
     private static StoreModelService instance;
+    private IAuthenticationService authenticationService;
 
     Logger logger = Logger.getLogger(StoreModelService.class.getName());
 
@@ -28,6 +30,7 @@ public class StoreModelService implements IStoreModelService, ISubject {
         this.inventoryMap = new HashMap<>();
         this.productMap = new HashMap<>();
         this.observers = new ArrayList<>();
+        this.authenticationService = AuthenticationService.getInstance();
     }
 
     public static StoreModelService getInstance(){
@@ -47,6 +50,12 @@ public class StoreModelService implements IStoreModelService, ISubject {
      */
     @Override
     public Store createAStore(String storeId, String storeName, Address storeAddress, String authToken) throws StoreException {
+        try {
+            authenticationService.checkAccess(authToken, new Resource(storeId, storeName),
+                    new Permission(PermissionType.CREATE.getPermission()));
+        } catch (AccessDeniedException e) {
+            logger.warning("Unable to authenticate" + e.getReason() + " : " + e.getFix());
+        }
         checkValidityOfStoreId(storeId, authToken);
         Store store = new Store(storeId, storeName, storeAddress);
         this.stores.add(store);
@@ -74,7 +83,12 @@ public class StoreModelService implements IStoreModelService, ISubject {
      */
     @Override
     public Store getStoreById(String storeId, String authToken) throws StoreException {
-
+        try {
+            authenticationService.checkAccess(authToken, new Resource(storeId, ""),
+                    new Permission(PermissionType.READ.getPermission()));
+        } catch (AccessDeniedException e) {
+            logger.warning("Unable to authenticate" + e.getReason() + " : " + e.getFix());
+        }
         Store store = stores.stream().filter(astore -> astore.getStoreId().equalsIgnoreCase(storeId))
                 .collect(Collectors.toList()).get(0);
         if(store == null){
@@ -94,6 +108,12 @@ public class StoreModelService implements IStoreModelService, ISubject {
      */
     @Override
     public Aisle createAisle(String storeId, String aisleNumber, String aisleDescription, String location, String authToken) throws StoreException {
+        try {
+            authenticationService.checkAccess(authToken, new Resource(aisleNumber, aisleDescription),
+                    new Permission(PermissionType.CREATE.getPermission()));
+        } catch (AccessDeniedException e) {
+            logger.warning("Unable to authenticate" + e.getReason() + " : " + e.getFix());
+        }
         Store store = getStoreById(storeId, authToken);
         LocationType locationEnum = StoreUtil.convertLocationToEnum(location);
         Aisle aisle = new Aisle(aisleNumber, aisleDescription,locationEnum);
@@ -110,6 +130,12 @@ public class StoreModelService implements IStoreModelService, ISubject {
      */
     @Override
     public Aisle getAisleByStoreIdAndAisleNumber(String storeId, String aisleNumber, String authToken) throws StoreException {
+        try {
+            authenticationService.checkAccess(authToken, new Resource(storeId, aisleNumber),
+                    new Permission(PermissionType.READ.getPermission()));
+        } catch (AccessDeniedException e) {
+            logger.warning("Unable to authenticate" + e.getReason() + " : " + e.getFix());
+        }
         Store store = getStoreById(storeId, authToken);
         Optional<Aisle> aisle = store.getAisles().stream().filter(anAisle -> anAisle.getAisleNumber().equals(aisleNumber)).findAny();
         if(aisle.isEmpty()){
@@ -132,6 +158,12 @@ public class StoreModelService implements IStoreModelService, ISubject {
      */
     @Override
     public Shelf createAShelf(String storeId, String aisleNumber, String shelfId, String shelfName, String level, String shelfDescription, String temperature, String authToken) throws StoreException {
+        try {
+            authenticationService.checkAccess(authToken, new Resource(shelfId, shelfName),
+                    new Permission(PermissionType.CREATE.getPermission()));
+        } catch (AccessDeniedException e) {
+            logger.warning("Unable to authenticate" + e.getReason() + " : " + e.getFix());
+        }
         Aisle aisle = getAisleByStoreIdAndAisleNumber(storeId, aisleNumber, authToken);
         Level levelEnum = StoreUtil.convertLevelToEnum(level);
         Temperature temperatureEnum = StoreUtil.convertTemperatureToEnum(temperature);
@@ -150,6 +182,12 @@ public class StoreModelService implements IStoreModelService, ISubject {
      */
     @Override
     public Shelf getShelfByStoreIdAisleNumShelfId(String storeId, String aisleNumber, String shelfId, String authToken) throws StoreException {
+        try {
+            authenticationService.checkAccess(authToken, new Resource(aisleNumber, shelfId),
+                    new Permission(PermissionType.READ.getPermission()));
+        } catch (AccessDeniedException e) {
+            logger.warning("Unable to authenticate" + e.getReason() + " : " + e.getFix());
+        }
         Aisle aisle = getAisleByStoreIdAndAisleNumber(storeId, aisleNumber, authToken);
         Shelf shelf = aisle.getShelves().stream().filter(aShelf -> aShelf.getShelfId().equals(shelfId)).findAny().get();
         if(shelf == null){
@@ -172,6 +210,12 @@ public class StoreModelService implements IStoreModelService, ISubject {
      */
     @Override
     public Inventory createInventory(String inventoryId, String storeId, String aisleNumber, String shelfId, int capacity, int count, String productId, String authToken) throws StoreException {
+        try {
+            authenticationService.checkAccess(authToken, new Resource(shelfId, productId),
+                    new Permission(PermissionType.CREATE.getPermission()));
+        } catch (AccessDeniedException e) {
+            logger.warning("Unable to authenticate" + e.getReason() + " : " + e.getFix());
+        }
         Product product = productMap.get(productId);
         if(product == null){
             throw new StoreException("Inventory can not be created for a product that is not defined");
@@ -192,6 +236,12 @@ public class StoreModelService implements IStoreModelService, ISubject {
      */
     @Override
     public Inventory getInventoryById(String inventoryId, String authToken) throws StoreException {
+        try {
+            authenticationService.checkAccess(authToken, new Resource(inventoryId, ""),
+                    new Permission(PermissionType.READ.getPermission()));
+        } catch (AccessDeniedException e) {
+            logger.warning("Unable to authenticate" + e.getReason() + " : " + e.getFix());
+        }
         Inventory inventory = inventoryMap.get(inventoryId);
         if(inventory == null){
             throw new StoreException("Requested inventory not found in all of the stores");
@@ -210,6 +260,12 @@ public class StoreModelService implements IStoreModelService, ISubject {
      */
     @Override
     public int updateInventoryCount(String inventoryId, int difference, String authToken) throws StoreException {
+        try {
+            authenticationService.checkAccess(authToken, new Resource(inventoryId, String.valueOf(difference)),
+                    new Permission(PermissionType.UPADTE.getPermission()));
+        } catch (AccessDeniedException e) {
+            logger.warning("Unable to authenticate" + e.getReason() + " : " + e.getFix());
+        }
         Inventory inventoryFromAnyStore = inventoryMap.get(inventoryId);
         if(inventoryFromAnyStore == null){
             throw new StoreException("The inventory that you are trying to update the count of doesn't exist in the stores");
@@ -240,6 +296,12 @@ public class StoreModelService implements IStoreModelService, ISubject {
      */
     @Override
     public Product createAProduct(String productId, String productName, String productDescription, int size, String category, int price, String temperature, String authToken) {
+        try {
+            authenticationService.checkAccess(authToken, new Resource(productId, productName),
+                    new Permission(PermissionType.CREATE.toString()));
+        } catch (AccessDeniedException e) {
+            logger.warning("Unable to authenticate" + e.getReason() + " : " + e.getFix());
+        }
         double volume = Math.pow(size, 3);
         Product product = new Product(productId, productName, productDescription, category, price, volume,
                 StoreUtil.convertTemperatureToEnum(temperature));
@@ -255,6 +317,12 @@ public class StoreModelService implements IStoreModelService, ISubject {
      */
     @Override
     public Product getProductById(String productId, String authToken) throws StoreException {
+        try {
+            authenticationService.checkAccess(authToken, new Resource(productId, ""),
+                    new Permission(PermissionType.READ.getPermission()));
+        } catch (AccessDeniedException e) {
+            logger.warning("Unable to authenticate" + e.getReason() + " : " + e.getFix());
+        }
         Product product = this.productMap.get(productId);
         if(product == null){
             throw new StoreException("A product with the requested id doesn't exist");
@@ -291,6 +359,12 @@ public class StoreModelService implements IStoreModelService, ISubject {
      */
     @Override
     public Customer createCustomer(String customerId, String firstName, String lastName, String type, String emailAddress, String accountAddress, String authToken) throws StoreException {
+        try {
+            authenticationService.checkAccess(authToken, new Resource(customerId, firstName),
+                    new Permission(PermissionType.CREATE.getPermission()));
+        } catch (AccessDeniedException e) {
+            logger.warning("Unable to authenticate" + e.getReason() + " : " + e.getFix());
+        }
         Customer customer = new Customer(customerId, firstName, lastName,
                 StoreUtil.convertCustomerTypeToEnum(type), emailAddress, accountAddress);
         duplicateCustomerValidation(customerId, accountAddress, authToken);
@@ -306,6 +380,12 @@ public class StoreModelService implements IStoreModelService, ISubject {
      */
     @Override
     public Customer getCustomerById(String customerId, String authToken) throws StoreException {
+        try {
+            authenticationService.checkAccess(authToken, new Resource(customerId, ""),
+                    new Permission(PermissionType.READ.getPermission()));
+        } catch (AccessDeniedException e) {
+            logger.warning("Unable to authenticate" + e.getReason() + " : " + e.getFix());
+        }
         Optional<Customer> customer = this.customers.stream().filter(aCustomer ->
                 aCustomer.getCustomerId().equals(customerId)).findAny();
         if(customer.isEmpty()){
@@ -324,6 +404,12 @@ public class StoreModelService implements IStoreModelService, ISubject {
      */
     @Override
     public InventoryLocation updateCustomerLocation(String customerId, String storeId, String aisleNumber, String authToken) throws StoreException {
+        try {
+            authenticationService.checkAccess(authToken, new Resource(customerId, aisleNumber),
+                    new Permission(PermissionType.UPADTE.getPermission()));
+        } catch (AccessDeniedException e) {
+            logger.warning("Unable to authenticate" + e.getReason() + " : " + e.getFix());
+        }
         InventoryLocation customerLocation = new InventoryLocation(storeId, aisleNumber, "");
         Customer customer = getCustomerById(customerId, authToken);
         customer.setCustomerLocation(customerLocation);
@@ -338,6 +424,12 @@ public class StoreModelService implements IStoreModelService, ISubject {
      */
     @Override
     public Basket getBasketOfACustomer(String customerId, String authToken) throws StoreException {
+        try {
+            authenticationService.checkAccess(authToken, new Resource(customerId, ""),
+                    new Permission(PermissionType.READ.getPermission()));
+        } catch (AccessDeniedException e) {
+            logger.warning("Unable to authenticate" + e.getReason() + " : " + e.getFix());
+        }
         Customer customer = getCustomerById(customerId, authToken);
         Basket basket = customer.getBasket();
         if(basket == null){
@@ -356,6 +448,12 @@ public class StoreModelService implements IStoreModelService, ISubject {
      */
     @Override
     public Basket createBasketForACustomer(String customerId, String basketId, String authToken) throws StoreException {
+        try {
+            authenticationService.checkAccess(authToken, new Resource(basketId, customerId),
+                    new Permission(PermissionType.CREATE.getPermission()));
+        } catch (AccessDeniedException e) {
+            logger.warning("Unable to authenticate" + e.getReason() + " : " + e.getFix());
+        }
         Customer customer = getCustomerById(customerId, authToken);
         Basket basket = new Basket(basketId);
         customer.setBasket(basket);
@@ -385,6 +483,12 @@ public class StoreModelService implements IStoreModelService, ISubject {
      */
     @Override
     public Customer getCustomerByCustomerName(String customerName, String authToken) throws StoreException {
+        try {
+            authenticationService.checkAccess(authToken, new Resource(customerName, customerName),
+                    new Permission(PermissionType.READ.getPermission()));
+        } catch (AccessDeniedException e) {
+            logger.warning("Unable to authenticate" + e.getReason() + " : " + e.getFix());
+        }
         Customer customer = this.customers.stream()
                 .filter(aCustomer -> aCustomer.getFirstName().equals(customerName))
                 .findAny().get();
@@ -417,7 +521,13 @@ public class StoreModelService implements IStoreModelService, ISubject {
      */
     @Override
     public Inventory getInventoryByProductId(String productId, String authToken) throws StoreException {
-         Inventory inventory = inventoryMap.values().stream()
+        try {
+            authenticationService.checkAccess(authToken, new Resource(productId, ""),
+                    new Permission(PermissionType.READ.getPermission()));
+        } catch (AccessDeniedException e) {
+            logger.warning("Unable to authenticate" + e.getReason() + " : " + e.getFix());
+        }
+        Inventory inventory = inventoryMap.values().stream()
                 .filter(anInventory -> anInventory.getProduct().getProductId().equals(productId))
                 .findAny().get();
          if(inventory == null){
@@ -437,6 +547,12 @@ public class StoreModelService implements IStoreModelService, ISubject {
      */
     @Override
     public Basket addItemToBasket(String basketId, String productId, int count, String authToken) throws StoreException {
+        try {
+            authenticationService.checkAccess(authToken, new Resource(basketId, productId),
+                    new Permission(PermissionType.UPADTE.getPermission()));
+        } catch (AccessDeniedException e) {
+            logger.warning("Unable to authenticate" + e.getReason() + " : " + e.getFix());
+        }
         Customer customer = getCustomerAssociatedWithABasket(basketId, authToken);
         Product product = this.productMap.get(productId);
         if(product == null){
@@ -469,6 +585,12 @@ public class StoreModelService implements IStoreModelService, ISubject {
      */
     @Override
     public Basket removeItemFromBasket(String basketId, String productId, int countReturned, String authToken) throws StoreException {
+        try {
+            authenticationService.checkAccess(authToken, new Resource(basketId, productId),
+                    new Permission(PermissionType.UPADTE.getPermission()));
+        } catch (AccessDeniedException e) {
+            logger.warning("Unable to authenticate" + e.getReason() + " : " + e.getFix());
+        }
         Customer customer = getCustomerAssociatedWithABasket(basketId, authToken);
         Product product = this.productMap.get(productId);
         if(product == null){
@@ -497,6 +619,12 @@ public class StoreModelService implements IStoreModelService, ISubject {
      */
     @Override
     public Customer clearBasketAndRemoveAssociationWithACustomer(String basketId, String authToken) throws StoreException {
+        try {
+            authenticationService.checkAccess(authToken, new Resource(basketId, ""),
+                    new Permission(PermissionType.UPADTE.getPermission()));
+        } catch (AccessDeniedException e) {
+            logger.warning("Unable to authenticate" + e.getReason() + " : " + e.getFix());
+        }
         Customer customer = getCustomerAssociatedWithABasket(basketId, authToken);
         Basket basket = getBasketOfACustomer(customer.getCustomerId(), authToken);
         basket.setProductsMap(null);
@@ -512,6 +640,12 @@ public class StoreModelService implements IStoreModelService, ISubject {
      */
     @Override
     public Map<Product, Integer> getBasketItems(String basketId, String authToken) throws StoreException {
+        try {
+            authenticationService.checkAccess(authToken, new Resource(basketId, ""),
+                    new Permission(PermissionType.READ.getPermission()));
+        } catch (AccessDeniedException e) {
+            logger.warning("Unable to authenticate" + e.getReason() + " : " + e.getFix());
+        }
         Customer customer = getCustomerAssociatedWithABasket(basketId, authToken);
         Basket basket = getBasketOfACustomer(customer.getCustomerId(), authToken);
         return basket.getProductsMap();
@@ -530,6 +664,12 @@ public class StoreModelService implements IStoreModelService, ISubject {
     @Override
     public ISensor createASensor(String sensorId, String sensorName, String sensorType, String storeId,
                                  String aisleNumber, String authToken) throws StoreException {
+        try {
+            authenticationService.checkAccess(authToken, new Resource(sensorId, sensorName),
+                    new Permission(PermissionType.CREATE.getPermission()));
+        } catch (AccessDeniedException e) {
+            logger.warning("Unable to authenticate" + e.getReason() + " : " + e.getFix());
+        }
         InventoryLocation location = new InventoryLocation(storeId, aisleNumber, "");
         ISensor sensor = SensorApplianceFactory.createSensor(sensorType, sensorId, sensorName, location);
         Aisle aisle = getAisleByStoreIdAndAisleNumber(storeId, aisleNumber, authToken);
@@ -548,6 +688,12 @@ public class StoreModelService implements IStoreModelService, ISubject {
     @Override
     public ISensor getSensorByLocationAndSensorId(String storeId, String aisleNumber, String sensorId, String authToken)
             throws StoreException {
+        try {
+            authenticationService.checkAccess(authToken, new Resource(sensorId, storeId),
+                    new Permission(PermissionType.READ.getPermission()));
+        } catch (AccessDeniedException e) {
+            logger.warning("Unable to authenticate" + e.getReason() + " : " + e.getFix());
+        }
         Aisle aisle = getAisleByStoreIdAndAisleNumber(storeId, aisleNumber, authToken);
         ISensor sensor = aisle.getSensorById(sensorId);
         return sensor;
@@ -564,6 +710,12 @@ public class StoreModelService implements IStoreModelService, ISubject {
     @Override
     public IAppliance getApplianceByLocationAndSensorId(String storeId, String aisleNumber, String applianceId, String authToken)
             throws StoreException {
+        try {
+            authenticationService.checkAccess(authToken, new Resource(applianceId, storeId),
+                    new Permission(PermissionType.READ.getPermission()));
+        } catch (AccessDeniedException e) {
+            logger.warning("Unable to authenticate" + e.getReason() + " : " + e.getFix());
+        }
         Aisle aisle = getAisleByStoreIdAndAisleNumber(storeId, aisleNumber, authToken);
         IAppliance appliance = aisle.getApplianceById(applianceId);
         return appliance;
@@ -581,6 +733,12 @@ public class StoreModelService implements IStoreModelService, ISubject {
     @Override
     public String createSensorEvent(String storeId, String aisleNumber, String sensorId, Event event, String authToken)
             throws StoreException {
+        try {
+            authenticationService.checkAccess(authToken, new Resource(storeId, sensorId),
+                    new Permission(PermissionType.CREATE.getPermission()));
+        } catch (AccessDeniedException e) {
+            logger.warning("Unable to authenticate" + e.getReason() + " : " + e.getFix());
+        }
         ISensor sensor = getSensorByLocationAndSensorId(storeId, aisleNumber, sensorId, authToken);
         return sensor.generateSensorEvent(event);
     }
@@ -598,6 +756,12 @@ public class StoreModelService implements IStoreModelService, ISubject {
     @Override
     public IAppliance createAnAppliance(String applianceId, String applianceName, String applianceType,
                                         String storeId, String aisleNumber, String authToken) throws StoreException {
+        try {
+            authenticationService.checkAccess(authToken, new Resource(applianceId, storeId),
+                    new Permission(PermissionType.CREATE.getPermission()));
+        } catch (AccessDeniedException e) {
+            logger.warning("Unable to authenticate" + e.getReason() + " : " + e.getFix());
+        }
         InventoryLocation location = new InventoryLocation(storeId, aisleNumber, "");
         IAppliance appliance = SensorApplianceFactory.createAppliance(applianceType, applianceId,
                 applianceName, location);
@@ -617,6 +781,12 @@ public class StoreModelService implements IStoreModelService, ISubject {
      */
     @Override
     public String createApplianceEvent(String storeId, String aisleNumber, String applianceId, Event event, String authToken) throws StoreException {
+        try {
+            authenticationService.checkAccess(authToken, new Resource(applianceId, storeId),
+                    new Permission(PermissionType.CREATE.getPermission()));
+        } catch (AccessDeniedException e) {
+            logger.warning("Unable to authenticate" + e.getReason() + " : " + e.getFix());
+        }
         Aisle aisle = getAisleByStoreIdAndAisleNumber(storeId, aisleNumber, authToken);
         IAppliance appliance = aisle.getApplianceById(applianceId);
         return appliance.generateApplianceEvent(event);
@@ -633,6 +803,12 @@ public class StoreModelService implements IStoreModelService, ISubject {
      */
     @Override
     public String createApplianceCommand(String storeId, String aisleNumber, String applianceId, Command command, String authToken) throws StoreException {
+        try {
+            authenticationService.checkAccess(authToken, new Resource(applianceId, storeId),
+                    new Permission(PermissionType.CREATE.getPermission()));
+        } catch (AccessDeniedException e) {
+            logger.warning("Unable to authenticate" + e.getReason() + " : " + e.getFix());
+        }
         Aisle aisle = getAisleByStoreIdAndAisleNumber(storeId, aisleNumber, authToken);
         IAppliance appliance = aisle.getApplianceById(applianceId);
         return appliance.listenToCommand(command);
@@ -649,6 +825,12 @@ public class StoreModelService implements IStoreModelService, ISubject {
      */
     @Override
     public IAppliance moveRobot(String storeId, String aisleNumber, String applianceRobotId, String newAisleNumber, String authToken) throws StoreException {
+        try {
+            authenticationService.checkAccess(authToken, new Resource(applianceRobotId, storeId),
+                    new Permission(PermissionType.UPADTE.getPermission()));
+        } catch (AccessDeniedException e) {
+            logger.warning("Unable to authenticate" + e.getReason() + " : " + e.getFix());
+        }
         Robot robot = (Robot) getApplianceByLocationAndSensorId(storeId,aisleNumber,
                 applianceRobotId, authToken);
         InventoryLocation newRobotLocation = new InventoryLocation(storeId, newAisleNumber, "");
@@ -658,6 +840,12 @@ public class StoreModelService implements IStoreModelService, ISubject {
 
     @Override
     public List<Turnstile> getAllTurnstilesWithinAnAisle(String storeId, String aisleNumber, String authToken) throws StoreException {
+        try {
+            authenticationService.checkAccess(authToken, new Resource(aisleNumber, storeId),
+                    new Permission(PermissionType.READ.getPermission()));
+        } catch (AccessDeniedException e) {
+            logger.warning("Unable to authenticate" + e.getReason() + " : " + e.getFix());
+        }
         Aisle aisle = getAisleByStoreIdAndAisleNumber(storeId, aisleNumber, authToken);
         List<Turnstile> turnstiles = aisle.getAppliances().stream()
                 .filter(anAppliance -> anAppliance instanceof Turnstile)
@@ -668,6 +856,12 @@ public class StoreModelService implements IStoreModelService, ISubject {
 
     @Override
     public List<Turnstile> openTurnstiles(List<Turnstile> turnstiles, String authToken) {
+        try {
+            authenticationService.checkAccess(authToken, new Resource(turnstiles.get(0).getApplianceId(), ""),
+                    new Permission(PermissionType.UPADTE.getPermission()));
+        } catch (AccessDeniedException e) {
+            logger.warning("Unable to authenticate" + e.getReason() + " : " + e.getFix());
+        }
          return turnstiles.stream()
                  .map(aTurnstile -> aTurnstile.openTurnstile())
                  .collect(Collectors.toList());
@@ -675,6 +869,12 @@ public class StoreModelService implements IStoreModelService, ISubject {
 
     @Override
     public List<Turnstile> closeTurnstiles(List<Turnstile> turnstiles, String authToken) {
+        try {
+            authenticationService.checkAccess(authToken, new Resource(turnstiles.get(0).getApplianceId(), ""),
+                    new Permission(PermissionType.UPADTE.getPermission()));
+        } catch (AccessDeniedException e) {
+            logger.warning("Unable to authenticate" + e.getReason() + " : " + e.getFix());
+        }
         return turnstiles.stream()
                 .map(aTurnstile -> aTurnstile.closeTurnstile())
                 .collect(Collectors.toList());
@@ -682,6 +882,12 @@ public class StoreModelService implements IStoreModelService, ISubject {
 
     @Override
     public List<Speaker> getAllSpeakersWithinAnAisle(String storeId, String aisleNumber, String authToken) throws StoreException {
+        try {
+            authenticationService.checkAccess(authToken, new Resource(aisleNumber, storeId),
+                    new Permission(PermissionType.READ.getPermission()));
+        } catch (AccessDeniedException e) {
+            logger.warning("Unable to authenticate" + e.getReason() + " : " + e.getFix());
+        }
         Aisle aisle = getAisleByStoreIdAndAisleNumber(storeId, aisleNumber, authToken);
         List<Speaker> speakers = aisle.getAppliances().stream()
                 .filter(anAppliance -> anAppliance instanceof Speaker)
@@ -692,6 +898,12 @@ public class StoreModelService implements IStoreModelService, ISubject {
 
     @Override
     public List<Robot> getAllRobotsWithinAnAisle(String storeId, String aisleNumber, String authToken) throws StoreException {
+        try {
+            authenticationService.checkAccess(authToken, new Resource(aisleNumber, storeId),
+                    new Permission(PermissionType.READ.getPermission()));
+        } catch (AccessDeniedException e) {
+            logger.warning("Unable to authenticate" + e.getReason() + " : " + e.getFix());
+        }
         Aisle aisle = getAisleByStoreIdAndAisleNumber(storeId, aisleNumber, authToken);
         List<Robot> robots = aisle.getAppliances().stream()
                 .filter(anAppliance -> anAppliance instanceof Robot)

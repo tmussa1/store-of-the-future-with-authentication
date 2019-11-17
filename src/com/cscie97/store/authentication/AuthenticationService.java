@@ -293,11 +293,6 @@ public class AuthenticationService implements IAuthenticationService, Visitable 
     }
 
     @Override
-    public List<AuthenticationToken> getTokens() {
-        return tokens;
-    }
-
-    @Override
     public Role getRoleById(String roleId) throws AuthenticationServiceException {
         Role role = (Role) entitlements.stream()
                 .filter(entitlement -> entitlement instanceof Role && entitlement.getEntitlementId().equals(roleId))

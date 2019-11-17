@@ -15,6 +15,9 @@ public abstract class Entitlement implements Visitable{
         this.entitlementDescription = entitlementDescription;
     }
 
+    public Entitlement() {
+    }
+
     /**
      * Resource is null. Subclasses need to implement this method
      * @param authToken
