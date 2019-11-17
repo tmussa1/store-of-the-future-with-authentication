@@ -1,6 +1,5 @@
 package com.cscie97.store.authentication;
 
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
@@ -33,5 +32,6 @@ public interface IAuthenticationService {
     State logOut(String tokenId);
     String getInventoryPrint();
     List<User> getUsers();
-    void checkAccess(String tokenId, @Nullable Resource resource, Permission permission) throws AccessDeniedException;
+    AuthenticationToken findValidAuthenticationTokenForAUser(String userId) throws AccessDeniedException;
+    void checkAccess(String tokenId, Resource resource, Permission permission) throws AccessDeniedException;
 }

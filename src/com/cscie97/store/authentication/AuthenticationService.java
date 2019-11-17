@@ -1,6 +1,5 @@
 package com.cscie97.store.authentication;
 
-import org.jetbrains.annotations.Nullable;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -271,7 +270,7 @@ public class AuthenticationService implements IAuthenticationService, Visitable 
     }
 
     @Override
-    public void checkAccess(String tokenId, @Nullable Resource resource, Permission permission) throws AccessDeniedException {
+    public void checkAccess(String tokenId, Resource resource, Permission permission) throws AccessDeniedException {
         AuthenticationToken token = null;
         CheckAccessVisitor checkAccessVisitor = null;
         try {
@@ -353,6 +352,17 @@ public class AuthenticationService implements IAuthenticationService, Visitable 
                     "Please make sure that you have a role restricted to a resource");
         }
         return resourceRole;
+    }
+
+    @Override
+    public AuthenticationToken findValidAuthenticationTokenForAUser(String userId) throws AccessDeniedException {
+        AuthenticationToken authenticationToken = tokens.stream()
+                .filter(token -> token.getUser().getUserId().equals(userId))
+                .findFirst().get();
+        if(authenticationToken == null){
+            throw new AccessDeniedException("No authentication found for the user", "Please log in again");
+        }
+        return authenticationToken;
     }
 
     @Override
