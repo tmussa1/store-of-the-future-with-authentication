@@ -1,5 +1,7 @@
 package com.cscie97.store.controller;
 
+import com.cscie97.store.authentication.AccessDeniedException;
+import com.cscie97.store.authentication.AuthenticationToken;
 import com.cscie97.store.model.*;
 
 import java.util.logging.Logger;
@@ -14,6 +16,7 @@ public class CleanStoreCommand extends AbstractCommand {
     private String storeId;
     private String aisleNumber;
     private String shelfId;
+    private String userId;
 
     Logger logger = Logger.getLogger(CleanStoreCommand.class.getName());
 
@@ -24,11 +27,12 @@ public class CleanStoreCommand extends AbstractCommand {
      * @param aisleNumber
      * @param shelfId
      */
-    public CleanStoreCommand(String mess, String storeId, String aisleNumber, String shelfId) {
+    public CleanStoreCommand(String mess, String storeId, String aisleNumber, String shelfId, String userId) {
         this.mess = mess;
         this.storeId = storeId;
         this.aisleNumber = aisleNumber;
         this.shelfId = shelfId;
+        this.userId = userId;
     }
 
     /**
@@ -40,7 +44,9 @@ public class CleanStoreCommand extends AbstractCommand {
     @Override
     public Event execute() {
         try {
-            Robot robot = this.storeModelService.getAllRobotsWithinAnAisle(storeId, aisleNumber).get(0);
+            AuthenticationToken token = this.authenticationService.findValidAuthenticationTokenForAUser(userId);
+            Robot robot = this.storeModelService.getAllRobotsWithinAnAisle(storeId, aisleNumber,
+                    token.getTokenId()).get(0);
             logger.info("Robot " + robot.getApplianceId() + " is assigned to clean the mess");
             Command robotCommand = new Command("Robot cleaning up " + mess + " in " + aisleNumber);
             logger.info(robot.listenToCommand(robotCommand));
@@ -48,16 +54,18 @@ public class CleanStoreCommand extends AbstractCommand {
             if(mess.contains("dropped")){
                 String [] splitMess = mess.split("_");
                 Inventory inventory = this.storeModelService
-                        .getInventoryByProductId(splitMess[1]);
+                        .getInventoryByProductId(splitMess[1], token.getTokenId());
                 int initialCount = inventory.getCount();
                 int updatedCount = this.storeModelService.updateInventoryCount(inventory.getInventoryId(),
-                        -1);
+                        -1, token.getTokenId());
                 logger.info("Inventory count for " + inventory.getInventoryId() +
                         " updated from " + initialCount + " to " + updatedCount + " because the dropped item "+
                         " will no longer be for sale ");
             }
         } catch (StoreException e) {
             logger.warning("Robot unable to clean the store ");
+        } catch (AccessDeniedException e) {
+            logger.warning("Authentication failed " + e.getReason() + " : " + e.getFix());
         }
         return new Event(CleanStoreCommand.class.getName());
     }

@@ -2,6 +2,8 @@ package com.cscie97.store.controller;
 
 import com.cscie97.ledger.Ledger;
 import com.cscie97.ledger.LedgerException;
+import com.cscie97.store.authentication.AuthenticationService;
+import com.cscie97.store.authentication.IAuthenticationService;
 import com.cscie97.store.model.Event;
 import com.cscie97.store.model.IStoreModelService;
 import com.cscie97.store.model.StoreModelService;
@@ -16,7 +18,7 @@ public abstract class AbstractCommand implements Callable<Event>, ICommand{
 
     IStoreModelService storeModelService;
     Ledger ledger;
-    private String authKey;
+    IAuthenticationService authenticationService;
 
     /**
      * Initializes ledger
@@ -29,8 +31,7 @@ public abstract class AbstractCommand implements Callable<Event>, ICommand{
             throws LedgerException {
         this.ledger = createLedger(ledgerName, ledgerDescription, ledgerSeed);
         this.storeModelService = StoreModelService.getInstance();
-        setAuthKey("opaque-string");
-        this.storeModelService.setAuthKey(getAuthKey());
+        this.authenticationService = AuthenticationService.getInstance();
     }
 
     private Ledger createLedger(String ledgerName, String ledgerDescription, String ledgerSeed) throws LedgerException {
@@ -45,8 +46,7 @@ public abstract class AbstractCommand implements Callable<Event>, ICommand{
      */
     public AbstractCommand() {
         this.storeModelService = StoreModelService.getInstance();
-        setAuthKey("opaque-string");
-        this.storeModelService.setAuthKey(getAuthKey());
+        this.authenticationService = AuthenticationService.getInstance();
     }
 
     /**
@@ -59,19 +59,4 @@ public abstract class AbstractCommand implements Callable<Event>, ICommand{
         return this.execute();
     }
 
-    /**
-     * Placeholder for next module
-     * @return
-     */
-    public String getAuthKey() {
-        return authKey;
-    }
-
-    /**
-     * Placeholder for next module
-     * @param authKey
-     */
-    public void setAuthKey(String authKey) {
-        this.authKey = authKey;
-    }
 }

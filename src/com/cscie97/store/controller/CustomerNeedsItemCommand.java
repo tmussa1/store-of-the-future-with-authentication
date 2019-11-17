@@ -1,5 +1,7 @@
 package com.cscie97.store.controller;
 
+import com.cscie97.store.authentication.AccessDeniedException;
+import com.cscie97.store.authentication.AuthenticationToken;
 import com.cscie97.store.model.*;
 
 import java.util.logging.Logger;
@@ -13,6 +15,7 @@ public class CustomerNeedsItemCommand extends AbstractCommand {
     private String customerId;
     private String productId;
     private int count;
+    private String userId;
 
     Logger logger = Logger.getLogger(CustomerNeedsItemCommand.class.getName());
 
@@ -22,10 +25,12 @@ public class CustomerNeedsItemCommand extends AbstractCommand {
      * @param productId
      * @param count
      */
-    public CustomerNeedsItemCommand(String customerId, String productId, int count) {
+    public CustomerNeedsItemCommand(String customerId, String productId,
+                                    int count, String userId) {
         this.customerId = customerId;
         this.productId = productId;
         this.count = count;
+        this.userId = userId;
     }
 
     /**
@@ -41,40 +46,44 @@ public class CustomerNeedsItemCommand extends AbstractCommand {
     @Override
     public Event execute() {
         try {
-            Customer customer = this.storeModelService.getCustomerById(customerId);
-            Product product = this.storeModelService.getProductById(productId);
-            Inventory inventory = this.storeModelService.getInventoryByProductId(productId);
+            AuthenticationToken token = this.authenticationService.findValidAuthenticationTokenForAUser(userId);
+            Customer customer = this.storeModelService.getCustomerById(customerId, token.getTokenId());
+            Product product = this.storeModelService.getProductById(productId, token.getTokenId());
+            Inventory inventory = this.storeModelService.getInventoryByProductId(productId, token.getTokenId());
             logger.info("Customer " + customer.getFirstName() + " needs an item " + product.getProductName());
             Robot robot = this.storeModelService
                     .getAllRobotsWithinAnAisle(customer.getCustomerLocation().getStoreId(),
-                            customer.getCustomerLocation().getAisleNumber()).get(0);
+                            customer.getCustomerLocation().getAisleNumber(), token.getTokenId()).get(0);
             logger.info("Robot " + robot.getApplianceId() + " is assigned to find item to customer " +
                     customer.getFirstName());
             IAppliance robotMoved = this.storeModelService.moveRobot(robot.getApplianceLocation().getStoreId(),
-                    robot.getApplianceLocation().getAisleNumber(),
-                    robot.getApplianceId(), inventory.getInventoryLocation().getAisleNumber());
+                    robot.getApplianceLocation().getAisleNumber(), robot.getApplianceId(),
+                    inventory.getInventoryLocation().getAisleNumber(), token.getTokenId());
             Command robotMoveCommand = new Command("Nearest robot " + robot.getApplianceName() + " moved to pick up item "
                     + product.getProductName() + " from " + robot.getApplianceLocation().getAisleNumber() + " to " +
                     robotMoved.getApplianceLocation().getAisleNumber());
             logger.info(robot.listenToCommand(robotMoveCommand));
             IAppliance robotMovedAgain = this.storeModelService.moveRobot(robotMoved.getApplianceLocation().getStoreId(),
                     robotMoved.getApplianceLocation().getAisleNumber(),
-                    robotMoved.getApplianceId(), customer.getCustomerLocation().getAisleNumber());
+                    robotMoved.getApplianceId(), customer.getCustomerLocation().getAisleNumber(), token.getTokenId());
             Command robotMoveAgainCommand = new Command("Robot moved again from " + robotMoved.getApplianceLocation().getAisleNumber()
                     + " to " + robotMovedAgain.getApplianceLocation().getAisleNumber() + " to walk up to customer and hand in "+
                     product.getProductName());
             logger.info(robot.listenToCommand(robotMoveAgainCommand));
-            Basket basket = this.storeModelService.getBasketOfACustomer(customerId);
+            Basket basket = this.storeModelService.getBasketOfACustomer(customerId, token.getTokenId());
             basket.addProductToBasket(product, count);
             logger.info("The customer " + customer.getFirstName() + "'s basket has been updated and now contains "
             + count + " of " + product.getProductName());
-            int updateInventoryCount = this.storeModelService.updateInventoryCount(inventory.getInventoryId(), -count);
+            int updateInventoryCount = this.storeModelService.updateInventoryCount(inventory.getInventoryId(),
+                    -count, token.getTokenId());
             logger.info("Invetory count has been updated to " + updateInventoryCount + " from " +
                     inventory.getCount() + " after " + count + " counts of " + product.getProductName() + " have been handed to "+
                     customer.getFirstName());
 
         } catch (StoreException e) {
             logger.warning("Robot unable to get item for customer");
+        } catch (AccessDeniedException e) {
+            logger.warning("Authentication failed " + e.getReason() + " : " +e.getFix());
         }
 
         return new Event(CustomerNeedsItemCommand.class.getName());

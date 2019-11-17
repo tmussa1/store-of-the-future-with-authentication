@@ -3,6 +3,8 @@ package com.cscie97.store.controller;
 import com.cscie97.ledger.Account;
 import com.cscie97.ledger.LedgerException;
 import com.cscie97.ledger.Transaction;
+import com.cscie97.store.authentication.AccessDeniedException;
+import com.cscie97.store.authentication.AuthenticationToken;
 import com.cscie97.store.model.*;
 
 import java.util.List;
@@ -20,6 +22,7 @@ public class CheckoutCommand extends AbstractCommand {
     private String storeId;
     private String aisleNumber;
     private String turnstileId;
+    private String userId;
 
     Logger logger = Logger.getLogger(CheckoutCommand.class.getName());
 
@@ -30,11 +33,13 @@ public class CheckoutCommand extends AbstractCommand {
      * @param aisleNumber
      * @param turnstileId
      */
-    public CheckoutCommand(String customerId, String storeId, String aisleNumber, String turnstileId) {
+    public CheckoutCommand(String customerId, String storeId, String aisleNumber,
+                           String turnstileId, String userId) {
         this.customerId = customerId;
         this.storeId = storeId;
         this.aisleNumber = aisleNumber;
         this.turnstileId = turnstileId;
+        this.userId = userId;
     }
 
     /**
@@ -51,17 +56,19 @@ public class CheckoutCommand extends AbstractCommand {
         Customer customer;
         Store store;
         try {
-            customer = this.storeModelService.getCustomerById(customerId);
-            store = this.storeModelService.getStoreById(storeId);
+            AuthenticationToken token = this.authenticationService.findValidAuthenticationTokenForAUser(userId);
+            customer = this.storeModelService.getCustomerById(customerId, token.getTokenId());
+            store = this.storeModelService.getStoreById(storeId, token.getTokenId());
             logger.info("Customer " + customer.getFirstName() + " wants to leave store " + store.getStoreName());
-            Basket basket = this.storeModelService.getBasketOfACustomer(customer.getCustomerId());
+            Basket basket = this.storeModelService.getBasketOfACustomer(customer.getCustomerId(), token.getTokenId());
             logger.info("Customer is associated with basket " + basket.getBasketId());
             double weight = calculateBasketWeight(basket);
             if(weight >= 10.0){
                 logger.info("Basket "+ basket.getBasketId() + " has weight bigger than 10lbs");
 
             }
-            Map<Product, Integer> basketItems = this.storeModelService.getBasketItems(basket.getBasketId());
+            Map<Product, Integer> basketItems = this.storeModelService.getBasketItems(basket.getBasketId(),
+                    token.getTokenId());
             basketItems.keySet().stream()
                     .forEach(product -> logger.info("Basket contains item " + product.getProductId()));
             int amountDue = calculateTotal(basketItems);
@@ -77,18 +84,20 @@ public class CheckoutCommand extends AbstractCommand {
             String confirmation = this.ledger.processTransaction(transaction);
             logger.info("Transaction processed with confirmation " + confirmation);
             List<Turnstile> turnstiles = this.storeModelService
-                    .getAllTurnstilesWithinAnAisle(storeId, aisleNumber);
-            this.storeModelService.openTurnstiles(turnstiles);
+                    .getAllTurnstilesWithinAnAisle(storeId, aisleNumber, token.getTokenId());
+            this.storeModelService.openTurnstiles(turnstiles, token.getTokenId());
             logger.info("Turnstile " + turnstiles.get(0) + " opened for customer ");
             Command speakerCommand = new Command("Goodbye " + customer.getFirstName() + " for shopping at "
                     + store.getStoreName());
             List<Speaker> speakers = this.storeModelService.getAllSpeakersWithinAnAisle(store.getStoreId(),
-                    aisleNumber);
+                    aisleNumber, token.getTokenId());
             logger.info(speakers.get(0).echoAnnouncement(speakerCommand));
-            this.storeModelService.closeTurnstiles(turnstiles);
+            this.storeModelService.closeTurnstiles(turnstiles, token.getTokenId());
             logger.info("Turnstiles closing after customer left");
         } catch (StoreException | LedgerException e) {
             logger.warning("Customer unable to checkout");
+        } catch (AccessDeniedException e) {
+            logger.warning("Authentication failed " + e.getReason() + " : " + e.getFix());
         }
         return new Event(CheckoutCommand.class.getName());
     }

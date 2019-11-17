@@ -1,5 +1,8 @@
 package com.cscie97.store.controller;
 
+import com.cscie97.store.authentication.AccessDeniedException;
+import com.cscie97.store.authentication.AuthenticationService;
+import com.cscie97.store.authentication.AuthenticationToken;
 import com.cscie97.store.model.*;
 
 import java.util.List;
@@ -13,6 +16,7 @@ import java.util.logging.Logger;
 public class AssistCustomerCommand extends AbstractCommand {
 
     private String customerId;
+    private String userId;
 
     Logger logger = Logger.getLogger(AssistCustomerCommand.class.getName());
 
@@ -20,8 +24,9 @@ public class AssistCustomerCommand extends AbstractCommand {
      *
      * @param customerId
      */
-    public AssistCustomerCommand(String customerId) {
+    public AssistCustomerCommand(String customerId, String userId) {
         this.customerId = customerId;
+        this.userId = userId;
     }
 
     /**
@@ -33,29 +38,32 @@ public class AssistCustomerCommand extends AbstractCommand {
     public Event execute() {
         Customer customer = null;
         try {
-            customer = this.storeModelService.getCustomerById(customerId);
-            Basket basket = this.storeModelService.getBasketOfACustomer(customer.getCustomerId());
+            AuthenticationToken token = this.authenticationService.findValidAuthenticationTokenForAUser(userId);
+            customer = this.storeModelService.getCustomerById(customerId, token.getTokenId());
+            Basket basket = this.storeModelService.getBasketOfACustomer(customer.getCustomerId(), token.getTokenId());
             double weight = calculateBasketWeight(basket);
             logger.info("Customer " + customer.getFirstName() + " with basket " + basket.getBasketId() +
                     " is requesting assistance because the basket currently weighs " + weight);
             InventoryLocation customerLocation = customer.getCustomerLocation();
             List<Robot> robots = this.storeModelService.getAllRobotsWithinAnAisle(customerLocation.getStoreId(),
-                    customerLocation.getAisleNumber());
+                    customerLocation.getAisleNumber(), token.getTokenId());
             logger.info("Robot "+ robots.get(0) + " assigned to help customer " + customer.getFirstName() + " to car");
             Command command = new Command("Help customer " + customer.getFirstName() + " in aisle " +
                     customerLocation.getAisleNumber() + " to get to his/her car");
             logger.info(robots.get(0).listenToCommand(command));
             List<Turnstile> turnstiles = this.storeModelService
                     .getAllTurnstilesWithinAnAisle(customer.getCustomerLocation().getStoreId(),
-                            customer.getCustomerLocation().getAisleNumber());
-            this.storeModelService.openTurnstiles(turnstiles);
+                            customer.getCustomerLocation().getAisleNumber(), token.getTokenId());
+            this.storeModelService.openTurnstiles(turnstiles, token.getTokenId());
             logger.info("The customer has already checked out at this point and turnstile" +turnstiles.get(0)+
                     "is opening for customer to exit");
             logger.info("Turnstile " + turnstiles.get(1) + " opening for assisting robot");
-            this.storeModelService.closeTurnstiles(turnstiles);
+            this.storeModelService.closeTurnstiles(turnstiles, token.getTokenId());
             logger.info("Turnstiles closed");
         } catch (StoreException e) {
             logger.warning("Robot unable to assist customer ");
+        } catch (AccessDeniedException e) {
+            logger.warning("Authentication failed " + e.getReason() + " : " + e.getFix());
         }
         return new Event(AssistCustomerCommand.class.getName());
     }

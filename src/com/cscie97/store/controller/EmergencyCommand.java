@@ -1,5 +1,7 @@
 package com.cscie97.store.controller;
 
+import com.cscie97.store.authentication.AccessDeniedException;
+import com.cscie97.store.authentication.AuthenticationToken;
 import com.cscie97.store.model.*;
 
 import java.util.List;
@@ -15,6 +17,7 @@ public class EmergencyCommand extends AbstractCommand{
     private String emergencyType;
     private String storeId;
     private String aisleNumber;
+    private String userId;
 
     Logger logger = Logger.getLogger(EmergencyCommand.class.getName());
 
@@ -24,10 +27,12 @@ public class EmergencyCommand extends AbstractCommand{
      * @param storeId
      * @param aisleNumber
      */
-    public EmergencyCommand(String emergencyType, String storeId, String aisleNumber) {
+    public EmergencyCommand(String emergencyType, String storeId,
+                            String aisleNumber, String userId) {
         this.emergencyType = emergencyType;
         this.storeId = storeId;
         this.aisleNumber = aisleNumber;
+        this.userId = userId;
     }
 
     /**
@@ -46,18 +51,22 @@ public class EmergencyCommand extends AbstractCommand{
         Store store;
 
         try {
-            store = this.storeModelService.getStoreById(storeId);
-            turnstiles = this.storeModelService.getAllTurnstilesWithinAnAisle(storeId, aisleNumber);
-            List<Turnstile> turnstilesOpened = this.storeModelService.openTurnstiles(turnstiles);
+            AuthenticationToken token = this.authenticationService.findValidAuthenticationTokenForAUser(userId);
+            store = this.storeModelService.getStoreById(storeId, token.getTokenId());
+            turnstiles = this.storeModelService.getAllTurnstilesWithinAnAisle(storeId,
+                    aisleNumber, token.getTokenId());
+            List<Turnstile> turnstilesOpened = this.storeModelService.openTurnstiles(turnstiles,
+                    token.getTokenId());
             turnstilesOpened.stream().forEach(turnstile ->
                     logger.info("Turnstile " + turnstile.getApplianceId() + " opened for emergency"));
-            speakers = this.storeModelService.getAllSpeakersWithinAnAisle(storeId, aisleNumber);
+            speakers = this.storeModelService.getAllSpeakersWithinAnAisle(storeId, aisleNumber,
+                    token.getTokenId());
 
             speakers.stream()
                     .forEach(speaker -> logger.info(speaker.echoAnnouncement(new Command("There is emergency " +
                             emergencyType + " in " +
                             aisleNumber + " please leave store " + store.getStoreName() + " immediately"))));
-            robots = this.storeModelService.getAllRobotsWithinAnAisle(storeId, aisleNumber);
+            robots = this.storeModelService.getAllRobotsWithinAnAisle(storeId, aisleNumber, token.getTokenId());
             Command commandForOneRobot = new Command("Address " +
                     emergencyType + " emergency in " + aisleNumber);
             Command commandForRemainingRobots = new Command("Assist customers leaving store " + storeId);
@@ -67,6 +76,8 @@ public class EmergencyCommand extends AbstractCommand{
                     .forEach(robot -> logger.info(robot.listenToCommand(commandForRemainingRobots)));
         } catch (StoreException e) {
             logger.warning("Error executing emergency commands");
+        } catch (AccessDeniedException e) {
+            logger.warning("Authentication failed " +e.getReason() + " : " + e.getFix());
         }
         return new Event(emergencyType);
     }

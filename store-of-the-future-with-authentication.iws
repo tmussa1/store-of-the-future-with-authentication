@@ -3,9 +3,19 @@
   <component name="ChangeListManager">
     <list default="true" id="b037074f-4b82-4a0b-ac22-08ae94f9e0c0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/authentication/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/AuthenticationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/authentication/IAuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/IAuthenticationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store-of-the-future-with-authentication.iml" beforeDir="false" afterPath="$PROJECT_DIR$/store-of-the-future-with-authentication.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store-of-the-future-with-authentication.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/store-of-the-future-with-authentication.ipr" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/controller/AbstractCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/store/controller/AbstractCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/controller/AssistCustomerCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/store/controller/AssistCustomerCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/controller/CheckAccountBalanceCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/store/controller/CheckAccountBalanceCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/controller/CheckoutCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/store/controller/CheckoutCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/controller/CleanStoreCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/store/controller/CleanStoreCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/controller/CustomerEnteredCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/store/controller/CustomerEnteredCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/controller/CustomerNeedsItemCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/store/controller/CustomerNeedsItemCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/controller/CustomerSeenCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/store/controller/CustomerSeenCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/controller/EmergencyCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/store/controller/EmergencyCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/controller/FIndCustomerCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/store/controller/FIndCustomerCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/controller/ProductAddedToBasketCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/store/controller/ProductAddedToBasketCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/controller/ProductRemovedFromBasketCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/store/controller/ProductRemovedFromBasketCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store-of-the-future-with-authentication.iws" beforeDir="false" afterPath="$PROJECT_DIR$/store-of-the-future-with-authentication.iws" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -67,7 +77,7 @@
       <updated>1573504647654</updated>
       <workItem from="1573504648992" duration="3485000" />
       <workItem from="1573875265828" duration="33956000" />
-      <workItem from="1573961262232" duration="241000" />
+      <workItem from="1573961262232" duration="2339000" />
     </task>
     <servers />
   </component>

@@ -1,5 +1,7 @@
 package com.cscie97.store.controller;
 
+import com.cscie97.store.authentication.AccessDeniedException;
+import com.cscie97.store.authentication.AuthenticationToken;
 import com.cscie97.store.model.*;
 
 import java.util.List;
@@ -15,6 +17,7 @@ public class CustomerEnteredCommand extends AbstractCommand {
     private String storeId;
     private String aisleNumber;
     private String turnstileId;
+    private String userId;
 
     Logger logger = Logger.getLogger(CustomerEnteredCommand.class.getName());
 
@@ -25,11 +28,13 @@ public class CustomerEnteredCommand extends AbstractCommand {
      * @param aisleNumber
      * @param turnstileId
      */
-    public CustomerEnteredCommand(String customerId, String storeId, String aisleNumber, String turnstileId) {
+    public CustomerEnteredCommand(String customerId, String storeId, String aisleNumber,
+                                  String turnstileId, String userId) {
         this.customerId = customerId;
         this.storeId = storeId;
         this.aisleNumber = aisleNumber;
         this.turnstileId = turnstileId;
+        this.userId = userId;
     }
 
     /**
@@ -46,28 +51,31 @@ public class CustomerEnteredCommand extends AbstractCommand {
     @Override
     public Event execute() {
         try {
-            Customer customer= this.storeModelService.getCustomerById(customerId);
-            Basket basket = this.storeModelService.getBasketOfACustomer(customerId);
+            AuthenticationToken token = this.authenticationService.findValidAuthenticationTokenForAUser(userId);
+            Customer customer= this.storeModelService.getCustomerById(customerId, token.getTokenId());
+            Basket basket = this.storeModelService.getBasketOfACustomer(customerId, token.getTokenId());
             logger.info("Basket " + basket.getBasketId() + " assigned to customer ");
             InventoryLocation location = this.storeModelService.
-                    updateCustomerLocation(customerId, storeId, aisleNumber);
+                    updateCustomerLocation(customerId, storeId, aisleNumber, token.getTokenId());
             logger.info("Customer's location updated to " + location.getStoreId() + " and " +
             location.getAisleNumber());
             int accountBalance = this.ledger.getAccountBalance(customer.getAccountAddress());
             logger.info("Customer's account balance is " + accountBalance);
             List<Turnstile> turnstiles = this.storeModelService
-                    .getAllTurnstilesWithinAnAisle(storeId, aisleNumber);
-            this.storeModelService.openTurnstiles(turnstiles);
+                    .getAllTurnstilesWithinAnAisle(storeId, aisleNumber, token.getTokenId());
+            this.storeModelService.openTurnstiles(turnstiles, token.getTokenId());
             logger.info("Turnstile " + turnstiles.get(0) + " opened for customer ");
             Command speakerCommand = new Command("Welcome customer " + customer.getFirstName() +
                     " to " + location.getStoreId());
             List<Speaker> speakers = this.storeModelService.getAllSpeakersWithinAnAisle(location.getStoreId(),
-                    location.getAisleNumber());
+                    location.getAisleNumber(), token.getTokenId());
             logger.info(speakers.get(0).echoAnnouncement(speakerCommand));
-            this.storeModelService.closeTurnstiles(turnstiles);
+            this.storeModelService.closeTurnstiles(turnstiles, token.getTokenId());
             logger.info("Turnstiles closed after customers entered");
         } catch (StoreException e) {
             logger.warning("Customer unable to enter the store");
+        } catch (AccessDeniedException e) {
+            logger.info("Authentication failed " + e.getReason() + " : "+ e.getFix());
         }
 
         return new Event(CustomerEnteredCommand.class.getName());

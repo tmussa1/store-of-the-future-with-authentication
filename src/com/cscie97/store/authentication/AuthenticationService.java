@@ -359,8 +359,9 @@ public class AuthenticationService implements IAuthenticationService, Visitable 
         AuthenticationToken authenticationToken = tokens.stream()
                 .filter(token -> token.getUser().getUserId().equals(userId))
                 .findFirst().get();
-        if(authenticationToken == null){
-            throw new AccessDeniedException("No authentication found for the user", "Please log in again");
+        if(authenticationToken == null || checkTokenExpiry(authenticationToken.getTokenId()) == State.EXPIRED){
+            throw new AccessDeniedException("No authentication found for the user or may have timed out",
+                    "Please log in again");
         }
         return authenticationToken;
     }

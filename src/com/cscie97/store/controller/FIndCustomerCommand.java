@@ -1,5 +1,7 @@
 package com.cscie97.store.controller;
 
+import com.cscie97.store.authentication.AccessDeniedException;
+import com.cscie97.store.authentication.AuthenticationToken;
 import com.cscie97.store.model.*;
 
 import java.util.logging.Logger;
@@ -11,6 +13,7 @@ import java.util.logging.Logger;
 public class FIndCustomerCommand extends AbstractCommand {
 
     private String firstName;
+    private String userId;
 
     Logger logger = Logger.getLogger(FIndCustomerCommand.class.getName());
 
@@ -18,8 +21,9 @@ public class FIndCustomerCommand extends AbstractCommand {
      *
      * @param customerName
      */
-    public FIndCustomerCommand(String customerName) {
+    public FIndCustomerCommand(String customerName, String userId) {
         this.firstName = customerName;
+        this.userId = userId;
     }
 
     /**
@@ -32,15 +36,17 @@ public class FIndCustomerCommand extends AbstractCommand {
     @Override
     public Event execute(){
         try {
-            Customer customer = this.storeModelService.getCustomerByCustomerName(firstName);
-            Speaker speaker = this.storeModelService.getAllSpeakersWithinAnAisle(
-                    customer.getCustomerLocation().getStoreId(), customer.getCustomerLocation().getAisleNumber())
-                    .get(0);
+            AuthenticationToken token = this.authenticationService.findValidAuthenticationTokenForAUser(userId);
+            Customer customer = this.storeModelService.getCustomerByCustomerName(firstName, token.getTokenId());
+            Speaker speaker = this.storeModelService.getAllSpeakersWithinAnAisle(customer.getCustomerLocation().getStoreId(),
+                    customer.getCustomerLocation().getAisleNumber(), token.getTokenId()).get(0);
             Command speakerCommand = new Command("Customer " + customer.getFirstName() + " found in "+
                     customer.getCustomerLocation().getAisleNumber());
             logger.info(speaker.echoAnnouncement(speakerCommand));
         } catch (StoreException e) {
             logger.warning("Finding missing person not successful");
+        } catch (AccessDeniedException e) {
+            logger.warning("Authentication failed " + e.getReason() + " : " + e.getFix());
         }
         return new Event(FIndCustomerCommand.class.getName());
     }
