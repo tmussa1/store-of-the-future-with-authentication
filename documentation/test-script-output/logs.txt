@@ -10,9 +10,9 @@ INFO: Create account request added to queue. We will get back to you
 INFO: Create account request added to queue. We will get back to you
 INFO: Create account request added to queue. We will get back to you
 An event create-account store_123 received!!!!!!!!!!!!!!!!!!!!!!!!!!!
-INFO: Initialized Ledger{name='iceland', description=''iceland', seed='seed', genesisBlock=com.cscie97.ledger.Block@f58003b, blockMap={1=com.cscie97.ledger.Block@f58003b}}
-INFO: Initialized Ledger{name='iceland', description=''iceland', seed='seed', genesisBlock=com.cscie97.ledger.Block@f58003b, blockMap={1=com.cscie97.ledger.Block@f58003b}}
-INFO: Initialized Ledger{name='iceland', description=''iceland', seed='seed', genesisBlock=com.cscie97.ledger.Block@f58003b, blockMap={1=com.cscie97.ledger.Block@f58003b}}
+INFO: Initialized Ledger{name='iceland', description=''iceland', seed='seed', genesisBlock=com.cscie97.store.ledger.Block@f58003b, blockMap={1=com.cscie97.store.ledger.Block@f58003b}}
+INFO: Initialized Ledger{name='iceland', description=''iceland', seed='seed', genesisBlock=com.cscie97.store.ledger.Block@f58003b, blockMap={1=com.cscie97.store.ledger.Block@f58003b}}
+INFO: Initialized Ledger{name='iceland', description=''iceland', seed='seed', genesisBlock=com.cscie97.store.ledger.Block@f58003b, blockMap={1=com.cscie97.store.ledger.Block@f58003b}}
 INFO: The commands in the queue have been processed
 INFO: The commands in the queue have been processed
 INFO: The commands in the queue have been processed

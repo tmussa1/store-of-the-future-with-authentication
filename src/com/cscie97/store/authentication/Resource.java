@@ -23,4 +23,10 @@ public class Resource implements Visitable {
     public String getResourceName() {
         return resourceName;
     }
+
+    @Override
+    public String toString() {
+        return "Resource with id " + resourceId +
+                " with name " + resourceName;
+    }
 }

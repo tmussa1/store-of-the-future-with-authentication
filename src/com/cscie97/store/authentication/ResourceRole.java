@@ -66,4 +66,11 @@ public class ResourceRole extends Role implements Visitable {
     public List<Resource> getResources() {
         return resources;
     }
+
+    @Override
+    public String toString() {
+        return "ResourceRole with id " + resourceRoleId +
+                " with name " + resourceRoleName +
+                " with descrption " + resourceRoleDescrption;
+    }
 }

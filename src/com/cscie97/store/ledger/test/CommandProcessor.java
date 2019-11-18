@@ -1,6 +1,6 @@
-package com.cscie97.ledger.test;
+package com.cscie97.store.ledger.test;
 
-import com.cscie97.ledger.*;
+import com.cscie97.store.ledger.*;
 
 import java.io.*;
 

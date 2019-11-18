@@ -2,9 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b037074f-4b82-4a0b-ac22-08ae94f9e0c0" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/authentication/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/AuthenticationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/authentication/AuthenticationToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/AuthenticationToken.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/authentication/IAuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/IAuthenticationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/authentication/Permission.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/Permission.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/authentication/Resource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/Resource.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/authentication/ResourceRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/ResourceRole.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/model/StoreModelService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/store/model/StoreModelService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/authentication/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/authentication/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/State.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/authentication/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/controller/CommandFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/store/controller/CommandFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/test/CommandProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/store/test/CommandProcessor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store.script" beforeDir="false" afterPath="$PROJECT_DIR$/src/store.script" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/store-of-the-future-with-authentication.iws" beforeDir="false" afterPath="$PROJECT_DIR$/store-of-the-future-with-authentication.iws" afterDir="false" />
@@ -70,7 +77,7 @@
       <workItem from="1573504648992" duration="3485000" />
       <workItem from="1573875265828" duration="33956000" />
       <workItem from="1573961262232" duration="3031000" />
-      <workItem from="1574039155607" duration="4487000" />
+      <workItem from="1574039155607" duration="11667000" />
     </task>
     <servers />
   </component>

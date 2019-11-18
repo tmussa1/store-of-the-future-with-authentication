@@ -1,7 +1,5 @@
 package com.cscie97.store.authentication;
 
-import org.jetbrains.annotations.Nullable;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +28,7 @@ public class Role extends Entitlement implements Visitable {
     }
 
     @Override
-    boolean hasPermission(AuthenticationToken authToken, @Nullable Resource resource, Permission permission) {
+    boolean hasPermission(AuthenticationToken authToken, Resource resource, Permission permission) {
         if(permission.getPermissionId().equals(roleId)){
             return true;
         }
@@ -48,4 +46,10 @@ public class Role extends Entitlement implements Visitable {
         return entitlements;
     }
 
+    @Override
+    public String toString() {
+        return "Role with role id " + roleId +
+                " with role name " + roleName +
+                " with description " + roleDescription;
+    }
 }

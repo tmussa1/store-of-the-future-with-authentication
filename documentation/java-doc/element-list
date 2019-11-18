@@ -1,5 +1,5 @@
-com.cscie97.ledger
-com.cscie97.ledger.test
+com.cscie97.store.ledger
+com.cscie97.store.ledger.test
 com.cscie97.store.controller
 com.cscie97.store.model
 com.cscie97.store.test

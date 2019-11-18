@@ -121,6 +121,7 @@ public class AuthenticationService implements IAuthenticationService, Visitable 
             resourceRole = new ResourceRole(resourceRoleId, resourceRoleName, resourceRoleDesc);
             Resource resource = getResourceByResourceId(resourceId);
             resourceRole.addResources(resource);
+            entitlements.add(resourceRole);
         } catch (AuthenticationServiceException e) {
             logger.warning("Error creating resource role " + e.getReason() + " : " + e.getFix());
         }
@@ -378,5 +379,12 @@ public class AuthenticationService implements IAuthenticationService, Visitable 
         return entitlement;
     }
 
+    public List<AuthenticationToken> getTokens() {
+        return tokens;
+    }
 
+    @Override
+    public String toString() {
+        return "AuthenticationService - this is the top level service containing objects :- ";
+    }
 }

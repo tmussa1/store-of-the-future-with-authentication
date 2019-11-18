@@ -72,4 +72,9 @@ public class User implements Visitable {
     public String getUserId() {
         return userId;
     }
+
+    @Override
+    public String toString() {
+        return "User with user id " + userId;
+    }
 }

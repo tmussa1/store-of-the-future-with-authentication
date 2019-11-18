@@ -99,7 +99,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <!-- ======== START OF CLASS DATA ======== -->
 <main role="main">
 <div class="header">
-<div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">com.cscie97.ledger</a></div>
+<div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">com.cscie97.store.ledger</a></div>
 <h2 title="Class Block" class="title">Class Block</h2>
 </div>
 <div class="contentContainer">
@@ -107,7 +107,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li>com.cscie97.ledger.Block</li>
+<li>com.cscie97.store.ledger.Block</li>
 </ul>
 </li>
 </ul>
@@ -154,7 +154,7 @@ implements java.io.Serializable</pre>
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code>private java.util.Map&lt;java.lang.String,&#8203;<a href="Account.html" title="class in com.cscie97.ledger">Account</a>&gt;</code></td>
+<td class="colFirst"><code>private java.util.Map&lt;java.lang.String,&#8203;<a href="Account.html" title="class in com.cscie97.store.ledger">Account</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#accountBalanceMap">accountBalanceMap</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
@@ -181,7 +181,7 @@ implements java.io.Serializable</pre>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>private java.util.List&lt;<a href="Transaction.html" title="class in com.cscie97.ledger">Transaction</a>&gt;</code></td>
+<td class="colFirst"><code>private java.util.List&lt;<a href="Transaction.html" title="class in com.cscie97.store.ledger">Transaction</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#transactions">transactions</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
@@ -235,12 +235,12 @@ implements java.io.Serializable</pre>
 <tbody>
 <tr class="altColor" id="i0">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addsNewAccountToAccountBalanceMap(com.cscie97.ledger.Account)">addsNewAccountToAccountBalanceMap</a></span>&#8203;(<a href="Account.html" title="class in com.cscie97.ledger">Account</a>&nbsp;account)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addsNewAccountToAccountBalanceMap(com.cscie97.ledger.Account)">addsNewAccountToAccountBalanceMap</a></span>&#8203;(<a href="Account.html" title="class in com.cscie97.store.ledger">Account</a>&nbsp;account)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="rowColor" id="i1">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addTransaction(com.cscie97.ledger.Transaction)">addTransaction</a></span>&#8203;(<a href="Transaction.html" title="class in com.cscie97.ledger">Transaction</a>&nbsp;transaction)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addTransaction(com.cscie97.ledger.Transaction)">addTransaction</a></span>&#8203;(<a href="Transaction.html" title="class in com.cscie97.store.ledger">Transaction</a>&nbsp;transaction)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="altColor" id="i2">
@@ -264,12 +264,12 @@ implements java.io.Serializable</pre>
 </td>
 </tr>
 <tr class="rowColor" id="i5">
-<td class="colFirst"><code>java.util.Map&lt;java.lang.String,&#8203;<a href="Account.html" title="class in com.cscie97.ledger">Account</a>&gt;</code></td>
+<td class="colFirst"><code>java.util.Map&lt;java.lang.String,&#8203;<a href="Account.html" title="class in com.cscie97.store.ledger">Account</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getAccountBalanceMap()">getAccountBalanceMap</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="altColor" id="i6">
-<td class="colFirst"><code><a href="Account.html" title="class in com.cscie97.ledger">Account</a></code></td>
+<td class="colFirst"><code><a href="Account.html" title="class in com.cscie97.store.ledger">Account</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getAccountBasedOnaddress(java.lang.String)">getAccountBasedOnaddress</a></span>&#8203;(java.lang.String&nbsp;address)</code></th>
 <td class="colLast">
 <div class="block">gets Account based on address</div>
@@ -293,7 +293,7 @@ implements java.io.Serializable</pre>
 </td>
 </tr>
 <tr class="altColor" id="i10">
-<td class="colFirst"><code>java.util.List&lt;<a href="Transaction.html" title="class in com.cscie97.ledger">Transaction</a>&gt;</code></td>
+<td class="colFirst"><code>java.util.List&lt;<a href="Transaction.html" title="class in com.cscie97.store.ledger">Transaction</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getTransactions()">getTransactions</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
@@ -319,7 +319,7 @@ implements java.io.Serializable</pre>
 </tr>
 <tr class="altColor" id="i14">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setAccountBalanceMap(java.util.Map)">setAccountBalanceMap</a></span>&#8203;(java.util.Map&lt;java.lang.String,&#8203;<a href="Account.html" title="class in com.cscie97.ledger">Account</a>&gt;&nbsp;accountBalanceMap)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setAccountBalanceMap(java.util.Map)">setAccountBalanceMap</a></span>&#8203;(java.util.Map&lt;java.lang.String,&#8203;<a href="Account.html" title="class in com.cscie97.store.ledger">Account</a>&gt;&nbsp;accountBalanceMap)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="rowColor" id="i15">
@@ -393,7 +393,7 @@ implements java.io.Serializable</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>transactions</h4>
-<pre>private&nbsp;java.util.List&lt;<a href="Transaction.html" title="class in com.cscie97.ledger">Transaction</a>&gt; transactions</pre>
+<pre>private&nbsp;java.util.List&lt;<a href="Transaction.html" title="class in com.cscie97.store.ledger">Transaction</a>&gt; transactions</pre>
 </li>
 </ul>
 <a id="accountBalanceMap">
@@ -402,7 +402,7 @@ implements java.io.Serializable</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>accountBalanceMap</h4>
-<pre>private&nbsp;java.util.Map&lt;java.lang.String,&#8203;<a href="Account.html" title="class in com.cscie97.ledger">Account</a>&gt; accountBalanceMap</pre>
+<pre>private&nbsp;java.util.Map&lt;java.lang.String,&#8203;<a href="Account.html" title="class in com.cscie97.store.ledger">Account</a>&gt; accountBalanceMap</pre>
 </li>
 </ul>
 <a id="logger">
@@ -531,7 +531,7 @@ implements java.io.Serializable</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getTransactions</h4>
-<pre class="methodSignature">public&nbsp;java.util.List&lt;<a href="Transaction.html" title="class in com.cscie97.ledger">Transaction</a>&gt;&nbsp;getTransactions()</pre>
+<pre class="methodSignature">public&nbsp;java.util.List&lt;<a href="Transaction.html" title="class in com.cscie97.store.ledger">Transaction</a>&gt;&nbsp;getTransactions()</pre>
 </li>
 </ul>
 <a id="getAccountBalanceMap()">
@@ -540,7 +540,7 @@ implements java.io.Serializable</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getAccountBalanceMap</h4>
-<pre class="methodSignature">public&nbsp;java.util.Map&lt;java.lang.String,&#8203;<a href="Account.html" title="class in com.cscie97.ledger">Account</a>&gt;&nbsp;getAccountBalanceMap()</pre>
+<pre class="methodSignature">public&nbsp;java.util.Map&lt;java.lang.String,&#8203;<a href="Account.html" title="class in com.cscie97.store.ledger">Account</a>&gt;&nbsp;getAccountBalanceMap()</pre>
 </li>
 </ul>
 <a id="setAccountBalanceMap(java.util.Map)">
@@ -549,7 +549,7 @@ implements java.io.Serializable</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>setAccountBalanceMap</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;setAccountBalanceMap&#8203;(java.util.Map&lt;java.lang.String,&#8203;<a href="Account.html" title="class in com.cscie97.ledger">Account</a>&gt;&nbsp;accountBalanceMap)</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;setAccountBalanceMap&#8203;(java.util.Map&lt;java.lang.String,&#8203;<a href="Account.html" title="class in com.cscie97.store.ledger">Account</a>&gt;&nbsp;accountBalanceMap)</pre>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>accountBalanceMap</code> - This is used to pass the current accountBalanceMap to the next block once transaction limit is reached</dd>
@@ -562,7 +562,7 @@ implements java.io.Serializable</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>addsNewAccountToAccountBalanceMap</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;addsNewAccountToAccountBalanceMap&#8203;(<a href="Account.html" title="class in com.cscie97.ledger">Account</a>&nbsp;account)</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;addsNewAccountToAccountBalanceMap&#8203;(<a href="Account.html" title="class in com.cscie97.store.ledger">Account</a>&nbsp;account)</pre>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>account</code> - Adds account to accountBalanceMap</dd>
@@ -585,7 +585,7 @@ implements java.io.Serializable</pre>
 <dd><code>address</code> - </dd>
 <dd><code>balanceToAdd</code> - </dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="LedgerException.html" title="class in com.cscie97.ledger">LedgerException</a></code></dd>
+<dd><code><a href="LedgerException.html" title="class in com.cscie97.store.ledger">LedgerException</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -605,7 +605,7 @@ implements java.io.Serializable</pre>
 <dd><code>address</code> - </dd>
 <dd><code>balanceToDeduct</code> - </dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="LedgerException.html" title="class in com.cscie97.ledger">LedgerException</a></code></dd>
+<dd><code><a href="LedgerException.html" title="class in com.cscie97.store.ledger">LedgerException</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -615,7 +615,7 @@ implements java.io.Serializable</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getAccountBasedOnaddress</h4>
-<pre class="methodSignature">public&nbsp;<a href="Account.html" title="class in com.cscie97.ledger">Account</a>&nbsp;getAccountBasedOnaddress&#8203;(java.lang.String&nbsp;address)</pre>
+<pre class="methodSignature">public&nbsp;<a href="Account.html" title="class in com.cscie97.store.ledger">Account</a>&nbsp;getAccountBasedOnaddress&#8203;(java.lang.String&nbsp;address)</pre>
 <div class="block">gets Account based on address</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -629,7 +629,7 @@ implements java.io.Serializable</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>addTransaction</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;addTransaction&#8203;(<a href="Transaction.html" title="class in com.cscie97.ledger">Transaction</a>&nbsp;transaction)</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;addTransaction&#8203;(<a href="Transaction.html" title="class in com.cscie97.store.ledger">Transaction</a>&nbsp;transaction)</pre>
 </li>
 </ul>
 <a id="isTransactionSizeUnderLimit()">

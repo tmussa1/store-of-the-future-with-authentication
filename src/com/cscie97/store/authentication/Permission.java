@@ -31,4 +31,11 @@ public class Permission extends Entitlement implements Visitable {
     public String getPermissionId() {
         return permissionId;
     }
+
+    @Override
+    public String toString() {
+        return "Permission with permission id " + permissionId +
+                " with permission name " + permissionName +
+                " with description " + permissionDescription;
+    }
 }

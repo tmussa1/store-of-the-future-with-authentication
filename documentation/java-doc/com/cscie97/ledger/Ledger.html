@@ -99,7 +99,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <!-- ======== START OF CLASS DATA ======== -->
 <main role="main">
 <div class="header">
-<div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">com.cscie97.ledger</a></div>
+<div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">com.cscie97.store.ledger</a></div>
 <h2 title="Class Ledger" class="title">Class Ledger</h2>
 </div>
 <div class="contentContainer">
@@ -107,7 +107,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li>com.cscie97.ledger.Ledger</li>
+<li>com.cscie97.store.ledger.Ledger</li>
 </ul>
 </li>
 </ul>
@@ -146,7 +146,7 @@ extends java.lang.Object</pre>
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code>private java.util.Map&lt;java.lang.Integer,&#8203;<a href="Block.html" title="class in com.cscie97.ledger">Block</a>&gt;</code></td>
+<td class="colFirst"><code>private java.util.Map&lt;java.lang.Integer,&#8203;<a href="Block.html" title="class in com.cscie97.store.ledger">Block</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#blockMap">blockMap</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
@@ -156,7 +156,7 @@ extends java.lang.Object</pre>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>private <a href="Block.html" title="class in com.cscie97.ledger">Block</a></code></td>
+<td class="colFirst"><code>private <a href="Block.html" title="class in com.cscie97.store.ledger">Block</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#genesisBlock">genesisBlock</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
@@ -225,22 +225,22 @@ extends java.lang.Object</pre>
 <tbody>
 <tr class="altColor" id="i0">
 <td class="colFirst"><code>private java.lang.String</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addTransactionToABlock(com.cscie97.ledger.Block,com.cscie97.ledger.Transaction)">addTransactionToABlock</a></span>&#8203;(<a href="Block.html" title="class in com.cscie97.ledger">Block</a>&nbsp;currentBlock,
-                      <a href="Transaction.html" title="class in com.cscie97.ledger">Transaction</a>&nbsp;transaction)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addTransactionToABlock(com.cscie97.ledger.Block,com.cscie97.ledger.Transaction)">addTransactionToABlock</a></span>&#8203;(<a href="Block.html" title="class in com.cscie97.store.ledger">Block</a>&nbsp;currentBlock,
+                      <a href="Transaction.html" title="class in com.cscie97.store.ledger">Transaction</a>&nbsp;transaction)</code></th>
 <td class="colLast">
 <div class="block">Helper method to commit transaction to a block.</div>
 </td>
 </tr>
 <tr class="rowColor" id="i1">
 <td class="colFirst"><code>private void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#checkAccountBalanceOfSavedBlock(com.cscie97.ledger.Block)">checkAccountBalanceOfSavedBlock</a></span>&#8203;(<a href="Block.html" title="class in com.cscie97.ledger">Block</a>&nbsp;currentBlock)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#checkAccountBalanceOfSavedBlock(com.cscie97.ledger.Block)">checkAccountBalanceOfSavedBlock</a></span>&#8203;(<a href="Block.html" title="class in com.cscie97.store.ledger">Block</a>&nbsp;currentBlock)</code></th>
 <td class="colLast">
 <div class="block">When the transaction size reaches 10 for a block, the account balances are recomputed.</div>
 </td>
 </tr>
 <tr class="altColor" id="i2">
 <td class="colFirst"><code>private boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#checkIfTheHashesAreConsistent(com.cscie97.ledger.Block,int)">checkIfTheHashesAreConsistent</a></span>&#8203;(<a href="Block.html" title="class in com.cscie97.ledger">Block</a>&nbsp;block,
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#checkIfTheHashesAreConsistent(com.cscie97.ledger.Block,int)">checkIfTheHashesAreConsistent</a></span>&#8203;(<a href="Block.html" title="class in com.cscie97.store.ledger">Block</a>&nbsp;block,
                              int&nbsp;index)</code></th>
 <td class="colLast">
 <div class="block">Checks hash consistency by generating a hash of the current block and comparing it to the previousHash
@@ -249,11 +249,11 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="rowColor" id="i3">
 <td class="colFirst"><code>private void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#checkTheNumberOfTransactionsInEachBlockIsTen(com.cscie97.ledger.Block)">checkTheNumberOfTransactionsInEachBlockIsTen</a></span>&#8203;(<a href="Block.html" title="class in com.cscie97.ledger">Block</a>&nbsp;block)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#checkTheNumberOfTransactionsInEachBlockIsTen(com.cscie97.ledger.Block)">checkTheNumberOfTransactionsInEachBlockIsTen</a></span>&#8203;(<a href="Block.html" title="class in com.cscie97.store.ledger">Block</a>&nbsp;block)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="altColor" id="i4">
-<td class="colFirst"><code><a href="Account.html" title="class in com.cscie97.ledger">Account</a></code></td>
+<td class="colFirst"><code><a href="Account.html" title="class in com.cscie97.store.ledger">Account</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#createAccount(java.lang.String)">createAccount</a></span>&#8203;(java.lang.String&nbsp;address)</code></th>
 <td class="colLast">
 <div class="block">This creates an account if it's address attribute doesn't exist in the current block's accountBalanceMap already
@@ -264,31 +264,31 @@ extends java.lang.Object</pre>
 <tr class="rowColor" id="i5">
 <td class="colFirst"><code>private void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#createNonMasterAccountAndAddItToCurrentBlock(java.lang.String,com.cscie97.ledger.Account)">createNonMasterAccountAndAddItToCurrentBlock</a></span>&#8203;(java.lang.String&nbsp;address,
-                                            <a href="Account.html" title="class in com.cscie97.ledger">Account</a>&nbsp;newAccount)</code></th>
+                                            <a href="Account.html" title="class in com.cscie97.store.ledger">Account</a>&nbsp;newAccount)</code></th>
 <td class="colLast">
 <div class="block">Helper method to add a non-master account to the current block's accountBalanceMap</div>
 </td>
 </tr>
 <tr class="altColor" id="i6">
-<td class="colFirst"><code>private java.util.Optional&lt;<a href="Transaction.html" title="class in com.cscie97.ledger">Transaction</a>&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#doesTransactionAlreadyExist(com.cscie97.ledger.Block,com.cscie97.ledger.Transaction)">doesTransactionAlreadyExist</a></span>&#8203;(<a href="Block.html" title="class in com.cscie97.ledger">Block</a>&nbsp;currentBlock,
-                           <a href="Transaction.html" title="class in com.cscie97.ledger">Transaction</a>&nbsp;transaction)</code></th>
+<td class="colFirst"><code>private java.util.Optional&lt;<a href="Transaction.html" title="class in com.cscie97.store.ledger">Transaction</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#doesTransactionAlreadyExist(com.cscie97.ledger.Block,com.cscie97.ledger.Transaction)">doesTransactionAlreadyExist</a></span>&#8203;(<a href="Block.html" title="class in com.cscie97.store.ledger">Block</a>&nbsp;currentBlock,
+                           <a href="Transaction.html" title="class in com.cscie97.store.ledger">Transaction</a>&nbsp;transaction)</code></th>
 <td class="colLast">
 <div class="block">Helper method to check if a transaction with the same Id exists in the current block.</div>
 </td>
 </tr>
 <tr class="rowColor" id="i7">
-<td class="colFirst"><code><a href="Account.html" title="class in com.cscie97.ledger">Account</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#findPayer(com.cscie97.ledger.Block,com.cscie97.ledger.Transaction)">findPayer</a></span>&#8203;(<a href="Block.html" title="class in com.cscie97.ledger">Block</a>&nbsp;currentBlock,
-         <a href="Transaction.html" title="class in com.cscie97.ledger">Transaction</a>&nbsp;transaction)</code></th>
+<td class="colFirst"><code><a href="Account.html" title="class in com.cscie97.store.ledger">Account</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#findPayer(com.cscie97.ledger.Block,com.cscie97.ledger.Transaction)">findPayer</a></span>&#8203;(<a href="Block.html" title="class in com.cscie97.store.ledger">Block</a>&nbsp;currentBlock,
+         <a href="Transaction.html" title="class in com.cscie97.store.ledger">Transaction</a>&nbsp;transaction)</code></th>
 <td class="colLast">
 <div class="block">Helper method to check if payer is linked to a valid account in the last completed block</div>
 </td>
 </tr>
 <tr class="altColor" id="i8">
-<td class="colFirst"><code><a href="Account.html" title="class in com.cscie97.ledger">Account</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#findReceiver(com.cscie97.ledger.Block,com.cscie97.ledger.Transaction)">findReceiver</a></span>&#8203;(<a href="Block.html" title="class in com.cscie97.ledger">Block</a>&nbsp;currentBlock,
-            <a href="Transaction.html" title="class in com.cscie97.ledger">Transaction</a>&nbsp;transaction)</code></th>
+<td class="colFirst"><code><a href="Account.html" title="class in com.cscie97.store.ledger">Account</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#findReceiver(com.cscie97.ledger.Block,com.cscie97.ledger.Transaction)">findReceiver</a></span>&#8203;(<a href="Block.html" title="class in com.cscie97.store.ledger">Block</a>&nbsp;currentBlock,
+            <a href="Transaction.html" title="class in com.cscie97.store.ledger">Transaction</a>&nbsp;transaction)</code></th>
 <td class="colLast">
 <div class="block">Helper method to check if receiver is linked to a valid account in the last completed block</div>
 </td>
@@ -308,28 +308,28 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr class="rowColor" id="i11">
-<td class="colFirst"><code><a href="Account.html" title="class in com.cscie97.ledger">Account</a></code></td>
+<td class="colFirst"><code><a href="Account.html" title="class in com.cscie97.store.ledger">Account</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getAccountByAddress(java.lang.String)">getAccountByAddress</a></span>&#8203;(java.lang.String&nbsp;address)</code></th>
 <td class="colLast">
 <div class="block">Finds account by address in the current block</div>
 </td>
 </tr>
 <tr class="altColor" id="i12">
-<td class="colFirst"><code>java.util.List&lt;<a href="Transaction.html" title="class in com.cscie97.ledger">Transaction</a>&gt;</code></td>
+<td class="colFirst"><code>java.util.List&lt;<a href="Transaction.html" title="class in com.cscie97.store.ledger">Transaction</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getAllTransactionsForTheCurrentBlock()">getAllTransactionsForTheCurrentBlock</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Gets all of the transactions for the current block</div>
 </td>
 </tr>
 <tr class="rowColor" id="i13">
-<td class="colFirst"><code><a href="Block.html" title="class in com.cscie97.ledger">Block</a></code></td>
+<td class="colFirst"><code><a href="Block.html" title="class in com.cscie97.store.ledger">Block</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getBlock(int)">getBlock</a></span>&#8203;(int&nbsp;blockNumber)</code></th>
 <td class="colLast">
 <div class="block">Gets a block in the ledger by blockNumber</div>
 </td>
 </tr>
 <tr class="altColor" id="i14">
-<td class="colFirst"><code><a href="Block.html" title="class in com.cscie97.ledger">Block</a></code></td>
+<td class="colFirst"><code><a href="Block.html" title="class in com.cscie97.store.ledger">Block</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getCurrentBlock()">getCurrentBlock</a></span>()</code></th>
 <td class="colLast">
 <div class="block">gets current block</div>
@@ -348,7 +348,7 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr class="rowColor" id="i17">
-<td class="colFirst"><code>java.util.Optional&lt;<a href="Transaction.html" title="class in com.cscie97.ledger">Transaction</a>&gt;</code></td>
+<td class="colFirst"><code>java.util.Optional&lt;<a href="Transaction.html" title="class in com.cscie97.store.ledger">Transaction</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getTransaction(java.lang.String)">getTransaction</a></span>&#8203;(java.lang.String&nbsp;transactionOrderIdentifier)</code></th>
 <td class="colLast">
 <div class="block">Gets transaction by transaction order identifier, this is different from the UUID that gets
@@ -358,22 +358,22 @@ extends java.lang.Object</pre>
 <tr class="altColor" id="i18">
 <td class="colFirst"><code>private void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#initializeMasterAccountAndAddItToGenesis(java.lang.String,com.cscie97.ledger.Account)">initializeMasterAccountAndAddItToGenesis</a></span>&#8203;(java.lang.String&nbsp;address,
-                                        <a href="Account.html" title="class in com.cscie97.ledger">Account</a>&nbsp;masterAccount)</code></th>
+                                        <a href="Account.html" title="class in com.cscie97.store.ledger">Account</a>&nbsp;masterAccount)</code></th>
 <td class="colLast">
 <div class="block">Helper method to add a master account to the genesis block's accountBalanceMap</div>
 </td>
 </tr>
 <tr class="rowColor" id="i19">
 <td class="colFirst"><code>private boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#payerOrReceiverAreNotFound(com.cscie97.ledger.Block,com.cscie97.ledger.Transaction)">payerOrReceiverAreNotFound</a></span>&#8203;(<a href="Block.html" title="class in com.cscie97.ledger">Block</a>&nbsp;currentBlock,
-                          <a href="Transaction.html" title="class in com.cscie97.ledger">Transaction</a>&nbsp;transaction)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#payerOrReceiverAreNotFound(com.cscie97.ledger.Block,com.cscie97.ledger.Transaction)">payerOrReceiverAreNotFound</a></span>&#8203;(<a href="Block.html" title="class in com.cscie97.store.ledger">Block</a>&nbsp;currentBlock,
+                          <a href="Transaction.html" title="class in com.cscie97.store.ledger">Transaction</a>&nbsp;transaction)</code></th>
 <td class="colLast">
 <div class="block">Helper method to check if payer and receiver are linked to valid accounts in the last completed block</div>
 </td>
 </tr>
 <tr class="altColor" id="i20">
 <td class="colFirst"><code>java.lang.String</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#processTransaction(com.cscie97.ledger.Transaction)">processTransaction</a></span>&#8203;(<a href="Transaction.html" title="class in com.cscie97.ledger">Transaction</a>&nbsp;transaction)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#processTransaction(com.cscie97.ledger.Transaction)">processTransaction</a></span>&#8203;(<a href="Transaction.html" title="class in com.cscie97.store.ledger">Transaction</a>&nbsp;transaction)</code></th>
 <td class="colLast">
 <div class="block">Gets current block since the block numbers are committed in increments of 1.A new block is saved for every 10
  transaction in the helper method addTransactionToABlock(Block, Transaction) : void().</div>
@@ -381,7 +381,7 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="rowColor" id="i21">
 <td class="colFirst"><code>private int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#sumOfAccountBalances(com.cscie97.ledger.Block)">sumOfAccountBalances</a></span>&#8203;(<a href="Block.html" title="class in com.cscie97.ledger">Block</a>&nbsp;currentBlock)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#sumOfAccountBalances(com.cscie97.ledger.Block)">sumOfAccountBalances</a></span>&#8203;(<a href="Block.html" title="class in com.cscie97.store.ledger">Block</a>&nbsp;currentBlock)</code></th>
 <td class="colLast">
 <div class="block">Helper method to sum account balances of the current block</div>
 </td>
@@ -466,7 +466,7 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>genesisBlock</h4>
-<pre>private&nbsp;<a href="Block.html" title="class in com.cscie97.ledger">Block</a> genesisBlock</pre>
+<pre>private&nbsp;<a href="Block.html" title="class in com.cscie97.store.ledger">Block</a> genesisBlock</pre>
 </li>
 </ul>
 <a id="blockMap">
@@ -475,7 +475,7 @@ extends java.lang.Object</pre>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>blockMap</h4>
-<pre>private&nbsp;java.util.Map&lt;java.lang.Integer,&#8203;<a href="Block.html" title="class in com.cscie97.ledger">Block</a>&gt; blockMap</pre>
+<pre>private&nbsp;java.util.Map&lt;java.lang.Integer,&#8203;<a href="Block.html" title="class in com.cscie97.store.ledger">Block</a>&gt; blockMap</pre>
 </li>
 </ul>
 </li>
@@ -497,7 +497,7 @@ extends java.lang.Object</pre>
 <pre>public&nbsp;Ledger&#8203;(java.lang.String&nbsp;name,
               java.lang.String&nbsp;description,
               java.lang.String&nbsp;seed)
-       throws <a href="LedgerException.html" title="class in com.cscie97.ledger">LedgerException</a></pre>
+       throws <a href="LedgerException.html" title="class in com.cscie97.store.ledger">LedgerException</a></pre>
 <div class="block">During ledger initialization through the constructor, an account with address "master" is created with all of the
  available funds. The genesisBlock is also created with a blockNumber of 1 and it's previousHash field is set to null
  It  was not obvious at first but king a new instance of the HashMap in the block's constructor always
@@ -509,7 +509,7 @@ extends java.lang.Object</pre>
 <dd><code>seed</code> - </dd>
 <dd><code>description</code> - </dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="LedgerException.html" title="class in com.cscie97.ledger">LedgerException</a></code></dd>
+<dd><code><a href="LedgerException.html" title="class in com.cscie97.store.ledger">LedgerException</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -529,8 +529,8 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>createAccount</h4>
-<pre class="methodSignature">public&nbsp;<a href="Account.html" title="class in com.cscie97.ledger">Account</a>&nbsp;createAccount&#8203;(java.lang.String&nbsp;address)
-                      throws <a href="LedgerException.html" title="class in com.cscie97.ledger">LedgerException</a></pre>
+<pre class="methodSignature">public&nbsp;<a href="Account.html" title="class in com.cscie97.store.ledger">Account</a>&nbsp;createAccount&#8203;(java.lang.String&nbsp;address)
+                      throws <a href="LedgerException.html" title="class in com.cscie97.store.ledger">LedgerException</a></pre>
 <div class="block">This creates an account if it's address attribute doesn't exist in the current block's accountBalanceMap already
  and it sets the account's initial balance to 0 with the exception of the master account
  which is created with all of the funds available.</div>
@@ -540,7 +540,7 @@ extends java.lang.Object</pre>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>an account</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="LedgerException.html" title="class in com.cscie97.ledger">LedgerException</a></code></dd>
+<dd><code><a href="LedgerException.html" title="class in com.cscie97.store.ledger">LedgerException</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -551,15 +551,15 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>initializeMasterAccountAndAddItToGenesis</h4>
 <pre class="methodSignature">private&nbsp;void&nbsp;initializeMasterAccountAndAddItToGenesis&#8203;(java.lang.String&nbsp;address,
-                                                      <a href="Account.html" title="class in com.cscie97.ledger">Account</a>&nbsp;masterAccount)
-                                               throws <a href="LedgerException.html" title="class in com.cscie97.ledger">LedgerException</a></pre>
+                                                      <a href="Account.html" title="class in com.cscie97.store.ledger">Account</a>&nbsp;masterAccount)
+                                               throws <a href="LedgerException.html" title="class in com.cscie97.store.ledger">LedgerException</a></pre>
 <div class="block">Helper method to add a master account to the genesis block's accountBalanceMap</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>masterAccount</code> - </dd>
 <dd><code>address</code> - </dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="LedgerException.html" title="class in com.cscie97.ledger">LedgerException</a></code></dd>
+<dd><code><a href="LedgerException.html" title="class in com.cscie97.store.ledger">LedgerException</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -570,7 +570,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>createNonMasterAccountAndAddItToCurrentBlock</h4>
 <pre class="methodSignature">private&nbsp;void&nbsp;createNonMasterAccountAndAddItToCurrentBlock&#8203;(java.lang.String&nbsp;address,
-                                                          <a href="Account.html" title="class in com.cscie97.ledger">Account</a>&nbsp;newAccount)</pre>
+                                                          <a href="Account.html" title="class in com.cscie97.store.ledger">Account</a>&nbsp;newAccount)</pre>
 <div class="block">Helper method to add a non-master account to the current block's accountBalanceMap</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -586,13 +586,13 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>verifyIfAccountAddressExists</h4>
 <pre class="methodSignature">private&nbsp;void&nbsp;verifyIfAccountAddressExists&#8203;(java.lang.String&nbsp;address)
-                                   throws <a href="LedgerException.html" title="class in com.cscie97.ledger">LedgerException</a></pre>
+                                   throws <a href="LedgerException.html" title="class in com.cscie97.store.ledger">LedgerException</a></pre>
 <div class="block">Check's if account with the same address exists, throws LedgerException if it does</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>address</code> - </dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="LedgerException.html" title="class in com.cscie97.ledger">LedgerException</a></code></dd>
+<dd><code><a href="LedgerException.html" title="class in com.cscie97.store.ledger">LedgerException</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -602,8 +602,8 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>processTransaction</h4>
-<pre class="methodSignature">public&nbsp;java.lang.String&nbsp;processTransaction&#8203;(<a href="Transaction.html" title="class in com.cscie97.ledger">Transaction</a>&nbsp;transaction)
-                                    throws <a href="LedgerException.html" title="class in com.cscie97.ledger">LedgerException</a></pre>
+<pre class="methodSignature">public&nbsp;java.lang.String&nbsp;processTransaction&#8203;(<a href="Transaction.html" title="class in com.cscie97.store.ledger">Transaction</a>&nbsp;transaction)
+                                    throws <a href="LedgerException.html" title="class in com.cscie97.store.ledger">LedgerException</a></pre>
 <div class="block">Gets current block since the block numbers are committed in increments of 1.A new block is saved for every 10
  transaction in the helper method addTransactionToABlock(Block, Transaction) : void(). If payer and receiver are
  not linked to valid accounts in the last completed block, throw ledger exception. Transaction Id is set when
@@ -616,7 +616,7 @@ extends java.lang.Object</pre>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>transaction identifier</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="LedgerException.html" title="class in com.cscie97.ledger">LedgerException</a></code></dd>
+<dd><code><a href="LedgerException.html" title="class in com.cscie97.store.ledger">LedgerException</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -626,8 +626,8 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>payerOrReceiverAreNotFound</h4>
-<pre class="methodSignature">private&nbsp;boolean&nbsp;payerOrReceiverAreNotFound&#8203;(<a href="Block.html" title="class in com.cscie97.ledger">Block</a>&nbsp;currentBlock,
-                                           <a href="Transaction.html" title="class in com.cscie97.ledger">Transaction</a>&nbsp;transaction)</pre>
+<pre class="methodSignature">private&nbsp;boolean&nbsp;payerOrReceiverAreNotFound&#8203;(<a href="Block.html" title="class in com.cscie97.store.ledger">Block</a>&nbsp;currentBlock,
+                                           <a href="Transaction.html" title="class in com.cscie97.store.ledger">Transaction</a>&nbsp;transaction)</pre>
 <div class="block">Helper method to check if payer and receiver are linked to valid accounts in the last completed block</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -644,8 +644,8 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>findPayer</h4>
-<pre class="methodSignature">public&nbsp;<a href="Account.html" title="class in com.cscie97.ledger">Account</a>&nbsp;findPayer&#8203;(<a href="Block.html" title="class in com.cscie97.ledger">Block</a>&nbsp;currentBlock,
-                         <a href="Transaction.html" title="class in com.cscie97.ledger">Transaction</a>&nbsp;transaction)</pre>
+<pre class="methodSignature">public&nbsp;<a href="Account.html" title="class in com.cscie97.store.ledger">Account</a>&nbsp;findPayer&#8203;(<a href="Block.html" title="class in com.cscie97.store.ledger">Block</a>&nbsp;currentBlock,
+                         <a href="Transaction.html" title="class in com.cscie97.store.ledger">Transaction</a>&nbsp;transaction)</pre>
 <div class="block">Helper method to check if payer is linked to a valid account in the last completed block</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -662,7 +662,7 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getAccountByAddress</h4>
-<pre class="methodSignature">public&nbsp;<a href="Account.html" title="class in com.cscie97.ledger">Account</a>&nbsp;getAccountByAddress&#8203;(java.lang.String&nbsp;address)</pre>
+<pre class="methodSignature">public&nbsp;<a href="Account.html" title="class in com.cscie97.store.ledger">Account</a>&nbsp;getAccountByAddress&#8203;(java.lang.String&nbsp;address)</pre>
 <div class="block">Finds account by address in the current block</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -678,8 +678,8 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>findReceiver</h4>
-<pre class="methodSignature">public&nbsp;<a href="Account.html" title="class in com.cscie97.ledger">Account</a>&nbsp;findReceiver&#8203;(<a href="Block.html" title="class in com.cscie97.ledger">Block</a>&nbsp;currentBlock,
-                            <a href="Transaction.html" title="class in com.cscie97.ledger">Transaction</a>&nbsp;transaction)</pre>
+<pre class="methodSignature">public&nbsp;<a href="Account.html" title="class in com.cscie97.store.ledger">Account</a>&nbsp;findReceiver&#8203;(<a href="Block.html" title="class in com.cscie97.store.ledger">Block</a>&nbsp;currentBlock,
+                            <a href="Transaction.html" title="class in com.cscie97.store.ledger">Transaction</a>&nbsp;transaction)</pre>
 <div class="block">Helper method to check if receiver is linked to a valid account in the last completed block</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -696,9 +696,9 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>addTransactionToABlock</h4>
-<pre class="methodSignature">private&nbsp;java.lang.String&nbsp;addTransactionToABlock&#8203;(<a href="Block.html" title="class in com.cscie97.ledger">Block</a>&nbsp;currentBlock,
-                                                <a href="Transaction.html" title="class in com.cscie97.ledger">Transaction</a>&nbsp;transaction)
-                                         throws <a href="LedgerException.html" title="class in com.cscie97.ledger">LedgerException</a></pre>
+<pre class="methodSignature">private&nbsp;java.lang.String&nbsp;addTransactionToABlock&#8203;(<a href="Block.html" title="class in com.cscie97.store.ledger">Block</a>&nbsp;currentBlock,
+                                                <a href="Transaction.html" title="class in com.cscie97.store.ledger">Transaction</a>&nbsp;transaction)
+                                         throws <a href="LedgerException.html" title="class in com.cscie97.store.ledger">LedgerException</a></pre>
 <div class="block">Helper method to commit transaction to a block. Checks if the current block has not reached the transaction limit
  of 10. Checks if a transaction with the same Id exists in the current block and adds it to the block if it doesn't.
  Throw exception for duplicate transaction id. Increase the master's account balance with the fee paid. Also
@@ -718,7 +718,7 @@ extends java.lang.Object</pre>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>current block's hash</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="LedgerException.html" title="class in com.cscie97.ledger">LedgerException</a></code></dd>
+<dd><code><a href="LedgerException.html" title="class in com.cscie97.store.ledger">LedgerException</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -728,8 +728,8 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>checkAccountBalanceOfSavedBlock</h4>
-<pre class="methodSignature">private&nbsp;void&nbsp;checkAccountBalanceOfSavedBlock&#8203;(<a href="Block.html" title="class in com.cscie97.ledger">Block</a>&nbsp;currentBlock)
-                                      throws <a href="LedgerException.html" title="class in com.cscie97.ledger">LedgerException</a></pre>
+<pre class="methodSignature">private&nbsp;void&nbsp;checkAccountBalanceOfSavedBlock&#8203;(<a href="Block.html" title="class in com.cscie97.store.ledger">Block</a>&nbsp;currentBlock)
+                                      throws <a href="LedgerException.html" title="class in com.cscie97.store.ledger">LedgerException</a></pre>
 <div class="block">When the transaction size reaches 10 for a block, the account balances are recomputed. If the balance doesn't add
  up to the master account's balance during initialization, an exception is thrown. The Hash for current block won't be computed
  and the ledger won't be moving to create the next block</div>
@@ -737,7 +737,7 @@ extends java.lang.Object</pre>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>currentBlock</code> - </dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="LedgerException.html" title="class in com.cscie97.ledger">LedgerException</a></code></dd>
+<dd><code><a href="LedgerException.html" title="class in com.cscie97.store.ledger">LedgerException</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -747,7 +747,7 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>sumOfAccountBalances</h4>
-<pre class="methodSignature">private&nbsp;int&nbsp;sumOfAccountBalances&#8203;(<a href="Block.html" title="class in com.cscie97.ledger">Block</a>&nbsp;currentBlock)</pre>
+<pre class="methodSignature">private&nbsp;int&nbsp;sumOfAccountBalances&#8203;(<a href="Block.html" title="class in com.cscie97.store.ledger">Block</a>&nbsp;currentBlock)</pre>
 <div class="block">Helper method to sum account balances of the current block</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -763,8 +763,8 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>doesTransactionAlreadyExist</h4>
-<pre class="methodSignature">private&nbsp;java.util.Optional&lt;<a href="Transaction.html" title="class in com.cscie97.ledger">Transaction</a>&gt;&nbsp;doesTransactionAlreadyExist&#8203;(<a href="Block.html" title="class in com.cscie97.ledger">Block</a>&nbsp;currentBlock,
-                                                                    <a href="Transaction.html" title="class in com.cscie97.ledger">Transaction</a>&nbsp;transaction)</pre>
+<pre class="methodSignature">private&nbsp;java.util.Optional&lt;<a href="Transaction.html" title="class in com.cscie97.store.ledger">Transaction</a>&gt;&nbsp;doesTransactionAlreadyExist&#8203;(<a href="Block.html" title="class in com.cscie97.store.ledger">Block</a>&nbsp;currentBlock,
+                                                                    <a href="Transaction.html" title="class in com.cscie97.store.ledger">Transaction</a>&nbsp;transaction)</pre>
 <div class="block">Helper method to check if a transaction with the same Id exists in the current block.
  This enforces idempotency</div>
 <dl>
@@ -812,7 +812,7 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getTransaction</h4>
-<pre class="methodSignature">public&nbsp;java.util.Optional&lt;<a href="Transaction.html" title="class in com.cscie97.ledger">Transaction</a>&gt;&nbsp;getTransaction&#8203;(java.lang.String&nbsp;transactionOrderIdentifier)</pre>
+<pre class="methodSignature">public&nbsp;java.util.Optional&lt;<a href="Transaction.html" title="class in com.cscie97.store.ledger">Transaction</a>&gt;&nbsp;getTransaction&#8203;(java.lang.String&nbsp;transactionOrderIdentifier)</pre>
 <div class="block">Gets transaction by transaction order identifier, this is different from the UUID that gets
  generated when a transaction is successful</div>
 <dl>
@@ -829,7 +829,7 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getAllTransactionsForTheCurrentBlock</h4>
-<pre class="methodSignature">public&nbsp;java.util.List&lt;<a href="Transaction.html" title="class in com.cscie97.ledger">Transaction</a>&gt;&nbsp;getAllTransactionsForTheCurrentBlock()</pre>
+<pre class="methodSignature">public&nbsp;java.util.List&lt;<a href="Transaction.html" title="class in com.cscie97.store.ledger">Transaction</a>&gt;&nbsp;getAllTransactionsForTheCurrentBlock()</pre>
 <div class="block">Gets all of the transactions for the current block</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -843,7 +843,7 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getBlock</h4>
-<pre class="methodSignature">public&nbsp;<a href="Block.html" title="class in com.cscie97.ledger">Block</a>&nbsp;getBlock&#8203;(int&nbsp;blockNumber)</pre>
+<pre class="methodSignature">public&nbsp;<a href="Block.html" title="class in com.cscie97.store.ledger">Block</a>&nbsp;getBlock&#8203;(int&nbsp;blockNumber)</pre>
 <div class="block">Gets a block in the ledger by blockNumber</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -873,7 +873,7 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getCurrentBlock</h4>
-<pre class="methodSignature">public&nbsp;<a href="Block.html" title="class in com.cscie97.ledger">Block</a>&nbsp;getCurrentBlock()</pre>
+<pre class="methodSignature">public&nbsp;<a href="Block.html" title="class in com.cscie97.store.ledger">Block</a>&nbsp;getCurrentBlock()</pre>
 <div class="block">gets current block</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -897,7 +897,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>validate</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;validate()
-              throws <a href="LedgerException.html" title="class in com.cscie97.ledger">LedgerException</a></pre>
+              throws <a href="LedgerException.html" title="class in com.cscie97.store.ledger">LedgerException</a></pre>
 <div class="block">The validate method checks hash consistency across the block and that the balances add up to master's balance
  during initialization for each block. The helper method checkAccountBalanceOfSavedBlock(Block) gets called
  for each block and throws exception for balance discrepancies. checkIfTheHashesAreConsistent(Block, int)
@@ -912,7 +912,7 @@ extends java.lang.Object</pre>
  because it may not have 10 transactions yet at the time of validation</div>
 <dl>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="LedgerException.html" title="class in com.cscie97.ledger">LedgerException</a></code></dd>
+<dd><code><a href="LedgerException.html" title="class in com.cscie97.store.ledger">LedgerException</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -922,11 +922,11 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>checkTheNumberOfTransactionsInEachBlockIsTen</h4>
-<pre class="methodSignature">private&nbsp;void&nbsp;checkTheNumberOfTransactionsInEachBlockIsTen&#8203;(<a href="Block.html" title="class in com.cscie97.ledger">Block</a>&nbsp;block)
-                                                   throws <a href="LedgerException.html" title="class in com.cscie97.ledger">LedgerException</a></pre>
+<pre class="methodSignature">private&nbsp;void&nbsp;checkTheNumberOfTransactionsInEachBlockIsTen&#8203;(<a href="Block.html" title="class in com.cscie97.store.ledger">Block</a>&nbsp;block)
+                                                   throws <a href="LedgerException.html" title="class in com.cscie97.store.ledger">LedgerException</a></pre>
 <dl>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="LedgerException.html" title="class in com.cscie97.ledger">LedgerException</a></code> - if the number of transactions for a saved block is not equal to 10</dd>
+<dd><code><a href="LedgerException.html" title="class in com.cscie97.store.ledger">LedgerException</a></code> - if the number of transactions for a saved block is not equal to 10</dd>
 </dl>
 </li>
 </ul>
@@ -936,7 +936,7 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>checkIfTheHashesAreConsistent</h4>
-<pre class="methodSignature">private&nbsp;boolean&nbsp;checkIfTheHashesAreConsistent&#8203;(<a href="Block.html" title="class in com.cscie97.ledger">Block</a>&nbsp;block,
+<pre class="methodSignature">private&nbsp;boolean&nbsp;checkIfTheHashesAreConsistent&#8203;(<a href="Block.html" title="class in com.cscie97.store.ledger">Block</a>&nbsp;block,
                                               int&nbsp;index)</pre>
 <div class="block">Checks hash consistency by generating a hash of the current block and comparing it to the previousHash
  field of the next block</div>

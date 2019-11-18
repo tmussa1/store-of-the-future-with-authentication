@@ -99,7 +99,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <!-- ======== START OF CLASS DATA ======== -->
 <main role="main">
 <div class="header">
-<div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">com.cscie97.ledger</a></div>
+<div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">com.cscie97.store.ledger</a></div>
 <h2 title="Class Transaction" class="title">Class Transaction</h2>
 </div>
 <div class="contentContainer">
@@ -107,7 +107,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li>com.cscie97.ledger.Transaction</li>
+<li>com.cscie97.store.ledger.Transaction</li>
 </ul>
 </li>
 </ul>
@@ -168,7 +168,7 @@ implements java.io.Serializable</pre>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>private <a href="Account.html" title="class in com.cscie97.ledger">Account</a></code></td>
+<td class="colFirst"><code>private <a href="Account.html" title="class in com.cscie97.store.ledger">Account</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#payer">payer</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
@@ -178,7 +178,7 @@ implements java.io.Serializable</pre>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>private <a href="Account.html" title="class in com.cscie97.ledger">Account</a></code></td>
+<td class="colFirst"><code>private <a href="Account.html" title="class in com.cscie97.store.ledger">Account</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#receiver">receiver</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
@@ -218,8 +218,8 @@ implements java.io.Serializable</pre>
            int&nbsp;amount,
            int&nbsp;fee,
            java.lang.String&nbsp;payload,
-           <a href="Account.html" title="class in com.cscie97.ledger">Account</a>&nbsp;payer,
-           <a href="Account.html" title="class in com.cscie97.ledger">Account</a>&nbsp;receiver)</code></th>
+           <a href="Account.html" title="class in com.cscie97.store.ledger">Account</a>&nbsp;payer,
+           <a href="Account.html" title="class in com.cscie97.store.ledger">Account</a>&nbsp;receiver)</code></th>
 <td class="colLast">
 <div class="block">All of the fields pass through a validation check.</div>
 </td>
@@ -263,12 +263,12 @@ implements java.io.Serializable</pre>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="rowColor" id="i3">
-<td class="colFirst"><code><a href="Account.html" title="class in com.cscie97.ledger">Account</a></code></td>
+<td class="colFirst"><code><a href="Account.html" title="class in com.cscie97.store.ledger">Account</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getPayer()">getPayer</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="altColor" id="i4">
-<td class="colFirst"><code><a href="Account.html" title="class in com.cscie97.ledger">Account</a></code></td>
+<td class="colFirst"><code><a href="Account.html" title="class in com.cscie97.store.ledger">Account</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getReceiver()">getReceiver</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
@@ -289,21 +289,21 @@ implements java.io.Serializable</pre>
 </tr>
 <tr class="altColor" id="i8">
 <td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isPayerHavingSufficientFunds(com.cscie97.ledger.Account)">isPayerHavingSufficientFunds</a></span>&#8203;(<a href="Account.html" title="class in com.cscie97.ledger">Account</a>&nbsp;payer)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isPayerHavingSufficientFunds(com.cscie97.ledger.Account)">isPayerHavingSufficientFunds</a></span>&#8203;(<a href="Account.html" title="class in com.cscie97.store.ledger">Account</a>&nbsp;payer)</code></th>
 <td class="colLast">
 <div class="block">Helper method checking sufficient funds of payer</div>
 </td>
 </tr>
 <tr class="rowColor" id="i9">
 <td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isPayerValid(com.cscie97.ledger.Account)">isPayerValid</a></span>&#8203;(<a href="Account.html" title="class in com.cscie97.ledger">Account</a>&nbsp;payer)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isPayerValid(com.cscie97.ledger.Account)">isPayerValid</a></span>&#8203;(<a href="Account.html" title="class in com.cscie97.store.ledger">Account</a>&nbsp;payer)</code></th>
 <td class="colLast">
 <div class="block">Helper method checking if the Payer's address has been set by ledger</div>
 </td>
 </tr>
 <tr class="altColor" id="i10">
 <td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isReceiverValid(com.cscie97.ledger.Account)">isReceiverValid</a></span>&#8203;(<a href="Account.html" title="class in com.cscie97.ledger">Account</a>&nbsp;receiver)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isReceiverValid(com.cscie97.ledger.Account)">isReceiverValid</a></span>&#8203;(<a href="Account.html" title="class in com.cscie97.store.ledger">Account</a>&nbsp;receiver)</code></th>
 <td class="colLast">
 <div class="block">Helper method checking if the Receiver's address has been set by ledger</div>
 </td>
@@ -345,7 +345,7 @@ implements java.io.Serializable</pre>
 </tr>
 <tr class="altColor" id="i16">
 <td class="colFirst"><code>private void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setPayer(com.cscie97.ledger.Account)">setPayer</a></span>&#8203;(<a href="Account.html" title="class in com.cscie97.ledger">Account</a>&nbsp;payer)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setPayer(com.cscie97.ledger.Account)">setPayer</a></span>&#8203;(<a href="Account.html" title="class in com.cscie97.store.ledger">Account</a>&nbsp;payer)</code></th>
 <td class="colLast">
 <div class="block">Payer must not be null and must have a valid unique address set by the ledger during
  initialization.</div>
@@ -360,7 +360,7 @@ implements java.io.Serializable</pre>
 </tr>
 <tr class="altColor" id="i18">
 <td class="colFirst"><code>private void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setReceiver(com.cscie97.ledger.Account)">setReceiver</a></span>&#8203;(<a href="Account.html" title="class in com.cscie97.ledger">Account</a>&nbsp;receiver)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setReceiver(com.cscie97.ledger.Account)">setReceiver</a></span>&#8203;(<a href="Account.html" title="class in com.cscie97.store.ledger">Account</a>&nbsp;receiver)</code></th>
 <td class="colLast">
 <div class="block">Receiver must not be null and must have a valid unique address set by the ledger during
  initialization.</div>
@@ -461,7 +461,7 @@ implements java.io.Serializable</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>receiver</h4>
-<pre>private&nbsp;<a href="Account.html" title="class in com.cscie97.ledger">Account</a> receiver</pre>
+<pre>private&nbsp;<a href="Account.html" title="class in com.cscie97.store.ledger">Account</a> receiver</pre>
 </li>
 </ul>
 <a id="payer">
@@ -470,7 +470,7 @@ implements java.io.Serializable</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>payer</h4>
-<pre>private&nbsp;<a href="Account.html" title="class in com.cscie97.ledger">Account</a> payer</pre>
+<pre>private&nbsp;<a href="Account.html" title="class in com.cscie97.store.ledger">Account</a> payer</pre>
 </li>
 </ul>
 <a id="logger">
@@ -502,8 +502,8 @@ implements java.io.Serializable</pre>
                    int&nbsp;amount,
                    int&nbsp;fee,
                    java.lang.String&nbsp;payload,
-                   <a href="Account.html" title="class in com.cscie97.ledger">Account</a>&nbsp;payer,
-                   <a href="Account.html" title="class in com.cscie97.ledger">Account</a>&nbsp;receiver)</pre>
+                   <a href="Account.html" title="class in com.cscie97.store.ledger">Account</a>&nbsp;payer,
+                   <a href="Account.html" title="class in com.cscie97.store.ledger">Account</a>&nbsp;receiver)</pre>
 <div class="block">All of the fields pass through a validation check. If any of the setters fail, the program won't get to
  setTransactionId(UUID.randomUUID().toString()) and a unique transactionId won't be set. All the ledger has to
  during incoming transactions is check if the transaction has a UUID transactionId and not process it if doesn't.
@@ -518,7 +518,7 @@ implements java.io.Serializable</pre>
 <dd><code>receiver</code> - </dd>
 <dd><code>payload</code> - </dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="LedgerException.html" title="class in com.cscie97.ledger">LedgerException</a></code></dd>
+<dd><code><a href="LedgerException.html" title="class in com.cscie97.store.ledger">LedgerException</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -553,13 +553,13 @@ implements java.io.Serializable</pre>
 <li class="blockList">
 <h4>setAmount</h4>
 <pre class="methodSignature">private&nbsp;void&nbsp;setAmount&#8203;(int&nbsp;amount)
-                throws <a href="LedgerException.html" title="class in com.cscie97.ledger">LedgerException</a></pre>
+                throws <a href="LedgerException.html" title="class in com.cscie97.store.ledger">LedgerException</a></pre>
 <div class="block">Amount must be between 0 and Integer.MAX_VALUE to be set. Throws exception if it isn't</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>amount</code> - </dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="LedgerException.html" title="class in com.cscie97.ledger">LedgerException</a></code></dd>
+<dd><code><a href="LedgerException.html" title="class in com.cscie97.store.ledger">LedgerException</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -570,13 +570,13 @@ implements java.io.Serializable</pre>
 <li class="blockList">
 <h4>setFee</h4>
 <pre class="methodSignature">private&nbsp;void&nbsp;setFee&#8203;(int&nbsp;fee)
-             throws <a href="LedgerException.html" title="class in com.cscie97.ledger">LedgerException</a></pre>
+             throws <a href="LedgerException.html" title="class in com.cscie97.store.ledger">LedgerException</a></pre>
 <div class="block">Fee must be at least $10 and throws exception if it isn't</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>fee</code> - </dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="LedgerException.html" title="class in com.cscie97.ledger">LedgerException</a></code></dd>
+<dd><code><a href="LedgerException.html" title="class in com.cscie97.store.ledger">LedgerException</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -587,13 +587,13 @@ implements java.io.Serializable</pre>
 <li class="blockList">
 <h4>setPayload</h4>
 <pre class="methodSignature">private&nbsp;void&nbsp;setPayload&#8203;(java.lang.String&nbsp;payload)
-                 throws <a href="LedgerException.html" title="class in com.cscie97.ledger">LedgerException</a></pre>
+                 throws <a href="LedgerException.html" title="class in com.cscie97.store.ledger">LedgerException</a></pre>
 <div class="block">Length of payload must not be greater thatn 1024 and throws exception if it isn't</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>payload</code> - </dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="LedgerException.html" title="class in com.cscie97.ledger">LedgerException</a></code></dd>
+<dd><code><a href="LedgerException.html" title="class in com.cscie97.store.ledger">LedgerException</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -603,8 +603,8 @@ implements java.io.Serializable</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>setReceiver</h4>
-<pre class="methodSignature">private&nbsp;void&nbsp;setReceiver&#8203;(<a href="Account.html" title="class in com.cscie97.ledger">Account</a>&nbsp;receiver)
-                  throws <a href="LedgerException.html" title="class in com.cscie97.ledger">LedgerException</a></pre>
+<pre class="methodSignature">private&nbsp;void&nbsp;setReceiver&#8203;(<a href="Account.html" title="class in com.cscie97.store.ledger">Account</a>&nbsp;receiver)
+                  throws <a href="LedgerException.html" title="class in com.cscie97.store.ledger">LedgerException</a></pre>
 <div class="block">Receiver must not be null and must have a valid unique address set by the ledger during
  initialization. The validation to check for duplicate addresses is done prior to creation of Receiver account
  by the ledger itself. Throws exception if receiver don't have a unique address associated with it.</div>
@@ -612,7 +612,7 @@ implements java.io.Serializable</pre>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>receiver</code> - </dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="LedgerException.html" title="class in com.cscie97.ledger">LedgerException</a></code></dd>
+<dd><code><a href="LedgerException.html" title="class in com.cscie97.store.ledger">LedgerException</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -622,8 +622,8 @@ implements java.io.Serializable</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>setPayer</h4>
-<pre class="methodSignature">private&nbsp;void&nbsp;setPayer&#8203;(<a href="Account.html" title="class in com.cscie97.ledger">Account</a>&nbsp;payer)
-               throws <a href="LedgerException.html" title="class in com.cscie97.ledger">LedgerException</a></pre>
+<pre class="methodSignature">private&nbsp;void&nbsp;setPayer&#8203;(<a href="Account.html" title="class in com.cscie97.store.ledger">Account</a>&nbsp;payer)
+               throws <a href="LedgerException.html" title="class in com.cscie97.store.ledger">LedgerException</a></pre>
 <div class="block">Payer must not be null and must have a valid unique address set by the ledger during
  initialization. The validation to check for duplicate addresses is done prior to creation of Payer account
  by the ledger itself. The Payer must also have enough funds to cover the fees and amount of transaction. Throws
@@ -632,7 +632,7 @@ implements java.io.Serializable</pre>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>payer</code> - </dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="LedgerException.html" title="class in com.cscie97.ledger">LedgerException</a></code></dd>
+<dd><code><a href="LedgerException.html" title="class in com.cscie97.store.ledger">LedgerException</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -642,7 +642,7 @@ implements java.io.Serializable</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getReceiver</h4>
-<pre class="methodSignature">public&nbsp;<a href="Account.html" title="class in com.cscie97.ledger">Account</a>&nbsp;getReceiver()</pre>
+<pre class="methodSignature">public&nbsp;<a href="Account.html" title="class in com.cscie97.store.ledger">Account</a>&nbsp;getReceiver()</pre>
 </li>
 </ul>
 <a id="getPayer()">
@@ -651,7 +651,7 @@ implements java.io.Serializable</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getPayer</h4>
-<pre class="methodSignature">public&nbsp;<a href="Account.html" title="class in com.cscie97.ledger">Account</a>&nbsp;getPayer()</pre>
+<pre class="methodSignature">public&nbsp;<a href="Account.html" title="class in com.cscie97.store.ledger">Account</a>&nbsp;getPayer()</pre>
 </li>
 </ul>
 <a id="getTransactionId()">
@@ -735,7 +735,7 @@ implements java.io.Serializable</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>isPayerHavingSufficientFunds</h4>
-<pre class="methodSignature">public&nbsp;boolean&nbsp;isPayerHavingSufficientFunds&#8203;(<a href="Account.html" title="class in com.cscie97.ledger">Account</a>&nbsp;payer)</pre>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;isPayerHavingSufficientFunds&#8203;(<a href="Account.html" title="class in com.cscie97.store.ledger">Account</a>&nbsp;payer)</pre>
 <div class="block">Helper method checking sufficient funds of payer</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -751,7 +751,7 @@ implements java.io.Serializable</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>isPayerValid</h4>
-<pre class="methodSignature">public&nbsp;boolean&nbsp;isPayerValid&#8203;(<a href="Account.html" title="class in com.cscie97.ledger">Account</a>&nbsp;payer)</pre>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;isPayerValid&#8203;(<a href="Account.html" title="class in com.cscie97.store.ledger">Account</a>&nbsp;payer)</pre>
 <div class="block">Helper method checking if the Payer's address has been set by ledger</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -767,7 +767,7 @@ implements java.io.Serializable</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>isReceiverValid</h4>
-<pre class="methodSignature">public&nbsp;boolean&nbsp;isReceiverValid&#8203;(<a href="Account.html" title="class in com.cscie97.ledger">Account</a>&nbsp;receiver)</pre>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;isReceiverValid&#8203;(<a href="Account.html" title="class in com.cscie97.store.ledger">Account</a>&nbsp;receiver)</pre>
 <div class="block">Helper method checking if the Receiver's address has been set by ledger</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>

@@ -1,4 +1,4 @@
-package com.cscie97.ledger.test;
+package com.cscie97.store.ledger.test;
 
 import java.util.logging.Logger;
 /**

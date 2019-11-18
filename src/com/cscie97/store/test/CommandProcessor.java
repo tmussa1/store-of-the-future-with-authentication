@@ -1,8 +1,6 @@
 package com.cscie97.store.test;
 
-import com.cscie97.store.authentication.AuthenticationService;
-import com.cscie97.store.authentication.AuthenticationToken;
-import com.cscie97.store.authentication.IAuthenticationService;
+import com.cscie97.store.authentication.*;
 import com.cscie97.store.controller.StoreControllerService;
 import com.cscie97.store.model.Event;
 import com.cscie97.store.model.IStoreModelService;
@@ -51,6 +49,101 @@ public class CommandProcessor {
                 } catch (NoSuchAlgorithmException e) {
                     return ExceptionUtil.outputException(lineNumber, "Error adding credentials to user", e);
                 }
+            case "create-permission":
+                Permission permission = authenticationService
+                        .createPermission(commandWords[2], commandWords[4], commandWords[6]);
+                return permission.getPermissionId() + " permission has been created";
+            case "create-role":
+                Role role = authenticationService.createRole(commandWords[2], commandWords[4], commandWords[6]);
+                return role.getEntitlementId() + " role has been added";
+            case "add-permission-to-role":
+                try {
+                    Role roleWithPerm = authenticationService.addPermissionToRole(commandWords[2], commandWords[4]);
+                    return roleWithPerm.getEntitlementId() + " role had permission added";
+                } catch (AuthenticationServiceException e) {
+                    ExceptionUtil.outputException(lineNumber, "Failed to added permission to role ", e);
+                }
+            case "add-child-role-to-parent-role":
+                Role roleWithChild = authenticationService.addChildRoleToParentRole(commandWords[2],
+                        commandWords[4]);
+                return roleWithChild.getEntitlementId() + " had a child role added";
+            case "get-role-by-id":
+                try {
+                    Role roleById = authenticationService.getRoleById(commandWords[2]);
+                    return roleById.getEntitlementId() + " role has been found";
+                } catch (AuthenticationServiceException e) {
+                    ExceptionUtil.outputException(lineNumber, "Role not found", e);
+                }
+            case "get-permission-by-id":
+                try {
+                    Permission permissionById = authenticationService.getPermissionById(commandWords[1]);
+                    return permissionById.getPermissionId() + " permission has been found";
+                } catch (AuthenticationServiceException e) {
+                    ExceptionUtil.outputException(lineNumber, "Permission not found", e);
+                }
+            case "get-user-by-id":
+                try {
+                    User userByUserId = authenticationService.getUserByUserId(commandWords[2]);
+                    return userByUserId.getUserId() + " user has been found";
+                } catch (AuthenticationServiceException e) {
+                    ExceptionUtil.outputException(lineNumber, "User not found", e);
+                }
+            case "add-entitlement-to-user":
+                try {
+                    Entitlement entitlement = authenticationService.getEntitlementByEntitlementId(commandWords[4]);
+                    User user = authenticationService.addEntitlementToUser(commandWords[2], entitlement);
+                    return user.getUserId() + " user had an entitlement added";
+                } catch (AuthenticationServiceException e) {
+                    ExceptionUtil.outputException(lineNumber, "Unable to add entitlement to user", e);
+                }
+            case "get-authentication-inventory-print":
+                return authenticationService.getInventoryPrint();
+            case "create-resource":
+                Resource resource = authenticationService.createResource(commandWords[2], commandWords[4]);
+                return resource.getResourceId() + " resource has been created";
+            case "get-resource-by-id":
+                try {
+                    Resource resourceByResourceId = authenticationService.getResourceByResourceId(commandWords[1]);
+                    return resourceByResourceId.getResourceId() + " resource has been found";
+                } catch (AuthenticationServiceException e) {
+                   ExceptionUtil.outputException(lineNumber, "Resource not found", e);
+                }
+            case "create-resource-role":
+                ResourceRole resourceRole = authenticationService.createResourceRole(commandWords[2], commandWords[4],
+                        commandWords[6], commandWords[6]);
+                return resourceRole.getEntitlementId() + " ResourceRole has been created";
+            case "add-entitlement-to-resource-role":
+                ResourceRole resourceRoleWithEntitle = authenticationService
+                        .addEntitlementsToResourceRole(commandWords[2], commandWords[4]);
+                return resourceRoleWithEntitle.getEntitlementId() + " ResourceRole had been updated with entitlement";
+            case "add-resource-to-resource-role":
+                ResourceRole resourceRoleWithResource = authenticationService
+                        .addResourcesToResourceRole(commandWords[4], commandWords[2]);
+                return resourceRoleWithResource.getEntitlementId() + " ResourceRole had resource added";
+            case "add-resource-role-to-user":
+                User user = authenticationService.
+                        addResourceRoleToUser(commandWords[2], commandWords[4]);
+                return user.getUserId() + " user had ResourceRole added";
+            case "get-resource-role-by-id":
+                try {
+                    ResourceRole resourceRoleById= authenticationService
+                            .getResourceRoleByResourceRoleId(commandWords[1]);
+                    return resourceRoleById.getEntitlementId() + " resource has been found";
+                } catch (AuthenticationServiceException e) {
+                    ExceptionUtil.outputException(lineNumber, "ResourceRole not found", e);
+                }
+            case "get-entitlement-by-id":
+                try {
+                    Entitlement entitlement = authenticationService
+                            .getEntitlementByEntitlementId(commandWords[1]);
+                    return entitlement.getEntitlementId() + " entitlement has been found";
+                } catch (AuthenticationServiceException e) {
+                    ExceptionUtil.outputException(lineNumber, "Entitlement not found", e);
+                }
+            case "add-child-resource-role-to-resource-role":
+                Role roleWithChildResRole = authenticationService.
+                        addChildResourceRoleToParentRole(commandWords[2], commandWords[4]);
+                return roleWithChildResRole.getEntitlementId() + " ResourceRole had a child ResourceRole added";
             case "add-voiceprint":
                 return UpdateUtil.addVoicePrintToUser(authenticationService, commandWords[2], commandWords[3]);
             case "add-faceprint":
@@ -64,7 +157,11 @@ public class CommandProcessor {
             case "log-in-voice":
                 AuthenticationToken authenticationTokenVF = authenticationService
                         .generateToken(commandWords[2], commandWords[3]);
+                userIdToAuthTokenMap.put(commandWords[2], authenticationTokenVF);
                 return authenticationTokenVF.getTokenId() + " token has been assigned to user";
+            case "log-out":
+                State state = authenticationService.logOut(commandWords[2]);
+                return "Successfully logged out and the state of token is expired";
             case "define-store":
                    try {
                        return CreateUtil.createStore(storeModelService, commandWords[1], commandWords[3],

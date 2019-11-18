@@ -63,4 +63,13 @@ public class AuthenticationToken implements Visitable{
     public void accept(Ivisitor ivisitor) {
         ivisitor.visit(this);
     }
+
+    @Override
+    public String toString() {
+        return "AuthenticationToken with token id " + tokenId +
+                " with time to live " + timeToLive +
+                " with expiration time " + expirationTime +
+                " with expiration state " + expirationState +
+                " associate with user " + user.getUserId();
+    }
 }

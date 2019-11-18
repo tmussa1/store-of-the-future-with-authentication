@@ -89,17 +89,17 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Top level interface for all of the commands</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../com/cscie97/ledger/Block.html#increaseAccountBalance(java.lang.String,int)">increaseAccountBalance(String, int)</a></span> - Method in class com.cscie97.ledger.<a href="../com/cscie97/ledger/Block.html" title="class in com.cscie97.ledger">Block</a></dt>
+<dt><span class="memberNameLink"><a href="../com/cscie97/ledger/Block.html#increaseAccountBalance(java.lang.String,int)">increaseAccountBalance(String, int)</a></span> - Method in class com.cscie97.store.ledger.<a href="../com/cscie97/ledger/Block.html" title="class in com.cscie97.store.ledger">Block</a></dt>
 <dd>
 <div class="block">This method increases account balance by the requested amount.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../com/cscie97/ledger/Ledger.html#initializeMasterAccountAndAddItToGenesis(java.lang.String,com.cscie97.ledger.Account)">initializeMasterAccountAndAddItToGenesis(String, Account)</a></span> - Method in class com.cscie97.ledger.<a href="../com/cscie97/ledger/Ledger.html" title="class in com.cscie97.ledger">Ledger</a></dt>
+<dt><span class="memberNameLink"><a href="../com/cscie97/ledger/Ledger.html#initializeMasterAccountAndAddItToGenesis(java.lang.String,com.cscie97.ledger.Account)">initializeMasterAccountAndAddItToGenesis(String, Account)</a></span> - Method in class com.cscie97.store.ledger.<a href="../com/cscie97/ledger/Ledger.html" title="class in com.cscie97.store.ledger">Ledger</a></dt>
 <dd>
 <div class="block">Helper method to add a master account to the genesis block's accountBalanceMap</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../com/cscie97/store/model/StoreModelService.html#instance">instance</a></span> - Static variable in class com.cscie97.store.model.<a href="../com/cscie97/store/model/StoreModelService.html" title="class in com.cscie97.store.model">StoreModelService</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="../com/cscie97/ledger/test/CommandProcessor.html#interactWithLedger(com.cscie97.ledger.Ledger,java.lang.String,int)">interactWithLedger(Ledger, String, int)</a></span> - Method in class com.cscie97.ledger.test.<a href="../com/cscie97/ledger/test/CommandProcessor.html" title="class in com.cscie97.ledger.test">CommandProcessor</a></dt>
+<dt><span class="memberNameLink"><a href="../com/cscie97/ledger/test/CommandProcessor.html#interactWithLedger(com.cscie97.ledger.Ledger,java.lang.String,int)">interactWithLedger(Ledger, String, int)</a></span> - Method in class com.cscie97.store.ledger.test.<a href="../com/cscie97/ledger/test/CommandProcessor.html" title="class in com.cscie97.store.ledger.test">CommandProcessor</a></dt>
 <dd>
 <div class="block">Parses commands and interacts with ledger</div>
 </dd>
@@ -145,15 +145,15 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dd>
 <dt><span class="memberNameLink"><a href="../com/cscie97/store/model/Turnstile.html#isOpen">isOpen</a></span> - Variable in class com.cscie97.store.model.<a href="../com/cscie97/store/model/Turnstile.html" title="class in com.cscie97.store.model">Turnstile</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="../com/cscie97/ledger/Transaction.html#isPayerHavingSufficientFunds(com.cscie97.ledger.Account)">isPayerHavingSufficientFunds(Account)</a></span> - Method in class com.cscie97.ledger.<a href="../com/cscie97/ledger/Transaction.html" title="class in com.cscie97.ledger">Transaction</a></dt>
+<dt><span class="memberNameLink"><a href="../com/cscie97/ledger/Transaction.html#isPayerHavingSufficientFunds(com.cscie97.ledger.Account)">isPayerHavingSufficientFunds(Account)</a></span> - Method in class com.cscie97.store.ledger.<a href="../com/cscie97/ledger/Transaction.html" title="class in com.cscie97.store.ledger">Transaction</a></dt>
 <dd>
 <div class="block">Helper method checking sufficient funds of payer</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../com/cscie97/ledger/Transaction.html#isPayerValid(com.cscie97.ledger.Account)">isPayerValid(Account)</a></span> - Method in class com.cscie97.ledger.<a href="../com/cscie97/ledger/Transaction.html" title="class in com.cscie97.ledger">Transaction</a></dt>
+<dt><span class="memberNameLink"><a href="../com/cscie97/ledger/Transaction.html#isPayerValid(com.cscie97.ledger.Account)">isPayerValid(Account)</a></span> - Method in class com.cscie97.store.ledger.<a href="../com/cscie97/ledger/Transaction.html" title="class in com.cscie97.store.ledger">Transaction</a></dt>
 <dd>
 <div class="block">Helper method checking if the Payer's address has been set by ledger</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../com/cscie97/ledger/Transaction.html#isReceiverValid(com.cscie97.ledger.Account)">isReceiverValid(Account)</a></span> - Method in class com.cscie97.ledger.<a href="../com/cscie97/ledger/Transaction.html" title="class in com.cscie97.ledger">Transaction</a></dt>
+<dt><span class="memberNameLink"><a href="../com/cscie97/ledger/Transaction.html#isReceiverValid(com.cscie97.ledger.Account)">isReceiverValid(Account)</a></span> - Method in class com.cscie97.store.ledger.<a href="../com/cscie97/ledger/Transaction.html" title="class in com.cscie97.store.ledger">Transaction</a></dt>
 <dd>
 <div class="block">Helper method checking if the Receiver's address has been set by ledger</div>
 </dd>
@@ -161,7 +161,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">This is the Store Model Service Interface which is the only class the outside world knows about</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../com/cscie97/ledger/Block.html#isTransactionSizeUnderLimit()">isTransactionSizeUnderLimit()</a></span> - Method in class com.cscie97.ledger.<a href="../com/cscie97/ledger/Block.html" title="class in com.cscie97.ledger">Block</a></dt>
+<dt><span class="memberNameLink"><a href="../com/cscie97/ledger/Block.html#isTransactionSizeUnderLimit()">isTransactionSizeUnderLimit()</a></span> - Method in class com.cscie97.store.ledger.<a href="../com/cscie97/ledger/Block.html" title="class in com.cscie97.store.ledger">Block</a></dt>
 <dd>
 <div class="block">Helper method to determine the size of transactions in a block</div>
 </dd>
@@ -169,11 +169,11 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">A subject interface, an observable</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../com/cscie97/ledger/Transaction.html#isValidAmount(int)">isValidAmount(int)</a></span> - Method in class com.cscie97.ledger.<a href="../com/cscie97/ledger/Transaction.html" title="class in com.cscie97.ledger">Transaction</a></dt>
+<dt><span class="memberNameLink"><a href="../com/cscie97/ledger/Transaction.html#isValidAmount(int)">isValidAmount(int)</a></span> - Method in class com.cscie97.store.ledger.<a href="../com/cscie97/ledger/Transaction.html" title="class in com.cscie97.store.ledger">Transaction</a></dt>
 <dd>
 <div class="block">Helper method checking amount validity</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../com/cscie97/ledger/Account.html#isValidBalance(int)">isValidBalance(int)</a></span> - Method in class com.cscie97.ledger.<a href="../com/cscie97/ledger/Account.html" title="class in com.cscie97.ledger">Account</a></dt>
+<dt><span class="memberNameLink"><a href="../com/cscie97/ledger/Account.html#isValidBalance(int)">isValidBalance(int)</a></span> - Method in class com.cscie97.store.ledger.<a href="../com/cscie97/ledger/Account.html" title="class in com.cscie97.store.ledger">Account</a></dt>
 <dd>
 <div class="block">Helper method to check if balance is in the threshold</div>
 </dd>
@@ -181,11 +181,11 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Validates if count is between 0 and maximum capacity</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../com/cscie97/ledger/Transaction.html#isValidFee(int)">isValidFee(int)</a></span> - Method in class com.cscie97.ledger.<a href="../com/cscie97/ledger/Transaction.html" title="class in com.cscie97.ledger">Transaction</a></dt>
+<dt><span class="memberNameLink"><a href="../com/cscie97/ledger/Transaction.html#isValidFee(int)">isValidFee(int)</a></span> - Method in class com.cscie97.store.ledger.<a href="../com/cscie97/ledger/Transaction.html" title="class in com.cscie97.store.ledger">Transaction</a></dt>
 <dd>
 <div class="block">Helper method checking fee validity</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../com/cscie97/ledger/Transaction.html#isValidPayload(java.lang.String)">isValidPayload(String)</a></span> - Method in class com.cscie97.ledger.<a href="../com/cscie97/ledger/Transaction.html" title="class in com.cscie97.ledger">Transaction</a></dt>
+<dt><span class="memberNameLink"><a href="../com/cscie97/ledger/Transaction.html#isValidPayload(java.lang.String)">isValidPayload(String)</a></span> - Method in class com.cscie97.store.ledger.<a href="../com/cscie97/ledger/Transaction.html" title="class in com.cscie97.store.ledger">Transaction</a></dt>
 <dd>
 <div class="block">Helper method checking payload validity</div>
 </dd>

@@ -1,4 +1,4 @@
-package com.cscie97.ledger;
+package com.cscie97.store.ledger;
 
 import java.util.HashMap;
 import java.util.List;

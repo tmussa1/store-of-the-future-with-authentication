@@ -32,6 +32,7 @@ public interface IAuthenticationService {
     State logOut(String userId);
     String getInventoryPrint();
     List<User> getUsers();
+    List<AuthenticationToken> getTokens();
     AuthenticationToken findValidAuthenticationTokenForAUser(String userId) throws AccessDeniedException;
     void checkAccess(String tokenId, Resource resource, Permission permission) throws AccessDeniedException;
 }
