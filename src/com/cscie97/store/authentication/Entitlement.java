@@ -1,8 +1,6 @@
 package com.cscie97.store.authentication;
 
 
-import org.jetbrains.annotations.Nullable;
-
 public abstract class Entitlement implements Visitable{
 
     private String entitlementId;
@@ -25,7 +23,7 @@ public abstract class Entitlement implements Visitable{
      * @param permission
      * @return permission exists or not
      */
-    abstract boolean hasPermission(AuthenticationToken authToken, @Nullable Resource resource, Permission permission);
+    abstract boolean hasPermission(AuthenticationToken authToken, Resource resource, Permission permission);
 
     public String getEntitlementId() {
         return entitlementId;
