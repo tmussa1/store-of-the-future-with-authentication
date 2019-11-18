@@ -1,6 +1,5 @@
 package com.cscie97.store.authentication;
 
-import org.jetbrains.annotations.Nullable;
 
 public class Permission extends Entitlement implements Visitable {
 
@@ -25,7 +24,7 @@ public class Permission extends Entitlement implements Visitable {
     }
 
     @Override
-    boolean hasPermission(AuthenticationToken authToken, @Nullable Resource resource, Permission permission) {
+    boolean hasPermission(AuthenticationToken authToken, Resource resource, Permission permission) {
         return permission.getPermissionId().equals(permissionId);
     }
 

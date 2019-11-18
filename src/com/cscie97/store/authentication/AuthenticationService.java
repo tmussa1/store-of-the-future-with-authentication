@@ -251,10 +251,10 @@ public class AuthenticationService implements IAuthenticationService, Visitable 
     }
 
     @Override
-    public State logOut(String tokenId) {
+    public State logOut(String userId) {
         AuthenticationToken token = null;
         try {
-            token = validateIfTokenExists(tokenId);
+            token = findValidAuthenticationTokenForAUser(userId);
             token.logOut();
         } catch (AccessDeniedException e) {
             logger.warning("Unable to log out "+ e.getReason() + " : " + e.getFix());

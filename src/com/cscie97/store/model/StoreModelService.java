@@ -621,7 +621,7 @@ public class StoreModelService implements IStoreModelService, ISubject {
     public Customer clearBasketAndRemoveAssociationWithACustomer(String basketId, String authToken) throws StoreException {
         try {
             authenticationService.checkAccess(authToken, new Resource(basketId, ""),
-                    new Permission(PermissionType.UPADTE.getPermission()));
+                    new Permission(PermissionType.DELETE.getPermission()));
         } catch (AccessDeniedException e) {
             logger.warning("Unable to authenticate" + e.getReason() + " : " + e.getFix());
         }

@@ -59,7 +59,12 @@ public class CommandProcessor {
                     AuthenticationToken authenticationToken = authenticationService
                             .generateToken(commandWords[2], commandWords[4], commandWords[6]);
                     userIdToAuthTokenMap.put(commandWords[2], authenticationToken);
-                    return authenticationToken.getTokenId();
+                    return authenticationToken.getTokenId() + " token has been assigned to user";
+            case "log-in-face":
+            case "log-in-voice":
+                AuthenticationToken authenticationTokenVF = authenticationService
+                        .generateToken(commandWords[2], commandWords[3]);
+                return authenticationTokenVF.getTokenId() + " token has been assigned to user";
             case "define-store":
                    try {
                        return CreateUtil.createStore(storeModelService, commandWords[1], commandWords[3],

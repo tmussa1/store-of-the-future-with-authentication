@@ -1,7 +1,5 @@
 package com.cscie97.store.authentication;
 
-import org.jetbrains.annotations.Nullable;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +35,7 @@ public class ResourceRole extends Role implements Visitable {
     }
 
     @Override
-    boolean hasPermission(AuthenticationToken authToken, @Nullable Resource resource, Permission permission) {
+    boolean hasPermission(AuthenticationToken authToken, Resource resource, Permission permission) {
         if( (resource != null && checkResource(resource)) || permission.getPermissionId().equals(resourceRoleId)){
             return true;
         }

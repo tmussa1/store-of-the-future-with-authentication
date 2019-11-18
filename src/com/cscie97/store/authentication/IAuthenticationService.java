@@ -29,7 +29,7 @@ public interface IAuthenticationService {
     AuthenticationToken validateIfTokenExists(String tokenId) throws AccessDeniedException;
     State checkTokenExpiry(String tokenId);
     boolean sessionTimedOut(String tokenId);
-    State logOut(String tokenId);
+    State logOut(String userId);
     String getInventoryPrint();
     List<User> getUsers();
     AuthenticationToken findValidAuthenticationTokenForAUser(String userId) throws AccessDeniedException;

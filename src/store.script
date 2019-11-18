@@ -1,12 +1,52 @@
 ﻿//////////////////////////////////////////////////////
 register-cmd userid cmd
 add-credentials userid cmd username cmd-processor password cmd123
+create-permission permid CREATE permname perm_create permdesc creating_perm
+create-permission permid UPDATE permname perm_update permdesc updating_perm
+create-permission permid READ permname perm_read permdesc reading_perm
+create-permission permid DELETE permname perm_delete permdesc deleting_perm
+create-permission permid BAN permname perm_ban permdesc banning_perm
+create-permission permid PROVISION permname provision_store permdesc provisions_store
+create-role roleid admin rolename administrator roledesc admin_of_store
+create-role roleid registered_user rolename registered_user roledesc register-user
+create-role roleid guest_user rolename guest_user roledesc guest_user
+create-role roleid internal_system rolename internal_system roledesc internal_system
+add-permission-to-role roleid admin permid CREATE
+add-permission-to-role roleid admin permid UPDATE
+add-permission-to-role roleid admin permid READ
+add-permission-to-role roleid admin permid DELETE
+add-permission-to-role roleid admin permid BAN
+add-permission-to-role roleid registered_user permid CREATE
+add-permission-to-role roleid registered_user permid UPDATE
+add-permission-to-role roleid registered_user permid READ
+add-permission-to-role roleid guest_user permid READ
+add-permission-to-role roleid internal_system permid CREATE
+add-permission-to-role roleid internal_system permid UPDATE
+add-permission-to-role roleid internal_system permid READ
+add-permission-to-role roleid internal_system permid DELETE
+add-child-role-to-parent-role roleid admin childroleid internal_system
+get-role-by-id roleid admin
+get-role-by-id roleid registered_user
+get-role-by-id roleid internal_system
+get-role-by-id roleid guest_user
+get-permission-by-id CREATE
+get-permission-by-id UPDATE
+get-permission-by-id READ
+get-permission-by-id DELETE
+get-permission-by-id BAN
+get-user-by-id userid cmd
+add-entitlement-to-user userid cmd roleid admin
+add-entitlement-to-user userid cmd permid PROVISION
 log-in userid cmd username cmd-processor password cmd123
 define-store store_123 name KMart address EMain Columbus Ohio
+create-resource resourceid store_123 resourcename KMart
 create-controller cont register-controller
 create-ledger iceland description 'iceland ledger' seed 'vik'
 create-account store_123
 register-user userid cont
+add-entitlement-to-user userid cont roleid internal_system
+add-entitlement-to-user userid cont permid BAN
+get-user-by-id userid cont
 invoke-commands
 show-store store_123
 define-aisle store_123:aisle_A1 description AISLE_A1_desc location STOREROOM
@@ -15,6 +55,40 @@ define-aisle store_123:aisle_A3 description AISLE_A3_desc location FLOOR
 define-aisle store_123:aisle_B1 description AISLE_B1_desc location STOREROOM
 define-aisle store_123:aisle_B2 description AISLE_B2_desc location FLOOR
 define-aisle store_123:aisle_B3 description AISLE_B3_desc location FLOOR
+create-resource resourceid aisle_A1 resourcename store_123
+create-resource resourceid aisle_A2 resourcename store_123
+create-resource resourceid aisle_A3 resourcename store_123
+create-resource resourceid aisle_B1 resourcename store_123
+create-resource resourceid aisle_B2 resourcename store_123
+create-resource resourceid aisle_B3 resourcename store_123
+get-resource-by-id store_123
+get-resource-by-id aisle_A1
+get-resource-by-id aisle_A2
+get-resource-by-id aisle_A3
+get-resource-by-id aisle_B1
+get-resource-by-id aisle_B2
+get-resource-by-id aisle_B3
+create-resource-role resroleid commander resrolename commander_of_resource resroledesc commander_of_resource resourceid aisle_A1
+add-entitlement-to-resource-role resroleid commander roleid internal_system 
+add-entitlement-to-resource-role resroleid commander roleid registered_user
+add-entitlement-to-resource-role resroleid commander permid PROVISION
+add-resource-to-resource-role resroleid commander resourceid store_123
+add-resource-to-resource-role resroleid commander resourceid aisle_A1 
+add-resource-to-resource-role resroleid commander resourceid aisle_A2 
+add-resource-to-resource-role resroleid commander resourceid aisle_A3
+add-resource-to-resource-role resroleid commander resourceid aisle_B1
+add-resource-to-resource-role resroleid commander resourceid aisle_B2 
+add-resource-to-resource-role resroleid commander resourceid aisle_B3
+add-resource-role-to-user userid cmd resroleid commander
+add-resource-role-to-user userid cont resroleid commander
+get-resource-role-by-id commander
+get-entitlement-by-id internal_system
+get-entitlement-by-id registered_user
+get-entitlement-by-id PROVISION
+get-entitlement-by-id BAN
+get-entitlement-by-id guest_user
+add-child-resource-role-to-resource-role roleid admin childroleid commander
+get-authentication-inventory-print
 show-aisle store_123:aisle_A1
 show-aisle store_123:aisle_A2
 show-aisle store_123:aisle_B2
@@ -94,13 +168,28 @@ add-voiceprint userid cust_24 --voice:cust_24--
 add-faceprint userid cust_24 --face:cust_24--
 add-voiceprint userid cust_S2 --voice:cust_S2--
 add-faceprint userid cust_S2 --face:cust_S2--
+add-entitlement-to-user userid cust_AB roleid registered_user
+add-entitlement-to-user userid cust_21 roleid registered_user
+add-entitlement-to-user userid cust_22 roleid registered_user
+add-entitlement-to-user userid cust_E2 roleid registered_user
+add-entitlement-to-user userid cust_23 roleid registered_user
+add-entitlement-to-user userid cust_24 roleid registered_user
+add-entitlement-to-user userid cust_S2 roleid registered_user
+get-user-by-id userid cust_AB
+get-user-by-id userid cust_21
+get-user-by-id userid cust_22
+get-user-by-id userid cust_E2
+get-user-by-id userid cust_23
+get-user-by-id userid cust_24
+get-user-by-id userid cust_S2
+get-authentication-inventory-print
 log-in userid cust_AB username cust_AB password cmd123
-log-in userid cmd username cmd-processor password cmd123
-log-in userid cmd username cmd-processor password cmd123
-log-in userid cmd username cmd-processor password cmd123
-log-in userid cmd username cmd-processor password cmd123
-log-in userid cmd username cmd-processor password cmd123
-log-in userid cmd username cmd-processor password cmd123
+log-in-voice userid cust_21 --voice:cust_21--
+log-in-face userid cust_22 --face:cust_22--
+log-in-voice userid cust_E2 --voice:cust_E2--
+log-in-voice userid cust_23 --voice:cust_23--
+log-in-face userid cust_24 --face:cust_24--
+log-in userid cust_S2 username cust_S2 password CERcust_S2
 create-account json
 create-account bill
 create-account mary
@@ -296,4 +385,14 @@ invoke-commands
 approached_turnstile turn_a3 customer cust_24 location store_123:aisle_A2 reporter turn_a3
 approached_turnstile turn_a2 customer cust_23 location store_123:aisle_A2 reporter turn_a2
 approached_turnstile turn_a3 customer cust_AB location store_123:aisle_A2 reporter turn_a3
+get-authentication-inventory-print
+log-out userid cust_AB
+log-out userid cust_21
+log-out userid cust_22
+log-out userid cust_E2
+log-out userid cust_23
+log-out userid cust_24
+log-out userid cust_S2
 invoke-commands
+log-out userid cont
+log-out userid cmd
