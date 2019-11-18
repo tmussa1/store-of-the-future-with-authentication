@@ -1,7 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b037074f-4b82-4a0b-ac22-08ae94f9e0c0" name="Default Changelist" comment="" />
+    <list default="true" id="b037074f-4b82-4a0b-ac22-08ae94f9e0c0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/AccessDeniedException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/AuthenticationService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/AuthenticationServiceException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/AuthenticationToken.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/CheckAccessVisitor.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/Credential.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/Entitlement.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/FacePrint.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/IAuthenticationService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/InventoryVisitor.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/Ivisitor.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/Permission.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/Resource.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/ResourceRole.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/Role.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/State.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/User.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/UserNamePassword.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/Visitable.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/VoicePrint.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/controller/AbstractCommand.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/controller/AssistCustomerCommand.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/controller/CheckAccountBalanceCommand.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/controller/CheckoutCommand.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/controller/CleanStoreCommand.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/controller/CommandFactory.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/controller/CreateAccountCommand.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/controller/CreateLedgerCommand.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/controller/CustomerEnteredCommand.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/controller/CustomerNeedsItemCommand.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/controller/CustomerSeenCommand.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/controller/EmergencyCommand.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/controller/FIndCustomerCommand.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/controller/ICommand.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/controller/InvokeCommandsCommand.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/controller/ProcessTransactionCommand.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/controller/ProductAddedToBasketCommand.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/controller/ProductRemovedFromBasketCommand.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/controller/StoreControllerService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/controller/StoreControllerServiceException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/ledger/Account.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/ledger/Block.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/ledger/Ledger.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/ledger/LedgerException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/ledger/Transaction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/model/Address.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/model/Aisle.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/model/Basket.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/model/Camera.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/model/Command.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/model/Customer.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/model/CustomerType.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/model/Event.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/model/IAppliance.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/model/IObserver.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/model/ISensor.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/model/IStoreModelService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/model/ISubject.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/model/Inventory.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/model/InventoryLocation.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/model/Level.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/model/LocationType.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/model/Microphone.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/model/PermissionType.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/model/Product.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/model/Robot.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/model/SensorApplianceFactory.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/model/Shelf.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/model/Speaker.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/model/Store.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/model/StoreException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/model/StoreModelService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/model/StoreUtil.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/model/Temperature.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/model/Turnstile.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/test/CommandProcessor.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/test/CommandProcessorException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/test/CreateUtil.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/test/DetailsUtil.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/test/ExceptionUtil.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/test/ShowUtil.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/test/TestDriver.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/cscie97/store/test/UpdateUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/authentication/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/AuthenticationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/authentication/InventoryVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/InventoryVisitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/authentication/ResourceRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/ResourceRole.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/authentication/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/store/authentication/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/cscie97/store/test/CommandProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/cscie97/store/test/CommandProcessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store.script" beforeDir="false" afterPath="$PROJECT_DIR$/src/store.script" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store-of-the-future-with-authentication.iws" beforeDir="false" afterPath="$PROJECT_DIR$/store-of-the-future-with-authentication.iws" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,11 +111,19 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
   <component name="ProjectId" id="1TUBADanZlnb3e6oht5LTSkVoEX" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
@@ -50,6 +149,18 @@
       </list>
     </option>
   </component>
+  <component name="RunManager">
+    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+      <output_file path="$PROJECT_DIR$/../logs/logs.txt" is_save="true" />
+      <log_file alias="C:\Users\Tofik Mussa\Desktop\MS in CS\CSCI E-97\Projects\assignment-4\store-of-the-future-new\logs" path="$PROJECT_DIR$/../logs" />
+      <option name="MAIN_CLASS_NAME" value="com.cscie97.store.test.TestDriver" />
+      <module name="store-of-the-future-with-authentication" />
+      <option name="PROGRAM_PARAMETERS" value="src\store.script " />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -63,7 +174,7 @@
       <workItem from="1573504648992" duration="3485000" />
       <workItem from="1573875265828" duration="33956000" />
       <workItem from="1573961262232" duration="3031000" />
-      <workItem from="1574039155607" duration="11986000" />
+      <workItem from="1574039155607" duration="17666000" />
     </task>
     <servers />
   </component>
@@ -82,5 +193,8 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>

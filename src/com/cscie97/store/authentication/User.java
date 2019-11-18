@@ -7,6 +7,8 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
+import java.util.Optional;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class User implements Visitable {
@@ -14,6 +16,7 @@ public class User implements Visitable {
     private String userId;
     private List<Credential> credentials;
     private List<Entitlement> entitlements;
+    Logger logger = Logger.getLogger(User.class.getName());
 
     public User(String userId) {
         this.userId = userId;
@@ -34,12 +37,18 @@ public class User implements Visitable {
         this.entitlements.add(entitlement);
     }
 
-    public boolean checkCredentials(String userName, String passWord) throws NoSuchAlgorithmException {
-        UserNamePassword userNamePassword = (UserNamePassword) credentials.stream()
+    public boolean checkCredentials(String userName, String passWord) throws NoSuchAlgorithmException, AccessDeniedException {
+        List<UserNamePassword> userNamePasswords = credentials.stream()
                 .filter(credential -> credential instanceof UserNamePassword)
-                .collect(Collectors.toList()).get(0);
-        return userName.equals(userNamePassword.getUserName()) &&
-                computePasswordHash(passWord).equals(userNamePassword.getPasswordHash());
+                .map(credential -> (UserNamePassword) credential)
+                .collect(Collectors.toList());
+        Optional<UserNamePassword> userNamePwd = userNamePasswords.stream()
+                .filter(credential -> credential.getUserName().equals(userName))
+                .findFirst();
+        if(userNamePwd.isEmpty() || !computePasswordHash(passWord).equals(userNamePwd.get().getPasswordHash())){
+            throw new AccessDeniedException("Failed to verify credentials", "Please try again");
+        }
+        return true;
     }
 
     public boolean checkCredentials(String voiceFacePrint){

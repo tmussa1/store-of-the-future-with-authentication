@@ -4,6 +4,7 @@ package com.cscie97.store.authentication;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 public class AuthenticationService implements IAuthenticationService, Visitable {
@@ -217,13 +218,13 @@ public class AuthenticationService implements IAuthenticationService, Visitable 
 
     @Override
     public AuthenticationToken validateIfTokenExists(String tokenId) throws AccessDeniedException {
-        AuthenticationToken token = tokens.stream()
+        Optional<AuthenticationToken> token = tokens.stream()
                 .filter(aToken -> aToken.getTokenId().equals(tokenId))
-                .findFirst().get();
-        if(token == null){
+                .findFirst();
+        if(token.isEmpty()){
             throw new AccessDeniedException("Unable to find token", "Please authenticate again");
         }
-        return token;
+        return token.get();
     }
 
     @Override
@@ -294,89 +295,89 @@ public class AuthenticationService implements IAuthenticationService, Visitable 
 
     @Override
     public Role getRoleById(String roleId) throws AuthenticationServiceException {
-        Role role = (Role) entitlements.stream()
+        Optional<Entitlement> entitlementRole = entitlements.stream()
                 .filter(entitlement -> entitlement instanceof Role && entitlement.getEntitlementId().equals(roleId))
-                .findFirst().get();
+                .findFirst();
 
-        if(role == null){
+        if(entitlementRole.isEmpty()){
             throw new AuthenticationServiceException("Role not found",
                     "Please make sure you request the role first");
         }
-        return role;
+        return (Role) entitlementRole.get();
     }
 
     @Override
     public Permission getPermissionById(String permissionId) throws AuthenticationServiceException {
-        Permission permission = (Permission) entitlements.stream()
+        Optional<Entitlement> entitlementPermission = entitlements.stream()
                 .filter(entitlement -> entitlement instanceof Permission &&
                         entitlement.getEntitlementId().equals(permissionId))
-                .findFirst().get();
-        if(permission == null){
+                .findFirst();
+        if(entitlementPermission.isEmpty()){
             throw new AuthenticationServiceException("Permission not found",
                     "Please make sure you request the permission first");
         }
-        return permission;
+        return (Permission) entitlementPermission.get();
     }
 
     @Override
     public User getUserByUserId(String userId) throws AuthenticationServiceException {
-        User user= users.stream()
+        Optional<User> user= users.stream()
                 .filter(aUser -> aUser.getUserId().equals(userId))
-                .findFirst().get();
-        if(user == null){
+                .findFirst();
+        if(user.isEmpty()){
             throw new AuthenticationServiceException("User not found ", "User must register first");
         }
-        return user;
+        return user.get();
     }
 
     @Override
     public Resource getResourceByResourceId(String resouceId) throws AuthenticationServiceException {
-        Resource resource = resources.stream()
+        Optional<Resource> resource = resources.stream()
                 .filter(Aresource -> Aresource.getResourceId().equals(resouceId))
-                .findFirst().get();
-        if(resource == null){
+                .findFirst();
+        if(resource.isEmpty()){
             throw new AuthenticationServiceException("Resource not found",
                     "Please enter a resource that is provisioned");
         }
-        return resource;
+        return resource.get();
     }
 
     @Override
     public ResourceRole getResourceRoleByResourceRoleId(String resourceRoleId) throws AuthenticationServiceException {
-        ResourceRole resourceRole = (ResourceRole) entitlements.stream()
+
+        Optional<Entitlement> entitlement = entitlements.stream()
                 .filter(AresourceRole -> AresourceRole instanceof ResourceRole &&
                         AresourceRole.getEntitlementId().equals(resourceRoleId))
-                .findFirst()
-                .get();
-        if(resourceRole == null){
+                .findFirst();
+
+        if(entitlement.isEmpty()){
             throw new AuthenticationServiceException("Resource role not found",
                     "Please make sure that you have a role restricted to a resource");
         }
-        return resourceRole;
+        return (ResourceRole) entitlement.get();
     }
 
     @Override
     public AuthenticationToken findValidAuthenticationTokenForAUser(String userId) throws AccessDeniedException {
-        AuthenticationToken authenticationToken = tokens.stream()
+        Optional<AuthenticationToken> authenticationToken = tokens.stream()
                 .filter(token -> token.getUser().getUserId().equals(userId))
-                .findFirst().get();
-        if(authenticationToken == null || checkTokenExpiry(authenticationToken.getTokenId()) == State.EXPIRED){
+                .findFirst();
+        if(authenticationToken.isEmpty() || checkTokenExpiry(authenticationToken.get().getTokenId()) == State.EXPIRED){
             throw new AccessDeniedException("No authentication found for the user or may have timed out",
                     "Please log in again");
         }
-        return authenticationToken;
+        return authenticationToken.get();
     }
 
     @Override
     public Entitlement getEntitlementByEntitlementId(String entitlementId) throws AuthenticationServiceException {
-        Entitlement entitlement = entitlements.stream()
+        Optional<Entitlement> entitlement = entitlements.stream()
                 .filter(Anentitlement -> Anentitlement.getEntitlementId().equals(entitlementId))
-                .findFirst()
-                .get();
-        if(entitlement == null){
+                .findFirst();
+        if(entitlement.isEmpty()){
             throw new AuthenticationServiceException("Entitlement not found", "Please check the entitlement id");
         }
-        return entitlement;
+        return entitlement.get();
     }
 
     public List<AuthenticationToken> getTokens() {

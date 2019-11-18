@@ -39,7 +39,8 @@ public class CommandProcessor {
         switch(commandWords[0].toLowerCase()){
             case "register-cmd":
                 cmdProcessorUserId = commandWords[2];
-                return cmdProcessorUserId;
+                User userCMD = authenticationService.createUser(cmdProcessorUserId);
+                return userCMD.getUserId() + " command processor admin has been created";
             case "register-user":
                  return CreateUtil.createUser(authenticationService, commandWords[2]);
             case "add-credentials":
@@ -110,7 +111,7 @@ public class CommandProcessor {
                 }
             case "create-resource-role":
                 ResourceRole resourceRole = authenticationService.createResourceRole(commandWords[2], commandWords[4],
-                        commandWords[6], commandWords[6]);
+                        commandWords[6], commandWords[8]);
                 return resourceRole.getEntitlementId() + " ResourceRole has been created";
             case "add-entitlement-to-resource-role":
                 ResourceRole resourceRoleWithEntitle = authenticationService
@@ -161,7 +162,7 @@ public class CommandProcessor {
                 return authenticationTokenVF.getTokenId() + " token has been assigned to user";
             case "log-out":
                 State state = authenticationService.logOut(commandWords[2]);
-                return "Successfully logged out and the state of token is expired";
+                return "Successfully logged out " + commandWords[2] + " and the state of token is expired";
             case "define-store":
                    try {
                        return CreateUtil.createStore(storeModelService, commandWords[1], commandWords[3],

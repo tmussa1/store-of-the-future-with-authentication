@@ -2,6 +2,7 @@ package com.cscie97.store.authentication;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class ResourceRole extends Role implements Visitable {
 
@@ -50,10 +51,10 @@ public class ResourceRole extends Role implements Visitable {
     }
 
     boolean checkResource(Resource resource){
-        Resource resourceFound = resources.stream()
+        Optional<Resource> resourceFound = resources.stream()
                 .filter(aResource -> aResource.getResourceId().equals(resource.getResourceId()))
-                .findFirst().get();
-        if(resourceFound != null){
+                .findFirst();
+        if(!resourceFound.isEmpty()){
             return true;
         }
         return false;

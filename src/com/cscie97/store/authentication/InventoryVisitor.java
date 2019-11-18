@@ -6,9 +6,13 @@ public class InventoryVisitor implements Ivisitor {
 
     public InventoryVisitor() {
         this.accumulateState = new StringBuilder();
+        accumulateState.append("================================================== Beginning of inventory " +
+                "==================================");
     }
 
     public String getInventoryPrint(){
+        accumulateState.append("================================================== End of inventory " +
+                "==================================");
         return accumulateState.toString();
     }
 
